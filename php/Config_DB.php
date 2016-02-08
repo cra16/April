@@ -2,7 +2,7 @@
   // Define database connection constants
   define('DB_HOST', "localhost");
   define('DB_USER', "root");
-  define('DB_PASSWORD', "hae789");
+  define('DB_PASSWORD', "gksehdeo357");
   define('DB_NAME', "april");
   define('KEY', "1as4fg7jk0");
 
@@ -18,5 +18,4 @@
   if ($link->connect_error) {
       die("Connection failed: " . $link->connect_error);
   }
-
 ?>

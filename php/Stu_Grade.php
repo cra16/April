@@ -9,6 +9,11 @@ class Stu_Grade{
   var $stu_credit = null; 
   var $stu_grade = null; 
 
+  /**
+   * @function requestGrade
+   * hisnet의 전체성적으로 접근해서 현제까지 수강한 과목들의 
+   * 정보를 얻는 function이다.
+   **/
   function requestGrade($his_id, $his_pw){
     $this->his_id = $his_id;
     $this->his_pw = $his_pw;
@@ -94,7 +99,7 @@ class Stu_Grade{
       {
         if($j++<2)
           continue;
-        $stu_course[$w] = (string)$value->children(1);
+        $stu_course[$w] = (string)$value->children(1)->plaintext;
         //$stu_credit[$w] = $value->children(3);
         $stu_grade[$w] = $value->children(5);
         $w++;        
@@ -105,7 +110,6 @@ class Stu_Grade{
     //$_SESSION['stu_credit'] = $stu_credit;
     $_SESSION['stu_grade'] = $stu_grade;
     $_SESSION['stu_count'] = $w;
-
   }
   // requestGrade function End
 }

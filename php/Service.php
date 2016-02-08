@@ -21,45 +21,27 @@
 </head>
 
 <body>
-     <div class="container-fluid">
-        
-        <div class="col-md-12 col-sm-12">
-          <div class="navbar-header">
-            <a class="navbar-brand top-title" href="/">April</a>
-            <form id = "form" class="navbar-form navbar-left col-xs-5 form-inline" role="search"  action="/Search/" method = "POST" >
-                <input type="text" id="search" name="search" class="form-control" placeholder="과목명">
-                <button type="submit" id ="SearchButton" class="btn btn-info"  onclick="">Search <i class="glyphicon glyphicon-search"></i></button>
-      
-              <div class="form-group">
-
-              </div>
-             </form>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div class="collapse navbar-collapse navbar-menubuilder">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/MyPage">MY PAGE</a></li>
-              <li><a href= "/About">ABOUT</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">HELP<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="/QnA">Q&A</a></li>
-                  <li><a href="/Notice">공지사항</a></li>
-                  <li><a href="/Judgement">신고</a></li>
-                  <li><a href="/SubScript">개선요구사항</a></li>
-                  <li><a href="/SiteMap">SITEMAP</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-     
-      </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+      <a class="navbar-brand" href="temp.php" id = "home_button">April</a>
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php">Logout</a></li>
+      <li><a href="#" onclick="help()">Help</a></li>
+    </ul>
+  </div>
+  </div>
+</nav>  
 
 
 
@@ -71,11 +53,6 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Service Page
-                    </a>
-                </li>
                 <li>
                     <a href="#" class="foundation-competence">기초 역량</a>
                 </li>
@@ -133,182 +110,187 @@
                     </div>
                     <br><br><br>
 
-                    <div class="col-lg-12">
-                      <div class="col-lg-3">
-                          <table class="ui celled structured table">
-                            <thead>
-                              <tr>
-                                <th rowspan="2">Name</th>
-                                <th rowspan="2">Type</th>
-                                <th rowspan="2">Files</th>
-                                <th colspan="3">Languages</th>
-                              </tr>
-                              <tr>
-                                <th>Ruby</th>
-                                <th>JavaScript</th>
-                                <th>Python</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>Alpha Team</td>
-                                <td>Project 1</td>
-                                <td class="right aligned">2</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td rowspan="3">Beta Team</td>
-                                <td>Project 1</td>
-                                <td class="right aligned">52</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Project 2</td>
-                                <td class="right aligned">12</td>
-                                <td></td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Project 3</td>
-                                <td class="right aligned">21</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="col-lg-3">
-                          <table class="ui celled structured table">
-                            <thead>
-                              <tr>
-                                <th rowspan="2">Name</th>
-                                <th rowspan="2">Type</th>
-                                <th rowspan="2">Files</th>
-                                <th colspan="3">Languages</th>
-                              </tr>
-                              <tr>
-                                <th>Ruby</th>
-                                <th>JavaScript</th>
-                                <th>Python</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>Alpha Team</td>
-                                <td>Project 1</td>
-                                <td class="right aligned">2</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td rowspan="3">Beta Team</td>
-                                <td>Project 1</td>
-                                <td class="right aligned">52</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Project 2</td>
-                                <td class="right aligned">12</td>
-                                <td></td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Project 3</td>
-                                <td class="right aligned">21</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="col-lg-3">
-                          <table class="ui celled structured table">
-                            <thead>
-                              <tr>
-                                <th rowspan="2">Name</th>
-                                <th rowspan="2">Type</th>
-                                <th rowspan="2">Files</th>
-                                <th colspan="3">Languages</th>
-                              </tr>
-                              <tr>
-                                <th>Ruby</th>
-                                <th>JavaScript</th>
-                                <th>Python</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>Alpha Team</td>
-                                <td>Project 1</td>
-                                <td class="right aligned">2</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td rowspan="3">Beta Team</td>
-                                <td>Project 1</td>
-                                <td class="right aligned">52</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Project 2</td>
-                                <td class="right aligned">12</td>
-                                <td></td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Project 3</td>
-                                <td class="right aligned">21</td>
-                                <td class="center aligned">
-                                  <i class="large green checkmark icon"></i>
-                                </td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                    </div>
+                    <div class="col-lg-12 total_table">
+                      <div class="col-lg-4 table_layer">
+                         <div id="rt_table" class="bootstrap-table">
+                           <div class="fixed-table-container">
+                               <div class="fixed-table-header" style="height: 40px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;">
+                                  
+                               </div>
+                              <div class="fixed-table-body">
+                                  
+                                  <table id="table" class="table table-hover" style="margin-top: -40px;">
+                                       <thead>
+                                          <tr>
+                                          
+                                          <th class="col-xs-2">
+                                              <center>월</center>
+                                          <th class="col-xs-2">
+                                              <center>교과 영역</center>
+                                          </th>
+                                          <th class="col-xs-2">
+                                              <center>비교과 <br> 영역</center>
+                                         
+                                          </th>
+                                          <th class="col-xs-2">
+                                              <center>이외</center>
+                                         
+                                          </th>
+                                           </tr>
+
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                          <td></td>
+                                      <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     </tr>
+                                     <tr>
+                                          <td></td>
+                                      <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     </tr>
+                                     <tr>
+                                          <td></td>
+                                      <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     </tr>
+                                     <tr>
+                                          <td></td>
+                                      <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="col-lg-4 table_layer">
+                          <div id="rt_table" class="bootstrap-table">
+                           <div class="fixed-table-container">
+                               <div class="fixed-table-header" style="height: 40px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;">
+                                  
+                               </div>
+                              <div class="fixed-table-body"> 
+                                  <table id="table" class="table table-hover" style="margin-top: -40px;">
+                                       <thead>
+                                          <tr>
+                                          
+                                          <th class="col-xs-2">
+                                              <center>월</center>
+                                          <th class="col-xs-2">
+                                              <center>교과 영역</center>
+                                          </th>
+                                          <th class="col-xs-2">
+                                              <center>비교과 <br> 영역</center>
+                                         
+                                          </th>
+                                          <th class="col-xs-2">
+                                              <center>이외</center>
+                                         
+                                          </th>
+                                          
+                                           </tr>
+
+                                      </thead>
+                                      <tbody>
+                                       <tr>
+                                         <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                      </tr>
+                                      <tr>
+                                         <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                      </tr>
+                                      <tr>
+                                          <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      </tr>
+                                      <tr>
+                                          <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
+
+                        <div class="col-lg-4 table_layer">
+                          <div id="rt_table" class="bootstrap-table">
+                           <div class="fixed-table-container">
+                               <div class="fixed-table-header" style="height: 40px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;">
+                                  
+                               </div>
+                              <div class="fixed-table-body">
+                                  
+                                  <table id="table" class="table table-hover" style="margin-top: -40px;">
+                                       <thead>
+                                          <tr>
+                                          
+                                          <th class="col-xs-2">
+                                              <center>월</center>
+                                          <th class="col-xs-2">
+                                              <center>교과 영역</center>
+                                          </th>
+                                          <th class="col-xs-2">
+                                              <center>비교과 <br>영역</center>
+                                         
+                                          </th>
+                                          <th class="col-xs-2">
+                                              <center>이외</center>
+                                         
+                                          </th>
+                                           </tr>
+
+                                      </thead>
+                                      <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                                      </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                             </div>
+                          </div>
+                        </div>
+                     </div>
+                   </div>
         <!-- /#page-content-wrapper -->
 
     </div>
