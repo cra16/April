@@ -36,6 +36,8 @@ class Admin{
     	   	if($this->admin_pw==$decoding){
    				mysqli_close($link);
     			header("location:Admin_Page.php");
+    			exit();
+
     		}
 		} 
 		else {
