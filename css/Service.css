@@ -96,7 +96,16 @@
 {
     display:none 
 }
-
+.competence_btn
+{
+    width:25%;
+    float:left;
+}
+.study_btn
+{
+    width:33.3%;
+    float:left;
+}
 .top-title{
     font-size: 40px;
     text-transform: capitalize;
@@ -126,4 +135,7 @@ td {
     height: 80px;
     border: solid 1px #ddd;
 }
- 
+
+#submit_btn{
+    float:right;
+ }

@@ -1,4 +1,7 @@
+
+
 $(document).ready(function(){
+	$("#form_data").hide();
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
@@ -6,7 +9,7 @@ $(document).ready(function(){
 		$(".sub-foundation-competence").show();
 		$(".sub-foundation-study").hide();
 		$(".introduce").hide();
-		$("table").hide();
+		$("#form_data").show();
 	});
 
 	$("div").on("click",".foundation-study",function(event){
@@ -16,23 +19,27 @@ $(document).ready(function(){
 		$(".sub-foundation-competence").hide();
 		$(".sub-foundation-study").show();
 		$(".introduce").hide();
-		$("table").hide();
+		$("#form_data").show();
+
 	});
 
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
-
-		$("table").show();
+        $("#course_name").text($(this).children().text());
+		$("#form_data").show();
 
 	});
 	$("div").on("click",".sub-foundation-study",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
-
-		$("table").show();
+          $("#course_name").text($(this).children().text());
+		$("#form_data").show();
 
 	});
 
+	$("div").on("click","#submit_btn",function(event){
+			$("#form_data").submit();
 
+	});
 });

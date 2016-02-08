@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body ng-app="MyApp">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,7 +48,7 @@
 
 
 
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="table_event">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -74,31 +74,42 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                    
-                  
-                      <button type="button" class="btn btn-default sub-foundation-competence">
-                        <span class="" aria-hidden="true">인문사회</span>
-                      </button>
-                      <button type="button" class="btn btn-default sub-foundation-competence">
-                        <span class="" aria-hidden="true">이공학</span>
-                      </button>
-                      <button type="button" class="btn btn-default sub-foundation-competence">
-                        <span class="" aria-hidden="true">ICT</span>
-                      </button>
-                      <button type="button" class="btn btn-default sub-foundation-competence">
-                        <span class="" aria-hidden="true">ICT심화</span>
-                      </button>
-
-                       <button type="button" class="btn btn-default sub-foundation-study">
-                        <span class="" aria-hidden="true">인문사회</span>
-                      </button>
-                      <button type="button" class="btn btn-default sub-foundation-study">
-                        <span class="" aria-hidden="true">이공학</span>
-                      </button>
-                      <button type="button" class="btn btn-default sub-foundation-study">
-                        <span class="" aria-hidden="true">융합</span>
-                      </button>
-                     
+                      <div class="competence_btn">
+                        <button type="button" class="btn btn-default sub-foundation-competence">
+                          <span class="" aria-hidden="true">인문사회</span>
+                        </button>
+                      </div>
+                      <div class="competence_btn">
+                        <button type="button" class="btn btn-default sub-foundation-competence">
+                          <span class="" aria-hidden="true">이공학</span>
+                        </button>
+                      </div>
+                      <div class="competence_btn">
+                        <button type="button" class="btn btn-default sub-foundation-competence">
+                          <span class="" aria-hidden="true">ICT</span>
+                        </button>
+                      </div>
+                      <div class="competence_btn">
+                        <button type="button" class="btn btn-default sub-foundation-competence">
+                          <span class="" aria-hidden="true">ICT심화</span>
+                        </button>
+                      </div>
+                      <div class="study_btn">
+                         <button type="button" class="btn btn-default sub-foundation-study">
+                          <span class="" aria-hidden="true">인문사회</span>
+                        </button>
+                      </div>
+                      <div class="study_btn">
+                        <button type="button" class="btn btn-default sub-foundation-study">
+                          <span class="" aria-hidden="true">이공학</span>
+                        </button>
+                      </div>
+                      <div class="study_btn">
+                        <button type="button" class="btn btn-default sub-foundation-study">
+                          <span class="" aria-hidden="true">융합</span>
+                        </button>
+                      </div>
+                     </div>
 
                         <div class="introduce">
                         <h1>ServicePage</h1>
@@ -107,191 +118,88 @@
                         
                         </div>
                         
-                    </div>
-                    <br><br><br>
-
-                    <div class="col-lg-12 total_table">
-                      <div class="col-lg-4 table_layer">
-                         <div id="rt_table" class="bootstrap-table">
-                           <div class="fixed-table-container">
-                               <div class="fixed-table-header" style="height: 40px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;">
-                                  
-                               </div>
-                              <div class="fixed-table-body">
-                                  
-                                  <table id="table" class="table table-hover" style="margin-top: -40px;">
-                                       <thead>
-                                          <tr>
-                                          
-                                          <th class="col-xs-2">
-                                              <center>월</center>
-                                          <th class="col-xs-2">
-                                              <center>교과 영역</center>
-                                          </th>
-                                          <th class="col-xs-2">
-                                              <center>비교과 <br> 영역</center>
-                                         
-                                          </th>
-                                          <th class="col-xs-2">
-                                              <center>이외</center>
-                                         
-                                          </th>
-                                           </tr>
-
-                                      </thead>
-                                      <tbody>
-                                      <tr>
-                                          <td></td>
-                                      <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     </tr>
-                                     <tr>
-                                          <td></td>
-                                      <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     </tr>
-                                     <tr>
-                                          <td></td>
-                                      <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     </tr>
-                                     <tr>
-                                          <td></td>
-                                      <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                          </div>
-                      </div>
-                      </div>
-                      <div class="col-lg-4 table_layer">
-                          <div id="rt_table" class="bootstrap-table">
-                           <div class="fixed-table-container">
-                               <div class="fixed-table-header" style="height: 40px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;">
-                                  
-                               </div>
-                              <div class="fixed-table-body"> 
-                                  <table id="table" class="table table-hover" style="margin-top: -40px;">
-                                       <thead>
-                                          <tr>
-                                          
-                                          <th class="col-xs-2">
-                                              <center>월</center>
-                                          <th class="col-xs-2">
-                                              <center>교과 영역</center>
-                                          </th>
-                                          <th class="col-xs-2">
-                                              <center>비교과 <br> 영역</center>
-                                         
-                                          </th>
-                                          <th class="col-xs-2">
-                                              <center>이외</center>
-                                         
-                                          </th>
-                                          
-                                           </tr>
-
-                                      </thead>
-                                      <tbody>
-                                       <tr>
-                                         <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                      </tr>
-                                      <tr>
-                                         <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                      </tr>
-                                      <tr>
-                                          <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      </tr>
-                                      <tr>
-                                          <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
-                                      </tbody>
-                                  </table>
                 </div>
-              </div>
-            </div>
-          </div>
+                    <br><br><br>
+                    <form id="form_data" action="ResultServce.php" method="POST">
+                       <span id = "course_name">인문사회</span>
+                       <div class="col-lg-12 total_table">
 
+                       <?php
+                        for($i=0; $i<3; $i++)
+                       {?>
                         <div class="col-lg-4 table_layer">
-                          <div id="rt_table" class="bootstrap-table">
-                           <div class="fixed-table-container">
-                               <div class="fixed-table-header" style="height: 40px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;">
-                                  
-                               </div>
-                              <div class="fixed-table-body">
-                                  
-                                  <table id="table" class="table table-hover" style="margin-top: -40px;">
-                                       <thead>
-                                          <tr>
-                                          
-                                          <th class="col-xs-2">
-                                              <center>월</center>
-                                          <th class="col-xs-2">
-                                              <center>교과 영역</center>
-                                          </th>
-                                          <th class="col-xs-2">
-                                              <center>비교과 <br>영역</center>
-                                         
-                                          </th>
-                                          <th class="col-xs-2">
-                                              <center>이외</center>
-                                         
-                                          </th>
-                                           </tr>
+                           <div id="rt_table" class="bootstrap-table">
+                              <div class="fixed-table-container">
+                                <div class="fixed-table-header" style="height: 40px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;"></div>
+                                <div class="fixed-table-body">
+                                    <table id="table" class="table table-hover" style="margin-top: -40px;">
+                                         <thead>
+                                            <tr>
+                                            
+                                            <th class="col-xs-6">
+                                                <center>
+                                                <?php 
+                                                  if($i==0){
+                                                    echo "교과";
+                                                  }
+                                                  else
+                                                    echo "비교과";
 
-                                      </thead>
-                                      <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                                      </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                             </div>
+                                                ?>
+                                                </center></th>
+                                            <th class="col-xs-6">
+                                                <center>과목</center>
+                                            </th>
+                                             </tr>
+
+                                        </thead>
+                                        <tbody>
+            					                    <tr>
+            					                      <td></td>
+            					                      <td>
+                                              <?php
+                                                if($i==0)
+                                                {
+                                                  for($j=0; $j<3; $j++)
+                                                  {
+                                                    echo "교과과목 출력 할 부분";
+                                                  }
+                                                }
+                                                else if($i==1)
+                                                {
+                                                  for($j=0; $j<3; $j++)
+                                                  {
+                                                    echo "<input type='checkbox' name='chk_info[]' value='$j'>비교과 과목 출력 할 부분 <br>";
+                                                  }
+                                                }
+                                                else if($i==2)
+                                                {
+                                                   for($j=0; $j<3; $j++)
+                                                  {
+                                                    echo "<input type='checkbox' name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
+                                                  }
+                                                }
+                                              ?>
+
+                                            </td>
+            					                    </tr>
+            					                   
+            					                   
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                           </div>
-                        </div>
-                     </div>
+                         </div>
+                         <?php
+                       }?>
+                       </div>
+                       <input type='button' class='btn' id ="submit_btn" value="submit">
+                      </form>
                    </div>
+               </div>
         <!-- /#page-content-wrapper -->
+
 
     </div>
 
@@ -301,6 +209,7 @@
     <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
+
     <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/Service.js"></script>
     <!-- Menu Toggle Script -->
