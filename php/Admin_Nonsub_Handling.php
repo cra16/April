@@ -42,7 +42,7 @@ if ($mode == -1)
     $name = $_POST['p_name'];
 
     // Remove the data.                                  
-    mysql_query("DELETE FROM nonsubject WHERE field = '$field' course = '$course' area = '$area' name = '$name'");                
+    mysql_query("DELETE FROM nonsubject WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name''");                
 
     // Chech if it is deleted successfully.
     $del = 0;
