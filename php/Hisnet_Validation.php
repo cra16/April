@@ -9,7 +9,7 @@ class HisnetValidation{
   //hisnet pw
   var $his_pw = null;
   /**
-   * @function membercraHisValidation
+   * @function validation
    * @brief 생성자.히즈넷 아이디, 히즈넷 비밀번호를 프로퍼티에 넣기
    **/
   function validation($his_id, $his_pw){
@@ -86,43 +86,38 @@ class HisnetValidation{
       curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile);
       curl_setopt ($ch, CURLOPT_REFERER, "http://hisnet.handong.edu/main.php");
 
-      $ch = curl_init ("http://hisnet.handong.edu/haksa/hakjuk/HHAK110M.php");
-      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile);
-      curl_setopt ($ch, CURLOPT_REFERER, "http://hisnet.handong.edu/for_student/main.php");
       $result = curl_exec ($ch);
       $result = iconv("EUC-KR","UTF-8", $result);
       curl_close($ch);
-     
-    // Hisnet login access success
-    $html = str_get_html($result);  
-    if(is_object($html->find('.tblcationTitlecls', 1)))
-    {
-      $table = $html->find('.tblcationTitlecls', 1)->parent()->parent();
-      $td_id = $table->children(1)->children(1)->innertext;
-      $temp_id = preg_replace("/[^0-9]*/s", "", $td_id);
-      $stu_id = substr($temp_id,1,9);
-      $stu_name = $html->find('strong', 0)->innertext;
+      unlink($ckfile);
 
-      if($this->loginCheck($this->his_id)!=0){
-        header("location:Main.php");
+      $html = str_get_html($result);  
+      // FIXME: Find strong indexing. If Hisnetpage is changed, fix this section.
+      if($html->find('strong')){
+          $strong = $html->find('strong');
+          $ret = $strong[0]->parent()->plaintext;
+          $pos = strpos($ret, '(');
+          $comp_id = substr($ret,$pos+1,strlen($this->his_id));
+          
+          // Hisnet login access fail
+          if($this->loginCheck($comp_id)!=0){
+                header("location:Main.php");
+          }
+          // Hisnet login access success
+          else{
+                $_SESSION['USER_NAME'] =$_POST['his_id'];
+                session_write_close();
+          }
       }
-      else{
-        $id = $_POST['his_id'];
-        $_SESSION['USER_NAME'] = $id;
-        session_write_close();
-        echo "login success";
-      }
-    }
 
-    // Hisnet login access fail
-    else
-      header("location:Main.php");
-    // Delete temp file after using
-    unlink($ckfile);
-  }
-  function loginCheck($comp_id){
-    return strcmp($this->his_id,$comp_id);
-  }
-}
+     // Hisnet login access fail
+      else
+          header("location:Main.php");
+    } // requestHisnet() End
+
+      function loginCheck($comp_id){
+           return strcmp($this->his_id,$comp_id);
+      }
+} // class HisnetValidation End
+
 ?>
