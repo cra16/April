@@ -154,9 +154,9 @@
 
                                         </thead>
                                         <tbody>
-            					                    <tr>
-            					                      <td></td>
-            					                      <td>
+                                          <tr>
+                                            <td></td>
+                                            <td>
                                               <?php
                                                 if($i==0)
                                                 {
@@ -182,9 +182,9 @@
                                               ?>
 
                                             </td>
-            					                    </tr>
-            					                   
-            					                   
+                                          </tr>
+                                         
+                                         
                                         </tbody>
                                     </table>
                                 </div>
@@ -194,6 +194,7 @@
                          <?php
                        }?>
                        </div>
+                       <input type="hidden" id ="foundation" value="">
                        <input type='button' class='btn' id ="submit_btn" value="submit">
                       </form>
                    </div>
