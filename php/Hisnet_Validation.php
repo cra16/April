@@ -13,6 +13,7 @@ class HisnetValidation{
    * @brief 생성자.히즈넷 아이디, 히즈넷 비밀번호를 프로퍼티에 넣기
    **/
   function validation($his_id, $his_pw){
+    $errflag = false;
     // Examine hisnet_id and hisnet_pw
     if (empty($his_id)|| empty($his_pw))
     $errflag = true;

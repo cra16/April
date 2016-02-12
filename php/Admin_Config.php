@@ -9,6 +9,7 @@ class Admin{
 	// If there is invalid access
 	function Validation($admin_id, $admin_pw){
 		// Examine admin_id and admin_pw
+		$errflag = false;
 		if (empty($admin_id)|| empty($admin_pw))
 		$errflag = true;
     	//If there are no input information, redirect back to the login form
