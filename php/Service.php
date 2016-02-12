@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<?php
+session_start();
+
+//simple_html_dom.php is needed to access hisnetpage information
+require_once('simple_html_dom.php');
+
+require_once('Stu_Grade.php');
+$stu_grade = new Stu_Grade();
+$stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']);
+?>
 <html lang="en">
 
 <head>
