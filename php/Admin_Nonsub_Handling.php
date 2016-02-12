@@ -1,4 +1,3 @@
-
 <?php
 // Session start 
 session_start();
@@ -6,7 +5,7 @@ session_start();
 // Insert
 if ($mode == 1)  
 {      
-	//DB connection
+    //DB connection
     include 'Config_DB.php';
         
     // Fetch the data.
@@ -17,22 +16,22 @@ if ($mode == 1)
 
 
     // Chech if it already exists.
-    $rep = 0;	//repetition 약자
+    $rep = 0;    //repetition 약자
     $rep = "SELECT * FROM nonsubject WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name'";
       
     // Insert the data.   
     if($rep != 0){                            
-    	mysql_query("INSERT INTO `nonsubject`(field, course, area, name) VALUES ('$field','$course','$area','$name')");   
+        mysql_query("INSERT INTO `nonsubject`(field, course, area, name) VALUES ('$field','$course','$area','$name')");   
     }     
     else {
-  		echo "Same data exists! " . $link->error;
-	}	        
+          echo "Same data exists! " . $link->error;
+    }            
 }
 
 // Remove
 if ($mode == -1)
 {      
-	//DB connection
+    //DB connection
     include 'Config_DB.php';
 
     // Fetch the data.
@@ -48,7 +47,7 @@ if ($mode == -1)
     $del = 0;
     $del = "SELECT * FROM nonsubject WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name'";
     if($del != 0){
-    	echo "Deletion failed! " . $link->error;
+        echo "Deletion failed! " . $link->error;
     }
 }
 
@@ -58,7 +57,7 @@ if ($mode == -1)
 // Update
 if ($mode == 2)
 {      
-	//DB connection
+    //DB connection
     include 'Config_DB.php';
 
     // Fetch the old data.
@@ -69,7 +68,7 @@ if ($mode == 2)
           
     // Update the data.                                  
     mysql_query("UPDATE nonsubject SET field = '$field' course = '$course' area = '$area' name = '$name'
-    			 WHERE some_column=some_value ");                
+                 WHERE some_column=some_value ");                
 }
 
 */
