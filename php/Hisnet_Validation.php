@@ -13,6 +13,7 @@ class HisnetValidation{
    * @brief 생성자.히즈넷 아이디, 히즈넷 비밀번호를 프로퍼티에 넣기
    **/
   function validation($his_id, $his_pw){
+    $errflag = false;
     // Examine hisnet_id and hisnet_pw
     if (empty($his_id)|| empty($his_pw))
     $errflag = true;
@@ -105,8 +106,13 @@ class HisnetValidation{
           }
           // Hisnet login access success
           else{
-                $_SESSION['USER_NAME'] =$_POST['his_id'];
+                 $id = $_POST['his_id'];
+                $_SESSION['USER_NAME'] = $id;
+                $password = $_POST['his_pw'];
+                $_SESSION['USER_PW'] = $password;
                 session_write_close();
+                echo "login success";
+                header("location:Service.php");
           }
       }
 
