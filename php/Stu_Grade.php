@@ -1,19 +1,29 @@
-<?php
+<?php  
 
 class Stu_Grade{ 
   //hisnet id 
   var $his_id = null; 
   //hisnet pw 
+
   var $his_pw = null; 
   var $stu_course = array(); 
   var $stu_credit = null; 
   var $stu_grade = null; 
-
+  var $link = null;
+  var $db =null;
   /**
    * @function requestGrade
    * hisnet의 전체성적으로 접근해서 현제까지 수강한 과목들의 
-   * 정보를 얻는 function이다.
+   * 정보와 합계를 얻는 function이다.
    **/
+  function __construct()
+  {
+ 
+
+    require_once('Config_DB.php');
+    $this->db = new DB_Control();
+    $this->link = $this->db->DBC();
+  }
   function requestGrade($his_id, $his_pw){
     $this->his_id = $his_id;
     $this->his_pw = $his_pw;
@@ -87,6 +97,7 @@ class Stu_Grade{
     $i = 2;
     $j = 0;
     $w = 0;
+    $stu_count = 0;
     $table = $html->find('table[id=att_list]');
 
     foreach($table as $value){
@@ -100,18 +111,59 @@ class Stu_Grade{
         if($j++<2)
           continue;
         $stu_course[$w] = (string)$value->children(1)->plaintext;
-        //$stu_credit[$w] = $value->children(3);
         $stu_grade[$w] = $value->children(5);
         $w++;        
       }
+      $stu_count = $w;
     }
 
-    $_SESSION['stu_course'] = $stu_course;
-    //$_SESSION['stu_credit'] = $stu_credit;
-    $_SESSION['stu_grade'] = $stu_grade;
-    $_SESSION['stu_count'] = $w;
+    $p = 0;
+    $condition = "SELECT * FROM subject ";
+
+    $check = mysqli_query($this->link,$condition);
+    
+    $row_num = mysqli_num_rows($check);
+
+    $re_name = array();
+    $re_credit = array();
+    $re_article = array();
+    $sum = array();
+
+    $t = 0;
+    while( $result = mysqli_fetch_array($check) ){
+        $re_name[$t] = $result['sub_name'];
+        $re_credit[$t] = $result['credit'];
+        $re_article[$t] = $result['article'];
+        $t++;
+    }
+
+    $w = 0;
+    $sum = array_fill(0,$stu_count,0);
+    while( $w < $stu_count ) {
+      $course = $stu_course[$w];
+
+      for($t=0; $t < $row_num; $t++){
+        if( strcmp($course, $re_name[$t]) == TRUE ){ // string comparison
+          echo $course." ";
+          $field = $re_article[$t];
+          $sum[$field]['credit'] += $re_credit[$t];
+          $sum[$field]['index'] = $field;
+          echo 'sum'.'<br/>';
+        } 
+      }
+      $w++;
+    }
+
+    foreach( $sum as $sum ){
+      if( $sum >0 ){
+        echo $sum['index']." : ".$sum['credit'];
+        echo '<br/>';
+      }
+    }
+
   }
   // requestGrade function End
+
 }
 // Stu_Grade class End
 
