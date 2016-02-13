@@ -23,17 +23,63 @@ $(document).ready(function(){
 
 	});
 
+
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
-        $("#course_name").text($(this).children().text());
+         var Course=$("#course_name").text($(this).children().text());
+          Course = Course.text();
+      		alert(Course);
+           $.ajax(
+            { url : "ShowCourse.php",
+              data : {
+                      'Course' : Course,
+                      
+                    },
+              async : false,
+              type : "POST",
+              success:function(resp){  
+
+                 $(".input_data").eq(0).html(resp);
+                 alert(resp);
+               
+                },
+                error: function(xhr, option, error){
+                  alert(xhr.status); //오류코드
+                  alert(error); //오류내용                  
+                 } 
+
+          });
 		$("#form_data").show();
+	
 
 	});
 	$("div").on("click",".sub-foundation-study",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
-          $("#course_name").text($(this).children().text());
+          var Course=$("#course_name").text($(this).children().text());
+          Course = Course.text();
+      		alert(Course);
+           $.ajax(
+            { url : "ShowCourse.php",
+              data : {
+                      'Course' : Course,
+                      
+                    },
+              async : false,
+              type : "POST",
+              success:function(resp){  
+
+                 $(".input_data").eq(0).html(resp);
+                 alert(resp);
+               
+                },
+                error: function(xhr, option, error){
+                  alert(xhr.status); //오류코드
+                  alert(error); //오류내용                  
+                 } 
+
+          });
 		$("#form_data").show();
 
 	});

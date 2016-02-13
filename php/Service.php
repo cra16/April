@@ -5,9 +5,9 @@ session_start();
 //simple_html_dom.php is needed to access hisnetpage information
 require_once('simple_html_dom.php');
 
-require_once('Stu_Grade.php');
-$stu_grade = new Stu_Grade();
-$stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']);
+include('Stu_Grade.php');
+$stu_grade = Stu_Grade::getInstance(0);
+
 ?>
 <html lang="en">
 
@@ -166,22 +166,18 @@ $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']);
                                         <tbody>
                                           <tr>
                                             <td></td>
-                                            <td>
+                                            <td class="input_data">
                                               <?php
                                                 if($i==0)
                                                 {
-                                                  for($j=0; $j<3; $j++)
-                                                  {
-                                                    echo "교과과목 출력 할 부분";
-                                                  }
+                                                 
+
+                                                    $stu_grade->getSubject($i,"인문사회","기초학문");
+                                                  
                                                 }
                                                 else if($i==1)
                                                 {
-                                                  for($j=0; $j<3; $j++)
-                                                  {
-                                                    echo "<input type='checkbox' name='chk_info[]' value='$j'>비교과 과목 출력 할 부분 <br>";
-                                                  }
-                                                }
+                                                 }
                                                 else if($i==2)
                                                 {
                                                    for($j=0; $j<3; $j++)
@@ -230,6 +226,12 @@ $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']);
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+    <?php
+      $_SESSION['Object']=serialize($stu_grade);
+        
+      ?>
+
+
 
 </body>
 

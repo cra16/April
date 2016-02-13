@@ -2,28 +2,68 @@
 
 class Stu_Grade{ 
   //hisnet id 
+  private static $instance=null;
   var $his_id = null; 
   //hisnet pw 
 
   var $his_pw = null; 
   var $stu_course = array(); 
   var $stu_credit = null; 
-  var $stu_grade = null; 
+  var $stu_grade = array(); 
   var $link = null;
   var $db =null;
+  var $re_article =array();
+  var $re_name = array();
   /**
    * @function requestGrade
    * hisnet의 전체성적으로 접근해서 현제까지 수강한 과목들의 
    * 정보와 합계를 얻는 function이다.
    **/
-  function __construct()
-  {
  
+  public static function getInstance($input_instance)
+  {
+    if($input_instance =="0")
+    {
+      if(!isset(static::$instance))
+      {
+       
+        static::$instance = new Stu_Grade();
+        require_once('Config_DB.php');
+        static::$instance->db = new DB_Control();
+        static::$instance->link = static::$instance->db->DBC();
+        
+      }
 
-    require_once('Config_DB.php');
-    $this->db = new DB_Control();
-    $this->link = $this->db->DBC();
+    }
+    else
+    {
+          static::$instance = $input_instance;
+     
+         
+    }
+      return static::$instance;
   }
+  
+  function __destruct()
+  {
+    echo "소멸";
+  }
+   private function __construct()
+    {
+    }
+
+    /**
+     * clone에 의해서 호출 되는 것 방지
+     *
+     * @return void
+     */
+    private function __clone()
+    {
+    }
+
+    
+
+
   function requestGrade($his_id, $his_pw){
     $this->his_id = $his_id;
     $this->his_pw = $his_pw;
@@ -110,8 +150,9 @@ class Stu_Grade{
       {
         if($j++<2)
           continue;
-        $stu_course[$w] = (string)$value->children(1)->plaintext;
+        $this->stu_course[$w] = (string)$value->children(1)->plaintext;
         $stu_grade[$w] = $value->children(5);
+        
         $w++;        
       }
       $stu_count = $w;
@@ -124,31 +165,30 @@ class Stu_Grade{
     
     $row_num = mysqli_num_rows($check);
 
-    $re_name = array();
     $re_credit = array();
-    $re_article = array();
     $sum = array();
 
     $t = 0;
     while( $result = mysqli_fetch_array($check) ){
-        $re_name[$t] = $result['sub_name'];
+        $this->re_name[$t] = $result['sub_name'];
         $re_credit[$t] = $result['credit'];
-        $re_article[$t] = $result['article'];
+        $this->re_article[$t] = $result['article'];
+
         $t++;
     }
 
     $w = 0;
     $sum = array_fill(0,$stu_count,0);
     while( $w < $stu_count ) {
-      $course = $stu_course[$w];
-
+      $course = $this->stu_course[$w];
       for($t=0; $t < $row_num; $t++){
-        if( strcmp($course, $re_name[$t]) == TRUE ){ // string comparison
-          echo $course." ";
-          $field = $re_article[$t];
-          $sum[$field]['credit'] += $re_credit[$t];
-          $sum[$field]['index'] = $field;
-          echo 'sum'.'<br/>';
+        if((eregi($this->re_name[$t], $course) == TRUE) ){ // string comparison
+            $field = $this->re_article[$t];
+            $sum[$field]['credit'] += $re_credit[$t];
+            $sum[$field]['index'] = $field;
+
+            //echo 'sum'.'<br/>';
+          //}
         } 
       }
       $w++;
@@ -158,11 +198,51 @@ class Stu_Grade{
       if( $sum >0 ){
         echo $sum['index']." : ".$sum['credit'];
         echo '<br/>';
+  
       }
     }
 
   }
   // requestGrade function End
+  function getSubject($number,$article, $study)
+  {
+   $condition_article=null;
+   if(!strcmp($study,"기초학문"))
+   {
+     if(!strcmp($article,"인문사회"))
+           $condition_article = ["인문사회", "고전강독","세계관"];
+     else if(!strcmp($article ,"이공학"))
+      $condition_article = ["수학과학","소통-융복합"];
+     else if(!strcmp($article ,"융합"))
+      $condition_article =["인문사회", "수학과학","소통-융복합"];
+   }
+   $count =0;
+   
+      foreach($this->re_name as $re_name)
+      { 
+
+        while(array_key_exists($count,$this->stu_course) ==TRUE)
+        {
+          if(is_string($this->stu_course[$count])&&(strcmp($re_name,$this->stu_course[$count])==FALSE))
+          {
+               
+       
+            
+            foreach($condition_article as $temp_article)
+            {
+              if(strcmp($this->re_article[$count],$temp_article)==FALSE)
+              {
+                echo $this->stu_course[$count];
+                echo "<br>";
+              }
+            }
+       
+          }
+          $count++;
+       }
+        $count=0;
+      }
+  }
 
 }
 // Stu_Grade class End
