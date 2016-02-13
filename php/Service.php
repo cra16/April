@@ -172,7 +172,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                                                 {
                                                  
 
-                                                    $stu_grade->getSubject($i,"인문사회","기초학문");
+                                                    $stu_grade->getSubject($i,"인문사회","기초 역량");
                                                   
                                                 }
                                                 else if($i==1)

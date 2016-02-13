@@ -9,6 +9,7 @@ $(document).ready(function(){
 		$(".sub-foundation-competence").show();
 		$(".sub-foundation-study").hide();
 		$(".introduce").hide();
+		$("#foundation").val("기초 역량");
 		$("#form_data").show();
 	});
 
@@ -19,6 +20,7 @@ $(document).ready(function(){
 		$(".sub-foundation-competence").hide();
 		$(".sub-foundation-study").show();
 		$(".introduce").hide();
+		$("#foundation").val("기초 학문");
 		$("#form_data").show();
 
 	});
@@ -29,19 +31,20 @@ $(document).ready(function(){
           $(this).unbind("click");
          var Course=$("#course_name").text($(this).children().text());
           Course = Course.text();
-      		alert(Course);
+         var foundation = $("#foundation").val();
+      		
            $.ajax(
             { url : "ShowCourse.php",
               data : {
                       'Course' : Course,
-                      
+                      'foundation':foundation
                     },
               async : false,
               type : "POST",
               success:function(resp){  
 
                  $(".input_data").eq(0).html(resp);
-                 alert(resp);
+                
                
                 },
                 error: function(xhr, option, error){
@@ -59,19 +62,20 @@ $(document).ready(function(){
           $(this).unbind("click");
           var Course=$("#course_name").text($(this).children().text());
           Course = Course.text();
-      		alert(Course);
+           var foundation = $("#foundation").val();
+      	
            $.ajax(
             { url : "ShowCourse.php",
               data : {
                       'Course' : Course,
-                      
+                        'foundation':foundation
                     },
               async : false,
               type : "POST",
               success:function(resp){  
 
                  $(".input_data").eq(0).html(resp);
-                 alert(resp);
+          
                
                 },
                 error: function(xhr, option, error){
@@ -88,4 +92,6 @@ $(document).ready(function(){
 			$("#form_data").submit();
 
 	});
+
+
 });

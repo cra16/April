@@ -46,7 +46,6 @@ class Stu_Grade{
   
   function __destruct()
   {
-    echo "소멸";
   }
    private function __construct()
     {
@@ -207,7 +206,7 @@ class Stu_Grade{
   function getSubject($number,$article, $study)
   {
    $condition_article=null;
-   if(!strcmp($study,"기초학문"))
+   if(!strcmp($study,"기초 학문"))
    {
      if(!strcmp($article,"인문사회"))
            $condition_article = ["인문사회", "고전강독","세계관"];
@@ -215,6 +214,17 @@ class Stu_Grade{
       $condition_article = ["수학과학","소통-융복합"];
      else if(!strcmp($article ,"융합"))
       $condition_article =["인문사회", "수학과학","소통-융복합"];
+   }
+   else if(!strcmp($study,"기초 역량"))
+   {
+     if(!strcmp($article,"인문사회"))
+           $condition_article = ["인문사회", "고전강독","세계관"];
+     else if(!strcmp($article ,"이공학"))
+      $condition_article = ["수학과학","소통-융복합"];
+     else if(!strcmp($article ,"ICT"))
+      $condition_article =["인문사회", "수학과학","소통-융복합"];
+     else if(!strcmp($article,"ICT심화"))
+      $condition_article =["ICT융합기초", "소통-융복합"];
    }
    $count =0;
    
