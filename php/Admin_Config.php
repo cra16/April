@@ -8,13 +8,12 @@ class Admin{
 
 	// If there is invalid access
 	function Validation($admin_id, $admin_pw){
-		// Examine admin_id and admin_pw
 		$errflag = false;
 		if (empty($admin_id)|| empty($admin_pw))
 		$errflag = true;
-    	//If there are no input information, redirect back to the login form
+    		//If there are no input information, redirect back to the login form
 		if($errflag) {
-    	header("location:Main.php");
+    		header("location:Main.php");
 		}
 
 		$this->admin_id = $admin_id;
@@ -27,19 +26,21 @@ class Admin{
 	// Confirm User request -> Admin mode
 	function Req_Admin_Login() {
 		// Connect with DB
-		include('Config_DB.php');	
+		require_once("Config_DB.php");
+		$db = new DB_Control();
+		$link = $db->DBC();
+	
 		$sql = "SELECT * FROM manager WHERE id = '$this->admin_id'";
 		$result = mysqli_query($link, $sql);
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_assoc($result);
 			$de_str = pack("H*", $row['password']); 
-    	    $decoding = mcrypt_decrypt(MCRYPT_3DES, $key, $de_str, MCRYPT_MODE_ECB, $s_vector_iv);
-    	   	if($this->admin_pw==$decoding){
-   				mysqli_close($link);
-    			header("location:Admin_Page.php");
-    			exit();
-
-    		}
+    	    		$decoding = mcrypt_decrypt(MCRYPT_3DES, $key, $de_str, MCRYPT_MODE_ECB, $s_vector_iv);
+	    	   	if($this->admin_pw==$decoding){
+	   				mysqli_close($link);
+	    			header("location:Admin_Page.php");
+	    			exit();
+	    		}
 		} 
 		else {
 			echo "0 results";
@@ -51,7 +52,10 @@ class Admin{
 	// Admin Data Insert
 	function Ins_Admin_Data(){
 		// Connect with DB
-		include('Config_DB.php');
+		require_once("Config_DB.php");
+		$db = new DB_Control();
+		$link = $db->DBC();
+
 		$admin_id = 'admin';
 		$admin_pw = 'password';
 		//Encryption for security

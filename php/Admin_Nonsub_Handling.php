@@ -2,8 +2,10 @@
 // Session start 
 session_start();
     
-//DB connection
-include 'Config_DB.php';
+// Connect with DB
+require_once("Config_DB.php");
+$db = new DB_Control();
+$link = $db->DBC();
     
 // Fetch the data.
 $field = $_POST['field'];            // 학회 or 캠프
