@@ -9,11 +9,12 @@
 	$stu_Grade = Stu_Grade::getInstance(unserialize($_SESSION['Object']));
 	
 
-	$count_cert=0;
 	
 	$number_foundation = [3,2,2,2];
 	$number_study = [3,2,3];
-
+	$count_cert=0;
+	$foundation_cert = ["인문사회","이공학","ICT","ICT심화"];
+	$study_cert = ["인문사회1","이공학","융합"];
 	if(!strcmp($foundation,"기초 역량"))
 	{
 		$temp_array = $foundation_cert;
