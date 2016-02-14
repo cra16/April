@@ -185,6 +185,7 @@ class Stu_Grade{
         if( eregi("A",$grade) || eregi("B",$grade) || eregi("P",$grade) ){
           if((eregi($this->re_name[$t], $course) == TRUE) ){ // string comparison
               $field = $this->re_article[$t];
+              
               $sum[$field]['credit'] += $re_credit[$t];
               $sum[$field]['index'] = $field;
           }
@@ -195,8 +196,9 @@ class Stu_Grade{
 
     foreach( $sum as $sum ){
       if( $sum >0 ){
-        echo $sum['index']." : ".$sum['credit'];
-        echo '<br/>';
+
+        //echo $sum['index']." : ".$sum['credit'];
+        //echo '<br/>';
   
       }
     }
@@ -218,16 +220,16 @@ class Stu_Grade{
     else if(!strcmp($study,"기초 역량"))
    {
      if(!strcmp($article,"인문사회"))
-           $condition_article = ["인문사회", "고전강독","세계관"];
+      $condition_article = ["인문사회", "고전강독","세계관"];
      else if(!strcmp($article ,"이공학"))
       $condition_article = ["수학과학","소통-융복합"];
      else if(!strcmp($article ,"ICT"))
-      $condition_article =["인문사회", "수학과학","소통-융복합"];
+       $condition_article =["ICT융합기초", "소통-융복합"];
      else if(!strcmp($article,"ICT심화"))
       $condition_article =["ICT융합기초", "소통-융복합"];
    }
    $count =0;
-   
+   $recount=0;
       foreach($this->re_name as $re_name)
       { 
 
@@ -235,19 +237,19 @@ class Stu_Grade{
         {
           if(is_string($this->stu_course[$count])&&(strcmp($re_name,$this->stu_course[$count])==FALSE))
           {
-               
-       
-            
             foreach($condition_article as $temp_article)
             {
-              if(strcmp($this->re_article[$count],$temp_article)==FALSE)
+              if(strcmp($this->re_article[$recount],$temp_article)==FALSE)
               {
 
                 $grade = $this->stu_grade[$count];
                 if( eregi("A",$grade) || eregi("B",$grade) || eregi("P",$grade))
                 {
-                  echo $this->stu_course[$count];
-                  echo "<br>";
+                  if(!strcmp($condition_article[$number],$this->re_article[$recount]))
+                    {
+                      echo $this->stu_course[$count];
+                      echo "<br>";
+                    }
                 }
               }
             }
@@ -255,6 +257,7 @@ class Stu_Grade{
           }
           $count++;
        }
+       $recount++;
         $count=0;
       }
   }

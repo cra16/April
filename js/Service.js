@@ -24,7 +24,12 @@ $(document).ready(function(){
 		$("#form_data").show();
 
 	});
-
+  $("div").on("click",".introduction",function(event){
+    $(".sub-foundation-competence").hide();
+    $(".sub-foundation-study").hide();
+    $("#form_data").hide();
+    $(".introduce").show();
+  });
 
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();

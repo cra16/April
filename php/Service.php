@@ -70,7 +70,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                     <a href="#" class="foundation-study">기초 학문</a>
                 </li>
                 <li>
-                    <a href="#">Service 3</a>
+                    <a href="#" class="introduction">소개 페이지</a>
                 </li>
                 <li>
                     <a href="#">Service 4</a>
@@ -132,7 +132,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                     <br><br><br>
                     <form id="form_data" action="ResultServce.php" method="POST">
                        <span id = "course_name">인문사회</span>
-                       <div class="col-lg-12 total_table">
+                       <div class="col-lg-12 total_table input_data" >
 
                        <?php
                         for($i=0; $i<3; $i++)
@@ -164,31 +164,41 @@ $stu_grade = Stu_Grade::getInstance(0);
 
                                         </thead>
                                         <tbody>
-                                          <tr>
-                                            <td></td>
-                                            <td class="input_data">
-                                              <?php
-                                                if($i==0)
-                                                {
-                                                 
-
-                                                    $stu_grade->getSubject($i,"인문사회","기초 역량");
-                                                  
-                                                }
-                                                else if($i==1)
-                                                {
-                                                 }
-                                                else if($i==2)
-                                                {
-                                                   for($j=0; $j<3; $j++)
-                                                  {
-                                                    echo "<input type='checkbox' name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
-                                                  }
-                                                }
-                                              ?>
-
-                                            </td>
-                                          </tr>
+                                          
+                      <?php
+                        if($i==0)
+                        {  
+                          $course_data = ["인문사회","고전강독","세계관"];
+                          for($k=0; $k<3; $k++)
+                          {
+                              echo "<tr>";
+                                echo "<td>";
+                                echo $course_data[$k];
+                                echo "</td>";
+                                 echo "<td>";
+                                          $stu_grade->getSubject($k,"인문사회","기초 역량");
+                                   
+                                echo "</td>";
+                                echo "</tr>";
+                              }
+                        } 
+                        else if($i==1)
+                        {
+                          echo "<td></td>";
+                        echo "<td>";
+                        echo "</td>";
+                        }
+                        else if($i==2)
+                        { echo "<td></td>";
+                        echo "<td>";
+                        for($j=0; $j<3; $j++)
+                            {
+                              echo "<input type='checkbox' name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
+                          }
+                          echo "</td>";
+                           
+                        }
+                      ?>
                                          
                                          
                                         </tbody>
