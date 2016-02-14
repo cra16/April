@@ -46,6 +46,7 @@ class Stu_Grade{
   
   function __destruct()
   {
+
   }
    private function __construct()
     {
@@ -150,8 +151,8 @@ class Stu_Grade{
         if($j++<2)
           continue;
         $this->stu_course[$w] = (string)$value->children(1)->plaintext;
-        $stu_grade[$w] = $value->children(5);
-        
+        $this->stu_grade[$w] = $value->children(4)->plaintext;
+        //echo $this->stu_grade[$w].'<br/>';
         $w++;        
       }
       $stu_count = $w;
@@ -161,7 +162,7 @@ class Stu_Grade{
     $condition = "SELECT * FROM subject ";
 
     $check = mysqli_query($this->link,$condition);
-    
+
     $row_num = mysqli_num_rows($check);
 
     $re_credit = array();
@@ -172,7 +173,6 @@ class Stu_Grade{
         $this->re_name[$t] = $result['sub_name'];
         $re_credit[$t] = $result['credit'];
         $this->re_article[$t] = $result['article'];
-
         $t++;
     }
 
@@ -180,14 +180,14 @@ class Stu_Grade{
     $sum = array_fill(0,$stu_count,0);
     while( $w < $stu_count ) {
       $course = $this->stu_course[$w];
+      $grade = $this->stu_grade[$w];
       for($t=0; $t < $row_num; $t++){
-        if((eregi($this->re_name[$t], $course) == TRUE) ){ // string comparison
-            $field = $this->re_article[$t];
-            $sum[$field]['credit'] += $re_credit[$t];
-            $sum[$field]['index'] = $field;
-
-            //echo 'sum'.'<br/>';
-          //}
+        if( eregi("A",$grade) || eregi("B",$grade) || eregi("P",$grade) ){
+          if((eregi($this->re_name[$t], $course) == TRUE) ){ // string comparison
+              $field = $this->re_article[$t];
+              $sum[$field]['credit'] += $re_credit[$t];
+              $sum[$field]['index'] = $field;
+          }
         } 
       }
       $w++;
@@ -215,7 +215,7 @@ class Stu_Grade{
      else if(!strcmp($article ,"융합"))
       $condition_article =["인문사회", "수학과학","소통-융복합"];
    }
-   else if(!strcmp($study,"기초 역량"))
+    else if(!strcmp($study,"기초 역량"))
    {
      if(!strcmp($article,"인문사회"))
            $condition_article = ["인문사회", "고전강독","세계관"];
@@ -242,8 +242,13 @@ class Stu_Grade{
             {
               if(strcmp($this->re_article[$count],$temp_article)==FALSE)
               {
-                echo $this->stu_course[$count];
-                echo "<br>";
+
+                $grade = $this->stu_grade[$count];
+                if( eregi("A",$grade) || eregi("B",$grade) || eregi("P",$grade))
+                {
+                  echo $this->stu_course[$count];
+                  echo "<br>";
+                }
               }
             }
        
