@@ -14,7 +14,7 @@
 	$number_study = [3,2,3];
 	$count_cert=0;
 	$foundation_cert = ["인문사회","이공학","ICT","ICT심화"];
-	$study_cert = ["인문사회1","이공학","융합"];
+	$study_cert = ["인문사회","이공학","융합"];
 	if(!strcmp($foundation,"기초 역량"))
 	{
 		$temp_array = $foundation_cert;
