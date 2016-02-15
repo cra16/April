@@ -187,10 +187,10 @@ $stu_grade = Stu_Grade::getInstance(0);
                         else if($i==1)
                         {
                           echo "<td></td>";
-                        echo "<td>";
-                        echo "<br>";
-                        $stu_grade->getNonSubject();
-                        echo "</td>";
+                          echo "<td>";
+                          echo "<br>";
+                          $stu_grade->getNonSubject();
+                          echo "</td>";
                         }
                         else if($i==2)
                         { echo "<td></td>";

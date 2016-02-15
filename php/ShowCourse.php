@@ -128,6 +128,7 @@ for($i=0; $i<3; $i++)
                         {
                          	echo "<td></td>";
                     		echo "<td>";
+                    		$stu_Grade->getNonSubject(); 
                     		echo "</td>";
                         }
                         else if($i==2)
