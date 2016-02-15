@@ -8,6 +8,8 @@ require_once('simple_html_dom.php');
 include('Stu_Grade.php');
 $stu_grade = Stu_Grade::getInstance(0);
 
+//simple_html_dom.php is needed to access hisnetpage information
+
 ?>
 <html lang="en">
 
@@ -186,6 +188,8 @@ $stu_grade = Stu_Grade::getInstance(0);
                         {
                           echo "<td></td>";
                         echo "<td>";
+                        echo "<br>";
+                        $stu_grade->getNonSubject();
                         echo "</td>";
                         }
                         else if($i==2)

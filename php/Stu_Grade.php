@@ -261,6 +261,32 @@ class Stu_Grade{
         $count=0;
       }
   }
+  function getNonSubject()
+  {
+    $condition = "SELECT * FROM nonsubject ";
+
+    $check = mysqli_query($this->link,$condition);
+    $row_num = mysqli_num_rows($check);
+
+    $non_course = array();
+    $non_name = array();
+    $non_field = array();
+    $non_area = array();
+
+    $count=0;
+    while( $result = mysqli_fetch_array($check) ){
+        $non_course[$count] = $result['course'];
+        $non_name[$count] = $result['name'];
+        $non_field[$count] = $result['field'];
+        $non_area[$count] = $result['area'];
+        $count++;
+    }
+    $count--;
+
+    for($i=0; $i<$count; $i++){
+       echo "<input type='checkbox' name='chk_info[]' value='$i'> $non_name[$i]<br/>'";
+    }
+  }
 
 }
 // Stu_Grade class End
