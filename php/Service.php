@@ -86,42 +86,25 @@ $stu_grade = Stu_Grade::getInstance(0);
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                      <div class="competence_btn">
-                        <button type="button" class="btn btn-default sub-foundation-competence">
-                          <span class="" aria-hidden="true">인문사회</span>
-                        </button>
+                      
+                      <?php 
+                          $course_array = ["인문사회","이공학","ICT","ICT심화","인문사회","이공학","융합"];
+                          $div_array =["competence_btn","study_btn"];
+                          $class_array= ["btn btn-default sub-foundation-competence","btn btn-default sub-foundation-study"];
+                          for ($i=0; $i <7 ; $i++) { 
+                            # code...
+                            ?><div class="<?php if($i<4){echo $div_array[0];} else{echo $div_array[1];}?>">
+                                <button type="button" class="<?php if($i<4){echo $class_array[0];} else{echo $class_array[1];}?>">
+                                 <span class="" aria-hidden="true"><?=$course_array[$i]?></span>    
+                                </button>
+                              </div>
+                            <?php
+                         }
+                          
+                          ?>
+                        
                       </div>
-                      <div class="competence_btn">
-                        <button type="button" class="btn btn-default sub-foundation-competence">
-                          <span class="" aria-hidden="true">이공학</span>
-                        </button>
-                      </div>
-                      <div class="competence_btn">
-                        <button type="button" class="btn btn-default sub-foundation-competence">
-                          <span class="" aria-hidden="true">ICT</span>
-                        </button>
-                      </div>
-                      <div class="competence_btn">
-                        <button type="button" class="btn btn-default sub-foundation-competence">
-                          <span class="" aria-hidden="true">ICT심화</span>
-                        </button>
-                      </div>
-                      <div class="study_btn">
-                         <button type="button" class="btn btn-default sub-foundation-study">
-                          <span class="" aria-hidden="true">인문사회</span>
-                        </button>
-                      </div>
-                      <div class="study_btn">
-                        <button type="button" class="btn btn-default sub-foundation-study">
-                          <span class="" aria-hidden="true">이공학</span>
-                        </button>
-                      </div>
-                      <div class="study_btn">
-                        <button type="button" class="btn btn-default sub-foundation-study">
-                          <span class="" aria-hidden="true">융합</span>
-                        </button>
-                      </div>
-                     </div>
+                    </div>
 
                         <div class="introduce">
                         <h1>ServicePage</h1>
@@ -154,13 +137,26 @@ $stu_grade = Stu_Grade::getInstance(0);
                                                   if($i==0){
                                                     echo "교과";
                                                   }
-                                                  else
+                                                  else if($i==1)
                                                     echo "비교과";
+                                                  else if($i==2)
+                                                    echo "현장체험";
 
                                                 ?>
                                                 </center></th>
                                             <th class="col-xs-6">
-                                                <center>과목</center>
+                                              <center>
+                                               <?php 
+                                                  if($i==0){
+                                                    echo "과목";
+                                                  }
+                                                  else if($i==1)
+                                                    echo "항목";
+                                                  else if($i==2)
+                                                    echo "항목";
+
+                                                ?>
+                                                </center>
                                             </th>
                                              </tr>
 
@@ -174,10 +170,10 @@ $stu_grade = Stu_Grade::getInstance(0);
                           for($k=0; $k<3; $k++)
                           {
                               echo "<tr>";
-                                echo "<td>";
+                                echo "<td class='subject_td'>";
                                 echo $course_data[$k];
                                 echo "</td>";
-                                 echo "<td>";
+                                 echo "<td class='subject_td'>";
                                           $stu_grade->getSubject($k,"인문사회","기초 역량");
                                    
                                 echo "</td>";
@@ -186,7 +182,37 @@ $stu_grade = Stu_Grade::getInstance(0);
                         } 
                         else if($i==1)
                         {
-                          echo "<td></td>";
+                          ?>
+                              <td>
+                              <div>
+                                <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                  year
+                                  <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                </ul>
+                              </div>
+                              <div class="dropdown" style="float:left">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                  전공
+                                  <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                </ul>
+                              </div>
+                              </div>
+                            </td>
+                          <?php
+                          
                           echo "<td>";
                           echo "<br>";
                           $stu_grade->getNonSubject();

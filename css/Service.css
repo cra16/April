@@ -95,9 +95,6 @@
     margin-bottom:0px !important;
 }
 
-.total_table{
-
-}
 
 .sub-foundation-competence, .sub-foundation-study
 {
@@ -124,9 +121,7 @@
 }
 
 
-td:hover{
-    background-color: #4f7cc5;
-}
+
 
 thead tr{
     background-color: #f0f0ff;
@@ -138,11 +133,13 @@ thead tr{
 }
 
 td {
-    text-align: center;
+    
     height: 80px;
     border: solid 1px #ddd;
 }
-
+.subject_td{
+    text-align: center;
+}
 #submit_btn{
     float:right;
  }

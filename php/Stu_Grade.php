@@ -265,7 +265,7 @@ class Stu_Grade{
   }
   function getNonSubject()
   {
-    $condition = "SELECT * FROM nonsubject ";
+    $condition = "SELECT * FROM camp ";
 
     $check = mysqli_query($this->link,$condition);
     $row_num = mysqli_num_rows($check);
@@ -279,7 +279,7 @@ class Stu_Grade{
     while( $result = mysqli_fetch_array($check) ){
         $non_course[$count] = $result['course'];
         $non_name[$count] = $result['name'];
-        $non_field[$count] = $result['field'];
+        //$non_field[$count] = $result['field'];
         $non_area[$count] = $result['area'];
         $count++;
     }
