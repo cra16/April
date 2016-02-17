@@ -148,5 +148,22 @@ td {
     float:right;
  }
 
-body{
-    font-family: font_cafe !important; }
+#dropdownMenu
+{
+
+    height:30px !important;
+    float:right;
+    background-color: skyblue;
+}
+.name
+{
+    float:left;
+}
+#dropdownmenu
+{
+    float:right;
+}
+
+#dropdown_id{
+    float:right;
+}
