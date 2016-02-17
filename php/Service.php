@@ -186,7 +186,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                               <td>
                               <div>
                                 <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" name = "dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                   year
                                   <span class="caret"></span>
                                 </button>
@@ -198,7 +198,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                                 </ul>
                               </div>
                               <div class="dropdown" style="float:left">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" name = "dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                   전공
                                   <span class="caret"></span>
                                 </button>
@@ -223,7 +223,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                         echo "<td>";
                         for($j=0; $j<3; $j++)
                             {
-                              echo "<input type='checkbox'  name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
+                              echo "<input type='checkbox' name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
                           }
                           echo "</td>";
                            
@@ -240,12 +240,13 @@ $stu_grade = Stu_Grade::getInstance(0);
                          <?php
                        }?>
                        </div>
-                       <input type="hidden" id ="foundation" value="">
+                       <input type="hidden" id ="foundation" name ="foundation" value="">
                        <input type='button' class='btn' id ="submit_btn" value="submit">
                       </form>
                    </div>
                </div>
         <!-- /#page-content-wrapper -->
+
 
 
     </div>
@@ -265,7 +266,6 @@ $stu_grade = Stu_Grade::getInstance(0);
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-
     </script>
     <?php
       $_SESSION['Object']=serialize($stu_grade);
