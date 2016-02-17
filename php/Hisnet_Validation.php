@@ -1,34 +1,37 @@
 <?php
+session_start();
+
+$agree = $_POST['agree'];
+$agree2 = $_POST['agree2'];
+
+if( $agree && $agree2 ){
+  //Identify user_id, user_pw from hisnet
+  $member = new HisnetValidation();
+  $member->validation($_SESSION['USER_NAME'],$_SESSION['USER_PW']);
+}else{
+  header("location:Main.php");
+}
+
 class HisnetValidation{
-  //학번
-  var $stu_id = null;
-  //이름
-  var $stu_name = null;
   //hisnet id
   var $his_id = null;
   //hisnet pw
   var $his_pw = null;
+  //db connection
+  var $db = null;
+
   /**
-   * @function validation
-   * @brief 생성자.히즈넷 아이디, 히즈넷 비밀번호를 프로퍼티에 넣기
+   * @function membercraHisValidation
+   * @brief 생성자. 학번, 이름, 히즈넷 아이디, 히즈넷 비밀번호, 교직원 여부를 프로퍼티에 넣기
    **/
   function validation($his_id, $his_pw){
-    $errflag = false;
-    // Examine hisnet_id and hisnet_pw
-    if (empty($his_id)|| empty($his_pw))
-    $errflag = true;
-    //If there are no input information, redirect back to the login form
-    if($errflag) {
-    session_write_close();
-    header("location:Main.php");
-    exit();
-  }   
     $this->his_id = $his_id;
     $this->his_pw = $his_pw;
-    // Request to HISNET
-    $this->requestHisnet();
-  }
 
+    // 히즈넷에 요청을 보내서 올바른 사람인지 확인한다.
+    $this->requestHisnet();
+  }  
+  
   /**
    * @function requestHisnet
    * @brief 히즈넷 서버에 로그인 요청을 보낸다. fsockopen() 사용
@@ -37,6 +40,10 @@ class HisnetValidation{
    * 만약 히즈넷의 로그인 알고리즘이 바뀌면 이 부분을 수정해 주어야 한다.
    **/
   function requestHisnet() {
+    //Connect with DB
+    session_start();
+    //simple_html_dom.php is needed to access hisnetpage information
+    include 'simple_html_dom.php';
     // Create temorary file for save cookies
     $ckfile = tempnam ("/tmp", "CURLCOOKIE");
     // POST data form for login
@@ -49,6 +56,7 @@ class HisnetValidation{
       "x" => 0,
       "y" => 0,
       );
+
     // Access hisnet basic information
       // 1st request
       $ch = curl_init ("http://hisnet.handong.edu/login/_login.php");
@@ -87,43 +95,57 @@ class HisnetValidation{
       curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile);
       curl_setopt ($ch, CURLOPT_REFERER, "http://hisnet.handong.edu/main.php");
 
+      $ch = curl_init ("http://hisnet.handong.edu/haksa/hakjuk/HHAK110M.php");
+      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile);
+      curl_setopt ($ch, CURLOPT_REFERER, "http://hisnet.handong.edu/for_student/main.php");
       $result = curl_exec ($ch);
       $result = iconv("EUC-KR","UTF-8", $result);
       curl_close($ch);
-      unlink($ckfile);
+    // Access result read
+    $html = str_get_html($result);  
 
-      $html = str_get_html($result);  
-      // FIXME: Find strong indexing. If Hisnetpage is changed, fix this section.
-      if($html->find('strong')){
-          $strong = $html->find('strong');
-          $ret = $strong[0]->parent()->plaintext;
-          $pos = strpos($ret, '(');
-          $comp_id = substr($ret,$pos+1,strlen($this->his_id));
-          
-          // Hisnet login access fail
-          if($this->loginCheck($comp_id)!=0){
-                header("location:Main.php");
+    // Connect with DB
+    require('Stu_Grade.php');
+    $db = Stu_Grade::getInstance(0);
+
+    $sql1 = "SELECT * FROM student WHERE id = '$his_id'";
+    $outcome = mysqli_query($db->link,$sql1);
+    $check = mysqli_num_rows($outcome);
+
+    // Hisnet login success
+    if(is_object($html->find('.tblcationTitlecls', 1)))
+    {
+      $table = $html->find('.tblcationTitlecls', 1)->parent()->parent();
+      $td_id = $table->children(1)->children(1)->innertext;
+      $td_birth = $table->children(0)->children(3)->innertext;
+      $temp_id = preg_replace("/[^0-9]*/s", "", $td_id);
+      $stu_id = substr($temp_id,1,9);
+      $stu_name = $html->find('strong', 0)->innertext;
+      $stu_birth = substr($td_birth,0,6);
+
+      if($outcome)
+      {
+        //Login success but no data in DB
+        if($check == 0){
+          $sql = "INSERT INTO student (id,password,name,student_id)
+          VALUES ('$this->his_id','$this->his_pw','$stu_name','$stu_id')";
+          if ($db->link->query($sql) === TRUE){
+              header("location:Service.php");
+              exit();
           }
-          // Hisnet login access success
-          else{
-                 $id = $_POST['his_id'];
-                $_SESSION['USER_NAME'] = $id;
-                $password = $_POST['his_pw'];
-                $_SESSION['USER_PW'] = $password;
-                session_write_close();
-                echo "login success";
-                header("location:Service.php");
-          }
+        }
       }
 
-     // Hisnet login access fail
-      else
-          header("location:Main.php");
-    } // requestHisnet() End
+      session_write_close();
+      exit();
+    }else{
+      header("location:Main.php");
+      exit();
+    }
 
-      function loginCheck($comp_id){
-           return strcmp($this->his_id,$comp_id);
-      }
-} // class HisnetValidation End
-
+    // Delete temp file after using
+    unlink($ckfile);
+  }
+}
 ?>
