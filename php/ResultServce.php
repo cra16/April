@@ -2,12 +2,13 @@
 
 // Connect with DB
 require_once('Config_DB.php');
-
+$db = new DB_Control();
+$link = $db->DBC();
 // check second field and save result
 if(!empty($_POST['chk_info'])) {
 	$chk = array();
-	$i = 0
-	$nonsubject
+	$i = 0;
+
 
 	foreach($_POST['chk_info'] as $check) {
 

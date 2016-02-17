@@ -223,7 +223,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                         echo "<td>";
                         for($j=0; $j<3; $j++)
                             {
-                              echo "<input type='checkbox' name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
+                              echo "<input type='checkbox'  name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
                           }
                           echo "</td>";
                            
@@ -265,6 +265,7 @@ $stu_grade = Stu_Grade::getInstance(0);
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+
     </script>
     <?php
       $_SESSION['Object']=serialize($stu_grade);

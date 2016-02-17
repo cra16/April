@@ -286,7 +286,7 @@ class Stu_Grade{
     $count--;
 
     for($i=0; $i<$count; $i++){
-       echo "<input type='checkbox' name='chk_info[]' value='$i'> $non_name[$i]<br/>";
+       echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
     }
   }
 
