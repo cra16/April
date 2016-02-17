@@ -95,6 +95,9 @@
     margin-bottom:0px !important;
 }
 
+.total_table{
+
+}
 
 .sub-foundation-competence, .sub-foundation-study
 {
@@ -120,11 +123,9 @@
     padding:15px;
 }
 
-.chk_confirm{
-      
-}
-.chk_name{
 
+td:hover{
+    background-color: #4f7cc5;
 }
 
 thead tr{
@@ -137,33 +138,14 @@ thead tr{
 }
 
 td {
-    
+    text-align: center;
     height: 80px;
     border: solid 1px #ddd;
 }
-.subject_td{
-    text-align: center;
-}
+
 #submit_btn{
     float:right;
  }
 
-#dropdownMenu
-{
-
-    height:30px !important;
-    float:right;
-    background-color: skyblue;
-}
-.name
-{
-    float:left;
-}
-#dropdownmenu
-{
-    float:right;
-}
-
-#dropdown_id{
-    float:right;
-}
+body{
+    font-family: font_cafe !important; }

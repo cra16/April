@@ -13,6 +13,7 @@ $course = $_POST['course'];    // 학부
 $area = $_POST['area'];          // 항목 ex) 인문사회
 $name = $_POST['name'];       // 이름
 $mode = $_POST['mode'];      // CRUD MODE
+$req = $_POST['req'];      // CRUD MODE
 
 // Read(default)
 if($mode == 0){
@@ -24,7 +25,11 @@ if($mode == 0){
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-    $sql = 'SELECT * FROM nonsubject';
+    
+    if($req==0)
+    $sql = 'SELECT * FROM camp';
+    else if($req==1)
+    $sql = 'SELECT * FROM academy';
     // use prepared statements, even if not strictly required is good practice
     $stmt = $dbh->prepare( $sql );
     // execute the query
@@ -42,17 +47,25 @@ if($mode == 0){
 // Insert
 if($mode == 1){
     // Check if it already exists.
-    $sql  = "SELECT * FROM nonsubject WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name'";
+    if($req == 0)
+    $sql  = "SELECT * FROM camp WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name'";
+   else if($req == 1)
+    $sql  = "SELECT * FROM academy WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name'";
+
     $result = $link->query($sql);
     if ($result->num_rows > 0){
         echo -1; //중복된 결과
     }
     else{        // Insert the data.   
-        $sql = "INSERT INTO `nonsubject`(field, course, area, name) VALUES ('$field','$course','$area','$name')";
+        if($req == 0)
+        $sql = "INSERT INTO `camp`(course, area, name) VALUES ('$course','$area','$name')";
+        else if($req == 1)
+        $sql = "INSERT INTO `academy`(course, area, name) VALUES ('$course','$area','$name')";
+
         if ($link->query($sql) === TRUE) {
         echo 1; //입력 성공
         } else {
-        echo -1; //입력 실패
+        echo $req; //입력 실패
         }
     }            
 }
@@ -60,8 +73,11 @@ if($mode == 1){
 
 // Remove
 if($mode == -1){
-    // Remove the data.                                  
-    $sql = "DELETE FROM nonsubject WHERE field = '$field' AND course = '$course' AND area = '$area' AND name = '$name'";                
+    // Remove the data.  
+    if($req == 0)
+     $sql = "DELETE FROM camp WHERE course = '$course' AND area = '$area' AND name = '$name'";                
+    else if($req == 1)                
+    $sql = "DELETE FROM academy WHERE course = '$course' AND area = '$area' AND name = '$name'";                
 
     if ($link->query($sql) === TRUE) {
     echo 1;

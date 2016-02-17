@@ -263,12 +263,10 @@ class Stu_Grade{
         $count=0;
       }
   }
-  function getNonSubject($num,$foundation)
+  function getNonSubject()
   {
-    if($num==0)
-      $condition = "SELECT * FROM camp ";
-    else if($num==1)
-      $condition= "SELECT * FROM academy";
+    $condition = "SELECT * FROM nonsubject ";
+
     $check = mysqli_query($this->link,$condition);
     $row_num = mysqli_num_rows($check);
 
@@ -281,15 +279,14 @@ class Stu_Grade{
     while( $result = mysqli_fetch_array($check) ){
         $non_course[$count] = $result['course'];
         $non_name[$count] = $result['name'];
-        //$non_field[$count] = $result['field'];
+        $non_field[$count] = $result['field'];
         $non_area[$count] = $result['area'];
         $count++;
     }
     $count--;
 
     for($i=0; $i<$count; $i++){
-      if(!strcmp($non_area[$i],$foundation))
-       echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
+       echo "<input type='checkbox' name='chk_info[]' value='$i'> $non_name[$i]<br/>";
     }
   }
 
