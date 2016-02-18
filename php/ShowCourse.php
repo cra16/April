@@ -79,6 +79,28 @@
 for($i=0; $i<3; $i++)
 {?>
 <div class="col-lg-4 table_layer">
+    <?php 
+                            if($i==0)
+                            {
+                                  echo "<b class='name'>교과과정</b>";
+
+                            }
+                            else if($i==1)
+                            {
+                               echo "<b class='name'>비교과과정</b>";
+                               ?>
+
+                                  
+                                  
+                                  
+                     
+                                <?php
+                            }
+                            else
+                            {
+                              echo "<b class='name'>현장</b>";
+                            }
+                            ?>
    <div id="rt_table" class="bootstrap-table">
       <div class="fixed-table-container">
         <div class="fixed-table-header" style="height: 40px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;"></div>
@@ -111,25 +133,26 @@ for($i=0; $i<3; $i++)
                       <?php
                         if($i==0)
                         {	 
-		                	for($k=0; $k<$count_cert; $k++)
-		                	{
-		                		echo "<tr>";
-	                        	echo "<td>";
-	                        	echo $course_data[$k];
-	                        	echo "</td>";
-	                    		echo "<td>";
-	                                   	$stu_Grade->getSubject($k,$course,$foundation);
-	                             
-	                        	echo "</td>";
-	                        	echo "</tr>";
-                        	}
+
+    		                	for($k=0; $k<$total_subject->count_cert; $k++)
+    		                	{
+    		                		echo "<tr>";
+    	                        	echo "<td class='subject_td'>";
+    	                        	echo $total_subject->course_data[$k];
+    	                        	echo "</td>";
+  	                    		echo "<td class='subject_td'>";
+  	                                   	$stu_Grade->getSubject($k,$course,$foundation);
+  	                             
+  	                        	echo "</td>";
+  	                        	echo "</tr>";
+                          	}
                         } 
                         else if($i==1)
                         {
-                         	echo "<td></td>";
-                    		echo "<td>";
-                    		$stu_Grade->getNonSubject(); 
-                    		echo "</td>";
+                         
+                      		echo "<td>";
+                      		$stu_Grade->getNonSubject(1,$course); 
+                      		echo "</td>";
                         }
                         else if($i==2)
                         {	echo "<td></td>";
