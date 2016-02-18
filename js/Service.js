@@ -11,6 +11,8 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초 역량");
 		$("#form_data").show();
+    $("#course").html("<center>캠  프</center>");
+
 	});
 
 	$("div").on("click",".foundation-study",function(event){
@@ -22,6 +24,7 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초 학문");
 		$("#form_data").show();
+    $("#course").html("<center>학  회</center>");
 
 	});
   $("div").on("click",".introduction",function(event){
@@ -29,6 +32,9 @@ $(document).ready(function(){
     $(".sub-foundation-study").hide();
     $("#form_data").hide();
     $(".introduce").show();
+    
+  
+
   });
 
 	$("div").on("click",".sub-foundation-competence",function(event){
@@ -44,13 +50,21 @@ $(document).ready(function(){
                       'Course' : Course,
                       'foundation':foundation
                     },
-              async : false,
+              async : true,
               type : "POST",
               success:function(resp){  
 
                  $(".input_data").eq(0).html(resp);
-                
-               
+                  if(Course=="ICT심화")
+                  {
+                     $("#course").html("<center>학 회</center>");
+                   
+                  }
+                  else
+                  {
+                    $("#course").html("<center>캠  프</center>");
+                  }
+                           
                 },
                 error: function(xhr, option, error){
                   alert(xhr.status); //오류코드
@@ -58,6 +72,7 @@ $(document).ready(function(){
                  } 
 
           });
+      
 		$("#form_data").show();
 	
 
@@ -75,12 +90,12 @@ $(document).ready(function(){
                       'Course' : Course,
                         'foundation':foundation
                     },
-              async : false,
+              async : true,
               type : "POST",
               success:function(resp){  
 
                  $(".input_data").eq(0).html(resp);
-          
+                 $("#course").html("<center>학  회</center>");   
                
                 },
                 error: function(xhr, option, error){
@@ -89,8 +104,10 @@ $(document).ready(function(){
                  } 
 
           });
-		$("#form_data").show();
-
+    alert("GG");    
+		$("#form_data").show(); 
+   
+    
 	});
 
 	$("div").on("click","#submit_btn",function(event){

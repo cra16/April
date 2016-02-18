@@ -56,7 +56,6 @@ class HisnetValidation{
       "x" => 0,
       "y" => 0,
       );
-
     // Access hisnet basic information
       // 1st request
       $ch = curl_init ("http://hisnet.handong.edu/login/_login.php");

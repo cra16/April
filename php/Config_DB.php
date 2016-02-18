@@ -8,7 +8,7 @@ class DB_Control
       // Define database connection constants
       define('DB_HOST', "localhost");
       define('DB_USER', "root");
-      define('DB_PASSWORD', "575749");
+      define('DB_PASSWORD', "gksehdeo357");
       define('DB_NAME', "april");
       define('KEY', "1as4fg7jk0");
       $link=mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD) or die("Could not connect database");
