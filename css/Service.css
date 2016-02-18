@@ -146,6 +146,9 @@ td {
 #submit_btn{
     float:right;
  }
-
+.nonsubject_id
+{
+    text-align: left;
+}
 body{
     font-family: font_cafe !important; }

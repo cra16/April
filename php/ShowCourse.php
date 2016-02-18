@@ -52,20 +52,31 @@ for($i=0; $i<3; $i++)
                  <thead>
                     <tr>
                     
-                    <th class="col-xs-6">
+                        <th class="col-xs-6" id="<?php if($i==1) echo "course"?>">
+
                         <center>
                         <?php 
                           if($i==0){
                             echo "교과";
                           }
+                          else if($i==1)
+                                echo "캠프";
                           else
-                            echo "비교과";
+                            echo "???"
 
                         ?>
                         </center></th>
-                    <th class="col-xs-6">
-                        <center>과목</center>
-                    </th>
+                     <?php if($i!=1)
+                        {?>
+                           <th class="col-xs-6">
+                        
+                        
+
+
+                            <center>과목</center>
+                           
+                        </th>
+                         <?php }?>
                      </tr>
 
                 </thead>
@@ -93,7 +104,7 @@ for($i=0; $i<3; $i++)
                         else if($i==1)
                         {
                          
-                      		echo "<td>";
+                      		echo "<td class='nonsubject_id'>";
                       		$stu_Grade->getNonSubject(1,$course); 
                       		echo "</td>";
                         }

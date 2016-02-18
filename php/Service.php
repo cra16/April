@@ -136,29 +136,6 @@ $stu_grade = Stu_Grade::getInstance(0);
                                ?>
 
                                   
-                                   <div class="dropdown" id="dropdown_id">
-                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                                        Dropdown
-                                        <span class="caret"></span>
-                                      </button>
-                                      <ul class="dropdown-menu" id ="dropdownmenu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation"><a name="글로벌리더십" class="uni_data" role="menuitem" tabindex="-1" href="#">글로벌리더십학부</a></li>
-                                        <li role="presentation"><a name="창의융합교육원" class="uni_data" tabindex="-1" href="#">창의융합교육원</a></li>
-                                        <li role="presentation"><a name="글로벌에디슨아카데미" class="uni_data" tabindex="-1" href="#">Global Edison Academy</a></li>
-                                        <li role="presentation"><a name="국제어문" class="uni_data" tabindex="-1" href="#">국제어문학부</a></li>
-                                        <li role="presentation"><a name="언론정보" class="uni_data" tabindex="-1" href="#">언론정보문화학부</a></li>
-                                        <li role="presentation"><a name="경영경제" class="uni_data" tabindex="-1" href="#">경영경제학부</a></li>
-                                        <li role="presentation"><a name="상담복지" class="uni_data" tabindex="-1" href="#">상담심리사회복지학부</a></li>
-                                        <li role="presentation"><a name="법학부" class="uni_data" tabindex="-1" href="#">법학부</a></li>
-                                        <li role="presentation"><a name="생명과학" class="uni_data" tabindex="-1" href="#">생명과학부</a></li>
-                                        <li role="presentation"><a name="전산전자" class="uni_data" tabindex="-1" href="#">전산전자공학부</a></li>
-                                        <li role="presentation"><a name="산업정보디자인" class="uni_data" tabindex="-1" href="#">산업정보디자인학부</a></li>
-                                        <li role="presentation"><a name="기계제어" class="uni_data" tabindex="-1" href="#">기계제어공학부</a></li>
-                                        <li role="presentation"><a name="공간환경시스템" class="uni_data" tabindex="-1" href="#">공간환경시스템공학부</a></li>
-                                        <li role="presentation"><a name="콘텐츠융합디자인" class="uni_data" tabindex="-1" href="#">콘텐츠융합디자인학부</a></li>
-                                        <li role="presentation"><a name="산업교육" class="uni_data" tabindex="-1" href="#">산업교육학부</a></li>
-                                      </ul>
-                                  </div>
                                   
                      
                                 <?php
@@ -177,20 +154,30 @@ $stu_grade = Stu_Grade::getInstance(0);
                                          <thead>
                                             <tr>
                                             
-                                            <th class="col-xs-6">
+                                            <th class="col-xs-6"  id="<?php if($i==1) echo "course"?>">
                                                 <center>
                                                 <?php 
                                                   if($i==0){
                                                     echo "교과";
                                                   }
-                                                  else
+                                                  else if($i==1)
                                                     echo "비교과";
+                                                  else
+                                                    echo "현장참여과정";
 
                                                 ?>
                                                 </center></th>
-                                            <th class="col-xs-6">
-                                                <center>과목</center>
-                                            </th>
+                                                <?php if($i!=1)
+                                                {?>
+                                                   <th class="col-xs-6">
+                                                
+                                                
+
+
+                                                    <center>과목</center>
+                                                   
+                                                </th>
+                                                 <?php }?>
                                              </tr>
 
                                         </thead>
@@ -219,7 +206,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                             
                           <?php
                           
-                          echo "<td>";
+                          echo "<td class='nonsubject_id'>";
                             $stu_grade->getNonSubject(1,"인문사회");
                           echo "</td>";
                         }
