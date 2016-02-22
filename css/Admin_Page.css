@@ -8,19 +8,19 @@ body{
 
 
 h1{
-font-family: 'Jeju Gothic', serif;
-text-align: center;
+    font-family: 'Jeju Gothic', serif;
+    text-align: center;
 }
 
 a{
-font-family: 'Jeju Gothic', serif;
+    font-family: 'Jeju Gothic', serif;
 }
 
 button{
     outline:0;
 }
 label{
-font-size: 15px;
+    font-size: 15px;
 }
 
 select{
@@ -36,14 +36,16 @@ select{
     left: 250px;
     width: 0;
     height: 100%;
-    margin-left: -250px;
+    margin-left: -230px;
     overflow-y: auto;
     background: white;
+    font-family: 'Jeju Gothic', serif;
 }
 
 .nonsub_button{
     width:120px;
-    font-size:20px;
+    font-size:22px;
+    font-weight: 500;
     background-color: white;
     border:0;
     margin-bottom: 30px;
