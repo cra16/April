@@ -64,10 +64,6 @@ select{
     float:right;
 }
 
-.search{
-   color:yellow;
-}
-
 .search:hover{
     color:black;
     border-bottom: 2px solid #30D5C8;
