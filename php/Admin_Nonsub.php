@@ -3,7 +3,11 @@
       <div id="sidebar-wrapper">
             <button type="button" class="nonsub_button left" ng-click="ShowNonsub('캠프')">캠프</button>
             <button type="button" class="nonsub_button right" ng-click="ShowNonsub('학회')">학회</button>
-
+            
+                   <div class="col-md-12">
+                        <input type="text" class="form-control search" name="name" ng-model="searchKeyword" placeholder="Search" />
+                        </div>
+            <br><br><br><br><br><br>
             <form class="form-horizontal" role="form" ng-submit="addRow()">
                   <!-- 학부 선택 -->
                   <div class="form-group">
@@ -46,7 +50,7 @@
                   <th>비교과명     </th>
                   <th>Action         </th>
                   </tr>
-                  <tr ng-repeat="nonsub in nonsubs | orderBy:'name'">
+                  <tr ng-repeat="nonsub in nonsubs | orderBy:'name'|filter:searchKeyword ">
                   <td>{{nonsub.course}}</td>
                   <td>{{nonsub.area}}</td>
                   <td>{{nonsub.name}}</td>

@@ -6,7 +6,6 @@ body{
     background-color: white;
 }
 
-
 h1{
     font-family: 'Jeju Gothic', serif;
     text-align: center;
@@ -25,7 +24,9 @@ label{
 
 select{
     width:170px;
+    outline:0;
 }
+
 #wrapper {
     padding-left: 0;
 }
@@ -48,13 +49,12 @@ select{
     font-weight: 500;
     background-color: white;
     border:0;
-    margin-bottom: 30px;
+    margin:23px 0 10px 0;
 }
-.nonsub_button:visited{
-    color:yellow;
-}
+
 .nonsub_button:hover{
     color: #30D5C8;
+    border-bottom: 2px solid #30D5C8;
 }
 .left{
     float:left;
@@ -62,6 +62,15 @@ select{
 
 .right{
     float:right;
+}
+
+.search{
+   color:yellow;
+}
+
+.search:hover{
+    color:black;
+    border-bottom: 2px solid #30D5C8;
 }
 
 @media(min-width:768px) {
