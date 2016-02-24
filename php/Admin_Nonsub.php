@@ -4,10 +4,10 @@
             <button type="button" class="nonsub_button left" ng-click="ShowNonsub('캠프')">캠프</button>
             <button type="button" class="nonsub_button right" ng-click="ShowNonsub('학회')">학회</button>
             
-                   <div class="col-md-12">
-                        <input type="text" class="form-control search" name="name" ng-model="searchKeyword" placeholder="Search" />
-                        </div>
-            <br><br><br><br><br><br>
+                  <div class="col-md-12">
+                  <input type="text" class="form-control search" name="name" ng-model="searchKeyword" placeholder="Search" />
+                  </div>
+
             <form class="form-horizontal" role="form" ng-submit="addRow()">
                   <!-- 학부 선택 -->
                   <div class="form-group">
@@ -33,7 +33,7 @@
 
                   <div class="form-group">                
                         <div style="padding-left:110px">
-                        <input type="submit" value="등록" class="btn btn-primary"/>
+                        <input type="submit" value="등록" class="btn btn-primary btn-lg"/>
                         </div>
                   </div>
             </form>
@@ -41,7 +41,7 @@
       <!-- /#sidebar-wrapper -->
 
       <!-- Page Content -->
-      <div  class="container-fluid row col-lg-12">           
+      <div  class="container-fluid page_container">           
             <h1>비교과과정 - {{mode}}</h1>
             <table class="table">
                   <tr>
@@ -50,7 +50,7 @@
                   <th>비교과명     </th>
                   <th>Action         </th>
                   </tr>
-                  <tr ng-repeat="nonsub in nonsubs | orderBy:'name'|filter:searchKeyword ">
+                  <tr dir-paginate="nonsub in nonsubs | itemsPerPage: 10 | orderBy:'name' | filter:searchKeyword ">
                   <td>{{nonsub.course}}</td>
                   <td>{{nonsub.area}}</td>
                   <td>{{nonsub.name}}</td>
@@ -58,6 +58,12 @@
                   <input type="button" value="삭제" class="btn btn-warning" ng-click="removeRow(nonsub)"/>
                   </td>
                   </tr>
-            </table>                   
+            </table>
+            <!-- Pagination Part (dirPagination모듈 사용)-->
+            <dir-pagination-controls
+                  max-size="7"
+                  direction-links="true"
+                  boundary-links="true">
+            </dir-pagination-controls>
       </div>
 </div>

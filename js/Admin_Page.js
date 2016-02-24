@@ -1,7 +1,7 @@
-var admin_App = angular.module('routerApp', ['ngRoute']);
+var admin_App = angular.module('routerApp', ['ngRoute','angularUtils.directives.dirPagination']);
 admin_App.config(function ($routeProvider) {
 $routeProvider
-    .when('/app', {templateUrl: '../php/Admin_App.php'})
+    .when('/app', {templateUrl: '../php/Admin_App.php', controller: 'app_Ctrl'})
     .when('/sub', {templateUrl: '../php/userList.html', controller: 'userListCtrl'})
     .when('/nonsub', {templateUrl: '../php/Admin_Nonsub.php', controller: 'nonsub_Ctrl'})
     .otherwise({redirectTo: '/home'});
@@ -11,9 +11,9 @@ $routeProvider
 
 
 admin_App.controller('nonsub_Ctrl', function($scope,$http) {
-	 // 학부정보
+	// 학부정보
 	$scope.courses = ["전산전자","국제어문","경영경제","법학부","언론정보","상담복지","생명과학","공간시스템",
-	         		       "콘텐츠융합디자인","기계제어","산업교육","글로벌에디슨아카데미","창의융합교육원"];
+			       "콘텐츠융합디자인","기계제어","산업교육","글로벌에디슨아카데미","창의융합교육원"];
 	$scope.areas = ["인문사회","이공학","ICT"];
 	$scope.fields = ["캠프","학회"];
 	$scope.years = ["2013","2014","2015","2016","2017","2018","2019","2020"];
@@ -23,10 +23,10 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	// Request Nonsub Info
 	$http({method: 'POST', url: 'Admin_Nonsub_Handling.php', data: {'mode' : 0}})
 	.success(function(data) {
-		if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-		$scope.nonsubs = data;
-		else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
-		alert("Return Fail");
+	if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+	$scope.nonsubs = data;
+	else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
+	alert("Return Fail");
 	});
 
 	$scope.ShowNonsub = function(req){
@@ -124,5 +124,19 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	        alert("Connect Fail");
 	      }); // http_post End
 	      }; // removeRow function End
+});
 
+// 지원 정보 Controller 
+admin_App.controller('app_Ctrl', function($scope,$http) {
+	
+	var dataObject = {};
+	var mode = 0;
+	// Request App Info
+	$http({method: 'POST', url: 'Admin_App_Handling.php', data: {'mode' : mode}})
+	.success(function(data) {
+		if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+			$scope.apps = data;
+		else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
+			alert("Return Fail");
+	});
 });

@@ -43,11 +43,13 @@
      <!--  ngView 지시자를 이용하여 URL 경로가 변경될 시 해당 URL 경로에 해당하는 HTML 조각을 삽입할 곳을 지정한다. -->
    </div>
 
-
-   <script type="text/javascript" src="../js/angular.js"></script>
-  <script type="text/javascript" src="../js/angular-route.js"></script>
-  <!-- ngRoute 모듈을 사용하기 위해 추가한다. -->
-  <script type="text/javascript" src="../js/Admin_Page.js"></script>  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Insert for ng-route -->
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src="../js/angular-route.js"></script>
+    <!-- Control Admin_Page -->
+    <script type="text/javascript" src="../js/Admin_Page.js"></script>  
+    <!-- Insert for ng-pagination -->
+    <script type="text/javascript" src="../js/dirPagination.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  </body>
  </html>
