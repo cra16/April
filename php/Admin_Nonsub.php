@@ -59,11 +59,13 @@
                   </td>
                   </tr>
             </table>
-            <!-- Pagination Part (dirPagination모듈 사용)-->
-            <dir-pagination-controls
+             <!-- Pagination Part (dirPagination모듈 사용)-->
+            <div class="text-center">
+                  <dir-pagination-controls
                   max-size="7"
                   direction-links="true"
                   boundary-links="true">
-            </dir-pagination-controls>
+                  </dir-pagination-controls>
+            </div>
       </div>
 </div>
