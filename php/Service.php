@@ -2,6 +2,12 @@
 <?php
 session_start();
 
+//로그인 여부 판단
+$username = $_SESSION['USER_NAME'];
+if(!$username){
+  header("location: Main.php");
+  exit();
+}
 //simple_html_dom.php is needed to access hisnetpage information
 require_once('simple_html_dom.php');
 
@@ -110,12 +116,13 @@ $stu_grade = Stu_Grade::getInstance(0);
                         <h1>ServicePage</h1>
                         <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                        <?php $stu_grade->getSubmitInformation($_SESSION['USER_NAME']); ?>
                         <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
                         </div>
                         
                 </div>
                     <br><br><br>
-                    <form id="form_data" action="ResultServce.php" method="POST">
+                    <form id="form_data" action="ResultService.php" method="POST">
                        <span id = "course_name">인문사회</span>
                        <div class="col-lg-12 total_table input_data" >
 
@@ -216,38 +223,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                         else if($i==1)
                         {
                           ?>
-<<<<<<< HEAD
-                              <td>
-                              <div>
-                                <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" name = "dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                  year
-                                  <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                </ul>
-                              </div>
-                              <div class="dropdown" style="float:left">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" name = "dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                  전공
-                                  <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                </ul>
-                              </div>
-                              </div>
-                            </td>
-=======
                             
->>>>>>> d1fd598c8b468bb2be635a898c899ec4ab75b4f9
                           <?php
                           
                           echo "<td>";
@@ -259,7 +235,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                         echo "<td>";
                         for($j=0; $j<3; $j++)
                             {
-                              echo "<input type='checkbox' name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
+                              echo "<input type='checkbox'  name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
                           }
                           echo "</td>";
                            
@@ -276,13 +252,12 @@ $stu_grade = Stu_Grade::getInstance(0);
                          <?php
                        }?>
                        </div>
-                       <input type="hidden" id ="foundation" name ="foundation" value="">
+                       <input type="hidden" id ="foundation" value="">
                        <input type='button' class='btn' id ="submit_btn" value="submit">
                       </form>
                    </div>
                </div>
         <!-- /#page-content-wrapper -->
-
 
 
     </div>
@@ -305,6 +280,7 @@ $stu_grade = Stu_Grade::getInstance(0);
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+
     </script>
     <?php
       $_SESSION['Object']=serialize($stu_grade);

@@ -59,28 +59,35 @@ if(!empty($_POST['data_info'])) {
         }
     }
 
-$id = "yyll9933";//$_SESSION['USER_NAME'];
-$foundation = "기초역량";
+$id = $_SESSION['USER_NAME'];
+$foundation = $_POST['foundation'];
 
 //check the information
 
 $qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation'";
 $datas = $link->query($qry);
 
-foreach($datas as $data){
-if ($data) {
-    if($data["status"]!="지원")
-    {
-        echo "Your status is already checking";
+if($datas){
+    echo "asdfasdf";
+    foreach($datas as $data){
+
+        if ($data) {
+            if($data["status"]!="지원"){
+                echo "Your status is already checking";
+                header("Location: ../php/Service.php");
+            }
+        
+            $sql = "UPDATE `application` SET his_id = '$id', non_sub = '$nonsubject', kind = '$foundation', area = '$nonarea', status = '지원',year = '$nonyear' WHERE his_id = '$id' AND kind = '$foundation'";       
+   
+        }                               
     }
-    $sql = "UPDATE `application` SET his_id = '$id', non_sub = '$nonsubject', kind = '$foundation', area = '$nonarea', status = '지원',year = '$nonyear' WHERE his_id = '$id' AND kind = '$foundation'";       
-    header("Location: ../php/Service.php");
-} else {
-   $sql = "INSERT INTO `application`(his_id,non_sub,kind,area,status,year) VALUES('$id','$nonsubject','$foundation','$nonarea','지원','$nonyear')";
+    $sql = "INSERT INTO `application`(his_id,non_sub,kind,area,status,year) VALUES('$id','$nonsubject','$foundation','$nonarea','지원','$nonyear')";
+    echo "123";
 }
+else{
+    echo "fail..".$link->error;
 }
 
-//making insert query 
 
 //query execute and return value
 if ($link->query($sql) === TRUE) {
@@ -91,7 +98,5 @@ if ($link->query($sql) === TRUE) {
 }
 
 $link->close();
-
-
 
 ?>
