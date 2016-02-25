@@ -33,6 +33,7 @@ $stu_grade = Stu_Grade::getInstance(0);
 </head>
 
 <body ng-app="MyApp">
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,6 +49,9 @@ $stu_grade = Stu_Grade::getInstance(0);
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
+    <li><a href="#" class="foundation-competence">기초 역량</a></li>
+    <li><a href="#" class="foundation-study">기초 학문</a></li>
+    <li><a href="#" class="introduction">소개 페이지</a></li>
       <li><a href="logout.php">Logout</a></li>
       <li><a href="#" onclick="help()">Help</a></li>
     </ul>
@@ -59,27 +63,10 @@ $stu_grade = Stu_Grade::getInstance(0);
 
 
 
-
-    <div id="wrapper" ng-controller="table_event">
+ 
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="#" class="foundation-competence">기초 역량</a>
-                </li>
-                <li>
-                    <a href="#" class="foundation-study">기초 학문</a>
-                </li>
-                <li>
-                    <a href="#" class="introduction">소개 페이지</a>
-                </li>
-                <li>
-                    <a href="#">Service 4</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+       
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -107,9 +94,56 @@ $stu_grade = Stu_Grade::getInstance(0);
                     </div>
 
                         <div class="introduce">
-                        <h1>ServicePage</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                                                  <div class="row api-lifecycle-components-description">
+                              <div class="row col-md-6 col-xs-12">
+                                
+                                  
+                                  <div class="col-md-6">
+                                    <img src="../img/college-graduation.png">
+                                    <h3 class="api-lifecycle-component-name">Build + Test</h3>
+                                    <p>Create and send any HTTP request using the awesome Postman Builder. Requests are saved to history and can be replayed later.</p>
+                                  </div>
+                                  
+                                
+                                  
+                                
+                                  
+                                  <div class="col-md-6">
+                                    <img src="../img/college-graduation.png">
+                                    <h3 class="api-lifecycle-component-name">Organize</h3>
+                                    <p>Manage and organize your APIs with Postman Collections for a more efficient testing and integration workflow.</p>
+                                  </div>
+                                  
+                                
+                                  
+                                
+                              </div>
+                              <div class="row col-md-6 col-xs-12">
+                              
+                                
+                              
+                                
+                                <div class="col-md-6">
+                                  <img src="../img/college-graduation.png">
+                                  <h3 class="api-lifecycle-component-name">Document</h3>
+                                  <p>Automatically generate API documentation based on your Collections, and publish them to standard formats.</p>
+                                </div>
+                                
+                              
+                                
+                              
+                                
+                                <div class="col-md-6">
+                                  <img src="../img/college-graduation.png">
+                                  <h3 class="api-lifecycle-component-name">Collaborate</h3>
+                                  <p>Connect your team and your API tool-chain with team sync, API Library and access control.</p>
+                                </div>
+                                
+                              
+                              </div>
+                            </div>
+
+                          </div>
                         <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
                         </div>
                         
@@ -240,7 +274,7 @@ $stu_grade = Stu_Grade::getInstance(0);
         <!-- /#page-content-wrapper -->
 
 
-    </div>
+
 
     <!-- /#wrapper -->
 
