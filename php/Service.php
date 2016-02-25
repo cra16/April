@@ -72,7 +72,7 @@ $stu_grade = Stu_Grade::getInstance(0);
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="button_class">
                       
                       <?php 
                           $course_array = ["인문사회","이공학","ICT","ICT심화","인문사회","이공학","융합"];
@@ -94,9 +94,10 @@ $stu_grade = Stu_Grade::getInstance(0);
                     </div>
 
                         <div class="introduce">
-                                                  <div class="row api-lifecycle-components-description">
+                            <div class="row api-lifecycle-components-description">
+                              <center><h1>소개 페이지</h1> </center>
                               <div class="row col-md-6 col-xs-12">
-                                
+                                  
                                   
                                   <div class="col-md-6">
                                     <img src="../img/college-graduation.png">
@@ -150,14 +151,14 @@ $stu_grade = Stu_Grade::getInstance(0);
                 </div>
                     <br><br><br>
                     <form id="form_data" action="ResultServce.php" method="POST">
-                       <span id = "course_name">인문사회</span>
-                       <div class="col-lg-12 total_table input_data" >
+                       <center><div style="padding-top:30px"><h2>특성-<span id = "course_name">인문사회</span></h2></div></center>
+                       <div class="total_table input_data" >
 
                        <?php
                         for($i=0; $i<3; $i++)
                        {?>
 
-                        <div class="col-lg-4 table_layer">
+                        <div class="table_layer">
                           <?php 
                             if($i==0)
                             {
