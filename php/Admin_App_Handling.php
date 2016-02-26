@@ -24,7 +24,7 @@ if($mode == 0){
     $db_name  = 'april';
     $hostname = '127.0.0.1';
     $username = 'root';
-    $password = '111111';
+    $password = 'gksehdeo357';
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
@@ -34,7 +34,7 @@ if($mode == 0){
         $sql = 'SELECT student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
                 FROM application
                 INNER JOIN student
-                ON application.his_id = student.his_id';
+                ON application.his_id = student.stu_id';
     }
     
     // use prepared statements, even if not strictly required is good practice
