@@ -128,41 +128,35 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 // 지원 정보 Controller 
 admin_App.controller('app_Ctrl', function($scope,$http) {
 
+	$scope.mode = "지원";
+	$scope.all_status = ["지원", "심사", "완료"];
+	
 	var dataObject = {};
 	var req = 0;
+
 	// Request App Info
-	$http({method: 'POST', url: 'Admin_App_Handling.php', data: {'mode' : 0}})
-	.success(function(data) {
-		if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-			$scope.apps = data;
-		else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
-			alert("Return Fail");
-	});
+	 $scope.mode = req;
 
-	$scope.ShowApp = function(req){
+	  dataObject = {'mode':0,'req':req};
+	  /* AJAX 통신 처리 */
+	  $http({
+	    method: 'POST', url: 'Admin_App_Handling.php', 
+	    data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	  })
+	  .success(function(data) {
+	    if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+	    $scope.apps = data;
+	    else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
+	    alert("Return Fail");
+	  });
 
-		// application data : mode = 0, appObject (= dataObject), appData (=Data)와 같은 역할 
-		  req = 0;
-	      dataObject = {'mode':0, 'req':req};
-	      /* AJAX 통신 처리 */
-	      $http({
-	        method: 'POST', url: 'Admin_App_Handling.php', 
-	        data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-	      })
-	      .success(function(data) {
-	        if( data) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-	        	$scope.apps = data;
-	        else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
-	    	    alert("Return Fail");
-	      });
-	};
-	      
+
 
 	$scope.updateRow = function(){
 
 		// Fetch student name.
 
-		dataObject = {'mode':mode};
+		dataObject = {'mode':1};
 
 		/* AJAX 통신 처리 */
 		$http({
@@ -187,6 +181,6 @@ admin_App.controller('app_Ctrl', function($scope,$http) {
 		//  초기화
 		$scope.kind='';
 		$scope.area='';
-		$scope.status='';
+		$scope.stat='';
 		}; // addRow function End
 });

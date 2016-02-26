@@ -8,14 +8,11 @@ $db = new DB_Control();
 $link = $db->DBC();   
     
 // Fetch the data.
-$serial_num = $_POST['serial_num'];// Serial Number 
-$his_id = $_POST['his_id'];             // HISNET ID
-$kind = $_POST['kind'];                 // 인증제 종류
-$area = $_POST['area'];                 // 항목 
-$nonsub = $_POST['non_sub'];           // 비교과과정 
-$status = $_POST['status'];             // 상태 (지원 - 0, 심사중 - 1, 완료 - 2)
-// Reading mode.
-$mode = $_POST['mode'];    // CRUD MODE
+$stat = $_POST['stat'];             // 상태 (지원 - 0, 심사중 - 1, 완료 - 2)
+$req = $_POST['req'];      // CRUD MODE
+$mode = $_POST['mode'];    
+$serial_num = $_POST['serial_num'];
+$his_id = $_POST['his_id'];
 
 // Read(default)
  // Fetch application db
@@ -24,18 +21,25 @@ if($mode == 0){
     $db_name  = 'april';
     $hostname = '127.0.0.1';
     $username = 'root';
-    $password = 'gksehdeo357';
+    $password = '111111';
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 
     // send application db + student db.
-    if($req == 0){
+    
+    $sql = 'SELECT student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
+                FROM application
+                INNER JOIN student
+                ON application.his_id = student.id';
+
+        /*
         $sql = 'SELECT student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
                 FROM application
                 INNER JOIN student
                 ON application.his_id = student.stu_id';
-    }
+                */
+    
     
     // use prepared statements, even if not strictly required is good practice
     $stmt = $dbh->prepare( $sql );
@@ -59,7 +63,7 @@ if ($mode = 1)    // if edited "status" is "examining" (심사중 - 1), then let
     include 'Config_DB.php';
 
     // Update the data.                                  
-    $sql = "UPDATE application SET serial_num= '$serial_num', status = '$status' 
+    $sql = "UPDATE application SET serial_num= '$serial_num', status = '$stat' 
             WHERE his_id = '$his_id'";                
 
     if ($link->query($sql) === TRUE) {
@@ -68,6 +72,7 @@ if ($mode = 1)    // if edited "status" is "examining" (심사중 - 1), then let
     echo -1;
     }   
 }
+
 
 $link->close();
 // header("Location: Admin_Page.php");    
