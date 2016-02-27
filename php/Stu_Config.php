@@ -50,7 +50,7 @@ class Student{
 			exit();
 		}
 		//DB Close
-		mysqli_close($db->link);
+		mysqli_close($link);
 	}
 }
 ?>

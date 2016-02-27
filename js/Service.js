@@ -104,7 +104,7 @@ $(document).ready(function(){
                  } 
 
           });
-    alert("GG");    
+    
 		$("#form_data").show(); 
    
     
