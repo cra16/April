@@ -8,8 +8,6 @@ $routeProvider
 });
 
 
-
-
 admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	// 학부정보
 	$scope.courses = ["전산전자","국제어문","경영경제","법학부","언론정보","상담복지","생명과학","공간시스템",
@@ -47,7 +45,7 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	        else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
 	        alert("Return Fail");
 	      });
-	}
+	};
 
 	$scope.addRow = function(){
 	      if($scope.mode=="캠프")
@@ -82,8 +80,6 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	      $scope.name='';
 	      $scope.field='';
 	}; // addRow function End
-
-
 
 	$scope.removeRow = function(nonsub){  
 	      if($scope.mode=="캠프")
@@ -123,20 +119,68 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	        /* 서버와의 연결이 정상적이지 않을 때 처리 */
 	        alert("Connect Fail");
 	      }); // http_post End
-	      }; // removeRow function End
+	}; // removeRow function End
+
 });
+
+
 
 // 지원 정보 Controller 
 admin_App.controller('app_Ctrl', function($scope,$http) {
+
+	$scope.mode = "지원";
+	$scope.all_status = ["지원", "심사", "완료"];
 	
 	var dataObject = {};
-	var mode = 0;
+	var req = 0;
+
 	// Request App Info
-	$http({method: 'POST', url: 'Admin_App_Handling.php', data: {'mode' : mode}})
-	.success(function(data) {
-		if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-			$scope.apps = data;
-		else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
-			alert("Return Fail");
-	});
+	 $scope.mode = req;
+
+	  dataObject = {'mode':0,'req':req};
+	  /* AJAX 통신 처리 */
+	  $http({
+	    method: 'POST', url: 'Admin_App_Handling.php', 
+	    data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	  })
+	  .success(function(data) {
+	    if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+	    $scope.apps = data;
+	    else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
+	    alert("Return Fail");
+	  });
+
+
+
+	$scope.updateRow = function(){
+
+		// Fetch student name.
+
+		dataObject = {'mode':1};
+
+		/* AJAX 통신 처리 */
+		$http({
+		method: 'POST', url: 'Admin_App_Handling.php', 
+		data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		})
+		.success(function(data, status, headers, config) {
+		if( data  == 1) {
+		  /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+		  alert("정보가 수정되었습니다!");
+		}
+		else {
+		  /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+		  alert(data);
+		}
+		})
+		.error(function(data, status, headers, config) {
+		/* 서버와의 연결이 정상적이지 않을 때 처리 */
+		alert("Connect Fail");
+		});
+
+		//  초기화
+		$scope.kind='';
+		$scope.area='';
+		$scope.stat='';
+		}; // addRow function End
 });
