@@ -96,52 +96,30 @@ $stu_grade = Stu_Grade::getInstance(0);
                         <div class="introduce">
                             <div class="row api-lifecycle-components-description">
                               <center><h1>소개 페이지</h1> </center>
-                              <div class="row col-md-6 col-xs-12">
+                              <div class="row col-xs-12">
                                   
-                                  
-                                  <div class="col-md-6">
+                                  <div class="col-md-2"></div>
+                                  <div class="col-md-4">
                                     <img src="../img/college-graduation.png">
-                                    <h3 class="api-lifecycle-component-name">Build + Test</h3>
-                                    <p>Create and send any HTTP request using the awesome Postman Builder. Requests are saved to history and can be replayed later.</p>
+                                    <h3 class="api-lifecycle-component-name">기초역량 인증</h3>
+                                    <p>기초역량 인증은 전공 학습에 필요한 기초 역량을 갖춘 학생을 인증하는 제도입니다. 전공을 이수하는 데 어려움이 없도록 기초 과목을 충분히 수강하고 심화학습 능력을 갖춘 학생들에게 인증을 부여합니다.</p>
                                   </div>
                                   
                                 
                                   
                                 
                                   
-                                  <div class="col-md-6">
+                                  <div class="col-md-4">
                                     <img src="../img/college-graduation.png">
-                                    <h3 class="api-lifecycle-component-name">Organize</h3>
-                                    <p>Manage and organize your APIs with Postman Collections for a more efficient testing and integration workflow.</p>
+                                    <h3 class="api-lifecycle-component-name">기초학문 인증</h3>
+                                    <p>기초학문 인증은 기초학문 분야에서 깊은 이해를 가진 학생들을 인증하는 제도입니다. 학회활동을 통해 기초학문을 공부하여 전문 분야에서도 더 나은 실력을 발휘할 수 있는 학생들에게 인증을 부여합니다.</p>
                                   </div>
-                                  
+                                  <div class="col-md-2"></div>
                                 
                                   
                                 
                               </div>
-                              <div class="row col-md-6 col-xs-12">
                               
-                                
-                              
-                                
-                                <div class="col-md-6">
-                                  <img src="../img/college-graduation.png">
-                                  <h3 class="api-lifecycle-component-name">Document</h3>
-                                  <p>Automatically generate API documentation based on your Collections, and publish them to standard formats.</p>
-                                </div>
-                                
-                              
-                                
-                              
-                                
-                                <div class="col-md-6">
-                                  <img src="../img/college-graduation.png">
-                                  <h3 class="api-lifecycle-component-name">Collaborate</h3>
-                                  <p>Connect your team and your API tool-chain with team sync, API Library and access control.</p>
-                                </div>
-                                
-                              
-                              </div>
                             </div>
 
                           </div>

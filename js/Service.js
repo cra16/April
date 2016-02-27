@@ -145,9 +145,10 @@ $(document).ready(function(){
           
       $(this).unbind("click");
       var direction=$(this).parent();
-      direction.prev().text($(this).text());
+      direction.prev().prev().text($(this).text());
       direction.prev().attr("aria-expanded","false");
       direction.prev().parent().attr("class","dropdown");
       direction.next().val($(this).text());
+
   });
 });
