@@ -30,10 +30,12 @@ class Student{
 	// Confirm User request -> Student mode
 	function Req_Stu_Login() {
 		// Connect with DB
-		require('Stu_Grade.php');
-		$db = Stu_Grade::getInstance(0);
+		require_once("Config_DB.php");
+		$db = new DB_Control();
+		$link = $db->DBC();
+
 		$sql = "SELECT * FROM student WHERE id = '$this->stu_id' AND password = '$this->stu_pw'";
-		$result = mysqli_query($db->link, $sql);
+		$result = mysqli_query($link, $sql);
 		if (mysqli_num_rows($result) > 0) {
  			$_SESSION['USER_NAME'] = $this->stu_id;
       		$_SESSION['USER_PW'] = $this->stu_pw;
@@ -48,7 +50,7 @@ class Student{
 			exit();
 		}
 		//DB Close
-		mysqli_close($db->link);
+		mysqli_close($link);
 	}
 }
 ?>
