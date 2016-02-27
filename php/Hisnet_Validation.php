@@ -106,11 +106,12 @@ class HisnetValidation{
     $html = str_get_html($result);  
 
     // Connect with DB
-    require('Stu_Grade.php');
-    $db = Stu_Grade::getInstance(0);
+    require_once("Config_DB.php");
+    $db = new DB_Control();
+    $link = $db->DBC();
 
     $sql1 = "SELECT * FROM student WHERE id = '$his_id'";
-    $outcome = mysqli_query($db->link,$sql1);
+    $outcome = mysqli_query($link,$sql1);
     $check = mysqli_num_rows($outcome);
 
     // Hisnet login success
@@ -136,7 +137,7 @@ class HisnetValidation{
         if($check == 0){
           $sql = "INSERT INTO student (id,pw,name,stu_id)
           VALUES ('$this->his_id','$encryption','$stu_name','$stu_id')";
-          if ($db->link->query($sql) === TRUE){
+          if ($link->query($sql) === TRUE){
               header("location:Service.php");
               exit();
           }
