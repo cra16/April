@@ -69,10 +69,8 @@ $stu_grade = Stu_Grade::getInstance(0);
        
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="button_class">
+        <div id="container">
+                   <div class="button_class">
                       
                       <?php 
                           $course_array = ["인문사회","이공학","ICT","ICT심화","인문사회","이공학","융합"];
@@ -91,12 +89,12 @@ $stu_grade = Stu_Grade::getInstance(0);
                           ?>
                         
                       </div>
-                    </div>
+        
 
                         <div class="introduce">
-                            <div class="row api-lifecycle-components-description">
+                           
                               <center><h1>소개 페이지</h1> </center>
-                              <div class="row col-xs-12">
+                              <div class="col-md-12">
                                   
                                   <div class="col-md-2"></div>
                                   <div class="col-md-4 intro_div">
@@ -105,11 +103,6 @@ $stu_grade = Stu_Grade::getInstance(0);
                                     <p>기초역량 인증은 전공 학습에 필요한 기초 역량을 갖춘 학생을 인증하는 제도입니다. 전공을 이수하는 데 어려움이 없도록 기초 과목을 충분히 수강하고 심화학습 능력을 갖춘 학생들에게 인증을 부여합니다.</p>
                                     </div>
                                   </div>
-                                  
-                                
-                                  
-                                
-                                  
                                   <div class="col-md-4 intro_div" >
                                     
                                     <div style="display:none" class="inner_div">
@@ -119,16 +112,10 @@ $stu_grade = Stu_Grade::getInstance(0);
                                     </div>
                                   </div>
                                   <div class="col-md-2"></div>
-                                
-                                  
-                                
                               </div>
-                              
-                            </div>
-
-                          </div>
-                        <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
                         </div>
+                        <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
+                       
                         
                 </div>
                     <br><br><br>
@@ -150,12 +137,8 @@ $stu_grade = Stu_Grade::getInstance(0);
                             else if($i==1)
                             {
                                echo "<b class='name'>비교과과정</b>";
-                               ?>
-
-                                  
-                                  
-                     
-                                <?php
+                               ?>     
+                            <?php
                             }
                             else
                             {
@@ -163,11 +146,8 @@ $stu_grade = Stu_Grade::getInstance(0);
                             }
                             ?>
 
-                           <div id="rt_table" class="bootstrap-table">
-                              <div class="fixed-table-container">
-                                <div class="fixed-table-header" style="height: 40px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;"></div>
-                                <div class="fixed-table-body">
-                                    <table id="table" class="table table-hover" style="margin-top: -40px;">
+                           <div id="rt_table">
+                                    <table id="table" class="table table-hover" >
                                          <thead>
                                             <tr>
                                             
@@ -243,8 +223,6 @@ $stu_grade = Stu_Grade::getInstance(0);
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                          </div>
                          </div>
                          <?php
                        }?>
@@ -252,8 +230,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                        <input type="hidden" id ="foundation" value="">
                        <input type='button' class='btn' id ="submit_btn" value="submit">
                       </form>
-                   </div>
-               </div>
+            
         <!-- /#page-content-wrapper -->
 
 

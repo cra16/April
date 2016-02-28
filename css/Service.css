@@ -57,18 +57,7 @@
 }
 @media(min-width:800px) and (max-width:999px) {
 
-    #wrapper {
-        padding-left: 250px;
-    }
 
-    #sidebar-wrapper {
-        width: 250px;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
     .sub-foundation-competence, .sub-foundation-study
     {
         display:none; 
@@ -102,15 +91,24 @@
         margin-left:12%;
         float:left;
     }
-    
+    .table_layer{
+        padding:0px;
+        border:0px;
+    }
+
+    .rt_table{
+        width:100%;
+    }
+    #table{
+        width:100%;
+        padding:0px;
+        border:0px;
+        overflow:hidden
+    }
 
 }
-@media(min-width:1000px) and (max-width:1350px){
+@media(min-width:1000px) and (max-width:1200px){
 
-
-    .navbar{
-        margin-bottom:0px !important;
-    }
 
 
 
