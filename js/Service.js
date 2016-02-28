@@ -151,4 +151,15 @@ $(document).ready(function(){
       direction.next().val($(this).text());
 
   });
+  $(".intro_div").hover(
+    function()
+    {$(this).css("background-image","none");$(this).find('[class=inner_div]').show();}
+    ,
+    function()
+    {$(this)
+      $(this).css("background-image", 'url(../img/college-graduation.png)');
+      $(this).css("background-size", '100px');
+      $(this).css("background-position","center");
+      $(this).find('[class=inner_div]').hide();});
+
 });
