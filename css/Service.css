@@ -276,3 +276,11 @@ a{
 
 
 }
+.register_table>table{
+    width:100%;
+    overflow: hidden;
+    
+}
+.register_table{
+    margin:15px;
+}

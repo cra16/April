@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
 	$("#form_data").hide();
+  $(".register_table").hide();
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
@@ -11,6 +12,7 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초 역량");
 		$("#form_data").show();
+    $(".register_table").hide();
     $("#course").html("<center>캠  프</center>");
 
 	});
@@ -24,6 +26,7 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초 학문");
 		$("#form_data").show();
+    $(".register_table").hide();
     $("#course").html("<center>학  회</center>");
 
 	});
@@ -31,11 +34,21 @@ $(document).ready(function(){
     $(".sub-foundation-competence").hide();
     $(".sub-foundation-study").hide();
     $("#form_data").hide();
+    $(".register_table").hide();
     $(".introduce").show();
     
   
 
   });
+  $("div").on("click",".register_data",function(event)
+  {
+    $(".sub-foundation-competence").hide();
+    $(".sub-foundation-study").hide();
+    $("#form_data").hide();
+    $(".introduce").hide();
+    
+    $(".register_table").show();
+  })
 
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();

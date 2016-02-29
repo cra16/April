@@ -49,9 +49,10 @@ $stu_grade = Stu_Grade::getInstance(0);
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-    <li><a href="#" class="foundation-competence">기초 역량</a></li>
-    <li><a href="#" class="foundation-study">기초 학문</a></li>
-    <li><a href="#" class="introduction">소개 페이지</a></li>
+      <li><a href="#" class="introduction">소개 페이지</a></li>
+      <li><a href="#" class="foundation-competence">기초 역량</a></li>
+      <li><a href="#" class="foundation-study">기초 학문</a></li>
+      <li><a href="#" class="register_data">지원 정보</a></li>
       <li><a href="logout.php">Logout</a></li>
       <li><a href="#" onclick="help()">Help</a></li>
     </ul>
@@ -117,7 +118,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                         <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
                        
                         
-                </div>
+                
                     <br><br><br>
                     <form id="form_data" action="ResultServce.php" method="POST">
                        <center><div style="padding-top:30px"><h2>특성-<span id = "course_name">인문사회</span></h2></div></center>
@@ -230,7 +231,63 @@ $stu_grade = Stu_Grade::getInstance(0);
                        <input type="hidden" id ="foundation" value="">
                        <input type='button' class='btn' id ="submit_btn" value="submit">
                       </form>
-            
+               
+                <div class ="col-md-2"></div>
+                <div class ="col-md-8">
+                  <div class ="register_table">
+                   <center><h3>기초학문</h3></center>
+                      <table class="table">
+                        <thead>
+                          <th>데이터</th>
+                          <th>교과정보</th>
+                          <th>비교과정보</th>
+                          <th>현장참여과정</th>
+                          <th>승인여부</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      
+                      </tbody>
+                      </table>
+
+                  </div>
+                  
+                  <div class ="register_table">
+                   <center><h3>기초연구</h3></center>
+                      <table class="table">
+                        <thead>
+                          <th>데이터</th>
+                          <th>교과정보</th>
+                          <th>비교과정보</th>
+                          <th>현장참여과정</th>
+                          <th>승인여부</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      
+                      </tbody>
+                      </table>
+                  </div>
+                 
+                  
+
+              
+                   <div class ="col-md-2"></div>
+                </div>
+               
+            </div>
         <!-- /#page-content-wrapper -->
 
 
