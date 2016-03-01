@@ -135,33 +135,42 @@ $(document).ready(function(){
       if($(this).is(":checked")==true)
       {
         var year_list = '<div class="dropdown" style="float:right" ><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">year</button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"></ul><input type="hidden" name="year_array[]" class="year" value=""></div>'
-
+        var indexcount_list = '<input type="hidden" name="index_array[]" value="">';
         var temp=$(this).next().after(year_list);
+        $(this).next().before(indexcount_list);
         var current_year = parseInt((new Date).getFullYear());
         var temp_string="";
         for(var i = 2011; i<=current_year; i++)
         {
-            temp_string=temp_string.concat('<li class="year_data" role="presentation"><a role="menuitem" tabindex="-1">' + i +'</a></li>');
+            temp_string=temp_string.concat('<li class="year_data" role="presentation"><a role="menuitem" tabindex="-1"><input type="checkbox" class="year_class" name = "year_array[]" value='+"\""+i+"\""+'>'+i+'</a></li>');
     
         }   
-      
-        $(this).next().next().find(".dropdown-menu").html(temp_string);
-        $(this).next().show();
-      }
+        $(this).next().next().next().find(".dropdown-menu").html(temp_string);
+        $(this).next().next().show();
+     }
       else
       {
+        $(this).next().next().next().remove();
         $(this).next().next().remove();
       }
   });
-  $("div").on("click",".year_data",function()
-  {    event.stopPropagation();
-          
-      $(this).unbind("click");
-      var direction=$(this).parent();
-      direction.prev().prev().text($(this).text());
-      direction.prev().attr("aria-expanded","false");
-      direction.prev().parent().attr("class","dropdown");
-      direction.next().val($(this).text());
+  $("div").on("click",".year_class",function()
+  {   
+        event.stopPropagation();
+        $(this).unbind("click");
+      
+        var Parent = $(this).parent().parent();
+        var count=0;
+        var temp=Parent.parent().find(".year_class");
+        temp.each(function(){
+           if($(this).is(":checked")==true)
+            count++;
+        });
+        
+       Parent.parent().parent().prev().prev().val(count); 
+      
+  
+
 
   });
   $(".intro_div").hover(
