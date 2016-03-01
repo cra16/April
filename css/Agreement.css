@@ -1,0 +1,89 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+body{
+    /*font-family: 'Nanum Gothic Coding', serif;*/
+    font-family: 'Jeju Gothic', serif;
+    background-color: white;
+}
+html,body{
+  width: 100%;
+  height:100%;
+  text-align:center;
+}
+h3{
+    text-align: center;
+}
+p{
+    text-align: right;
+}
+button{
+    outline:0;
+}
+label{
+    font-size: 15px;
+}
+
+
+.wrapper{
+height: 300px;
+width: 100%;
+position: relative;
+border: 1px solid gray;
+margin:10px 0;
+text-align: justify;
+font-size: 14px;
+overflow: auto;
+padding: 10px;
+}
+
+.agree_button{
+    width:100%;
+    margin-bottom: 30px;
+    background-color: black !important;
+    color:white;
+    height:50px;
+    border-radius : 5px;
+    outline: 0;
+}
+
+.agree_button:hover{
+    background-color: #2196f3 !important;
+}
+
+.errorMsg{
+    color:#ff4d4d;
+    font-size: 20px;
+    text-align: center !important;
+}
+
+@media(min-width:768px){
+    .wrapper{
+        width:750px;
+        margin:10px 0;
+    }
+    .agree_button{
+    width:300px;
+    }
+}
+
+@media(min-width: 992px){
+    .wrapper{
+        width: 570px;
+        margin:10px 200px;
+    }
+    p{
+        margin-right: 200px;
+    }
+}
+
+@media(min-width: 1200px){
+    .wrapper{
+        width: 740px;
+        margin:10px 200px;
+    }
+    p{
+        margin-right: 200px;
+    }
+}
+

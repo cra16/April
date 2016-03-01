@@ -21,7 +21,7 @@ if($mode == 0){
     $db_name  = 'april';
     $hostname = '127.0.0.1';
     $username = 'root';
-    $password = 'gksehdeo357';
+    $password = 'bitnami';
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);

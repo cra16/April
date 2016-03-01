@@ -2,7 +2,8 @@
 
 	session_start();
 
-	require('Stu_Grade.php');
+	require_once('Stu_Grade.php');
+  require_once('Total_Subject.php');
 
 	$course = $_POST['Course'];
 	$foundation = $_POST['foundation'];
@@ -10,65 +11,7 @@
 	
 
 	
-	$number_foundation = [3,2,2,2];
-	$number_study = [3,2,3];
-	$count_cert=0;
-	$foundation_cert = ["인문사회","이공학","ICT","ICT심화"];
-	$study_cert = ["인문사회","이공학","융합"];
-	if(!strcmp($foundation,"기초 역량"))
-	{
-		$temp_array = $foundation_cert;
-		$temp_number = $number_foundation;		
-	}
-	else
-	{
-		$temp_array = $study_cert;
-		$temp_number = $number_study;
-	}
-	$i=0;
-	foreach($temp_array as $temp)
-	{
-		if(!strcmp($course,$temp))
-		{
-			$count_cert = $temp_number[$i];
-			if(!strcmp($foundation,"기초 역량") && !strcmp($course,"인문사회"))
-			{
-				$course_data = ["인문사회","고전강독","세계관"];
-				$course_count = [6,2,4];
-			}
-			else if(!strcmp($foundation,"기초 역량") && !strcmp($course,"이공학"))
-			{
-				$course_data = ["수학과학","소통-융복합"];
-				$course_count = [9,3];
-			}
-			else if(!strcmp($foundation,"기초 역량") && !strcmp($course,"ICT"))
-			{
-				$course_data = ["ICT융합기초","소통-융복합"];
-				$course_count = [9,3];
-			}
-			else if(!strcmp($foundation,"기초 역량") && !strcmp($course,"ICT심화"))
-			{
-				$course_data = ["ICT융합기초","소통-융복합"];
-				$course_count = [15,3];	
-			}
-			else if(!strcmp($foundation,"기초 학문") && !strcmp($course,"인문사회"))
-			{
-				$course_data = ["인문사회","고전강독","세계관"];
-				$course_count = [12,2,4];
-			}
-			else if(!strcmp($foundation,"기초 학문") && !strcmp($course,"이공학"))
-			{
-				$course_data = ["ICT융합기초","소통-융복합"];
-				$course_count = [15,3];
-			}
-			else if(!strcmp($foundation,"기초 학문") && !strcmp($course,"융합"))
-			{
-				$course_data = ["인문사회","수학과학","소통-융복합"];
-				$course_count = [9,6,3];
-			}
-		}
-		$i++;
-	}
+	$total_subject=new Total_Subject($foundation,$course)
                                              
                                               
                                                
@@ -109,20 +52,31 @@ for($i=0; $i<3; $i++)
                  <thead>
                     <tr>
                     
-                    <th class="col-xs-6">
+                        <th class="col-xs-6" id="<?php if($i==1) echo "course"?>">
+
                         <center>
                         <?php 
                           if($i==0){
                             echo "교과";
                           }
+                          else if($i==1)
+                                echo "캠프";
                           else
-                            echo "비교과";
+                            echo "???"
 
                         ?>
                         </center></th>
-                    <th class="col-xs-6">
-                        <center>과목</center>
-                    </th>
+                     <?php if($i!=1)
+                        {?>
+                           <th class="col-xs-6">
+                        
+                        
+
+
+                            <center>과목</center>
+                           
+                        </th>
+                         <?php }?>
                      </tr>
 
                 </thead>
@@ -150,7 +104,7 @@ for($i=0; $i<3; $i++)
                         else if($i==1)
                         {
                          
-                      		echo "<td>";
+                      		echo "<td class='nonsubject_id'>";
                       		$stu_Grade->getNonSubject(1,$course); 
                       		echo "</td>";
                         }

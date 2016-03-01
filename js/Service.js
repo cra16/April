@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
 	$("#form_data").hide();
+  $(".register_table").hide();
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
@@ -11,6 +12,7 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초 역량");
 		$("#form_data").show();
+    $(".register_table").hide();
     $("#course").html("<center>캠  프</center>");
 
 	});
@@ -24,6 +26,7 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초 학문");
 		$("#form_data").show();
+    $(".register_table").hide();
     $("#course").html("<center>학  회</center>");
 
 	});
@@ -31,11 +34,21 @@ $(document).ready(function(){
     $(".sub-foundation-competence").hide();
     $(".sub-foundation-study").hide();
     $("#form_data").hide();
+    $(".register_table").hide();
     $(".introduce").show();
     
   
 
   });
+  $("div").on("click",".register_data",function(event)
+  {
+    $(".sub-foundation-competence").hide();
+    $(".sub-foundation-study").hide();
+    $("#form_data").hide();
+    $(".introduce").hide();
+    
+    $(".register_table").show();
+  })
 
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();
@@ -104,7 +117,7 @@ $(document).ready(function(){
                  } 
 
           });
-    alert("GG");    
+    
 		$("#form_data").show(); 
    
     
@@ -122,32 +135,53 @@ $(document).ready(function(){
       if($(this).is(":checked")==true)
       {
         var year_list = '<div class="dropdown" style="float:right" ><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">year</button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"></ul><input type="hidden" name="year_array[]" class="year" value=""></div>'
-
+        var indexcount_list = '<input type="hidden" name="index_array[]" value="">';
         var temp=$(this).next().after(year_list);
+        $(this).next().before(indexcount_list);
         var current_year = parseInt((new Date).getFullYear());
         var temp_string="";
         for(var i = 2011; i<=current_year; i++)
         {
-            temp_string=temp_string.concat('<li class="year_data" role="presentation"><a role="menuitem" tabindex="-1">' + i +'</a></li>');
+            temp_string=temp_string.concat('<li class="year_data" role="presentation"><a role="menuitem" tabindex="-1"><input type="checkbox" class="year_class" name = "year_array[]" value='+"\""+i+"\""+'>'+i+'</a></li>');
     
         }   
-      
-        $(this).next().next().find(".dropdown-menu").html(temp_string);
-        $(this).next().show();
-      }
+        $(this).next().next().next().find(".dropdown-menu").html(temp_string);
+        $(this).next().next().show();
+     }
       else
       {
+        $(this).next().next().next().remove();
         $(this).next().next().remove();
       }
   });
-  $("div").on("click",".year_data",function()
-  {    event.stopPropagation();
-          
-      $(this).unbind("click");
-      var direction=$(this).parent();
-      direction.prev().text($(this).text());
-      direction.prev().attr("aria-expanded","false");
-      direction.prev().parent().attr("class","dropdown");
-      direction.next().val($(this).text());
+  $("div").on("click",".year_class",function()
+  {   
+        event.stopPropagation();
+        $(this).unbind("click");
+      
+        var Parent = $(this).parent().parent();
+        var count=0;
+        var temp=Parent.parent().find(".year_class");
+        temp.each(function(){
+           if($(this).is(":checked")==true)
+            count++;
+        });
+        
+       Parent.parent().parent().prev().prev().val(count); 
+      
+  
+
+
   });
+  $(".intro_div").hover(
+    function()
+    {$(this).css("background-image","none");$(this).find('[class=inner_div]').show();}
+    ,
+    function()
+    {$(this)
+      $(this).css("background-image", 'url(../img/college-graduation.png)');
+      $(this).css("background-size", '100px');
+      $(this).css("background-position","center");
+      $(this).find('[class=inner_div]').hide();});
+
 });

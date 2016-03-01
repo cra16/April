@@ -39,6 +39,7 @@ $stu_grade = Stu_Grade::getInstance(0);
 </head>
 
 <body ng-app="MyApp">
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,6 +55,10 @@ $stu_grade = Stu_Grade::getInstance(0);
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" class="introduction">소개 페이지</a></li>
+      <li><a href="#" class="foundation-competence">기초 역량</a></li>
+      <li><a href="#" class="foundation-study">기초 학문</a></li>
+      <li><a href="#" class="register_data">지원 정보</a></li>
       <li><a href="logout.php">Logout</a></li>
       <li><a href="#" onclick="help()">Help</a></li>
     </ul>
@@ -65,33 +70,14 @@ $stu_grade = Stu_Grade::getInstance(0);
 
 
 
-
-    <div id="wrapper" ng-controller="table_event">
+ 
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="#" class="foundation-competence">기초 역량</a>
-                </li>
-                <li>
-                    <a href="#" class="foundation-study">기초 학문</a>
-                </li>
-                <li>
-                    <a href="#" class="introduction">소개 페이지</a>
-                </li>
-                <li>
-                    <a href="#">Service 4</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+       
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
+        <div id="container">
+                   <div class="button_class">
                       
                       <?php 
                           $course_array = ["인문사회","이공학","ICT","ICT심화","인문사회","이공학","융합"];
@@ -110,27 +96,59 @@ $stu_grade = Stu_Grade::getInstance(0);
                           ?>
                         
                       </div>
-                    </div>
+        
 
                         <div class="introduce">
+<<<<<<< HEAD
                         <h1>ServicePage</h1>
                         <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                         <?php $stu_grade->getSubmitInformation($_SESSION['USER_NAME']); ?>
                         <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
+=======
+                           
+                              <center><h1>소개 페이지</h1> </center>
+                              <div class="col-md-12">
+                                  
+                                  <div class="col-md-2"></div>
+                                  <div class="col-md-4 intro_div">
+                                    <div style="display:none" class="inner_div">
+                                    <h3 class="api-lifecycle-component-name">기초역량 인증</h3>
+                                    <p>기초역량 인증은 전공 학습에 필요한 기초 역량을 갖춘 학생을 인증하는 제도입니다. 전공을 이수하는 데 어려움이 없도록 기초 과목을 충분히 수강하고 심화학습 능력을 갖춘 학생들에게 인증을 부여합니다.</p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4 intro_div" >
+                                    
+                                    <div style="display:none" class="inner_div">
+
+                                    <h3 class="api-lifecycle-component-name">기초학문 인증</h3>
+                                    <p>기초학문 인증은 기초학문 분야에서 깊은 이해를 가진 학생들을 인증하는 제도입니다. 학회활동을 통해 기초학문을 공부하여 전문 분야에서도 더 나은 실력을 발휘할 수 있는 학생들에게 인증을 부여합니다.</p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2"></div>
+                              </div>
+>>>>>>> 06cb04f9ebd2b26f9ba53d0bb429649b1fc9d3ec
                         </div>
+                        <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
+                       
                         
-                </div>
+                
                     <br><br><br>
+<<<<<<< HEAD
                     <form id="form_data" action="ResultService.php" method="POST">
                        <span id = "course_name">인문사회</span>
                        <div class="col-lg-12 total_table input_data" >
+=======
+                    <form id="form_data" action="ResultServce.php" method="POST">
+                       <center><div style="padding-top:30px"><h2>특성-<span id = "course_name">인문사회</span></h2></div></center>
+                       <div class="total_table input_data" >
+>>>>>>> 06cb04f9ebd2b26f9ba53d0bb429649b1fc9d3ec
 
                        <?php
                         for($i=0; $i<3; $i++)
                        {?>
 
-                        <div class="col-lg-4 table_layer">
+                        <div class="table_layer">
                           <?php 
                             if($i==0)
                             {
@@ -140,35 +158,8 @@ $stu_grade = Stu_Grade::getInstance(0);
                             else if($i==1)
                             {
                                echo "<b class='name'>비교과과정</b>";
-                               ?>
-
-                                  
-                                   <div class="dropdown" id="dropdown_id">
-                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                                        Dropdown
-                                        <span class="caret"></span>
-                                      </button>
-                                      <ul class="dropdown-menu" id ="dropdownmenu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation"><a name="글로벌리더십" class="uni_data" role="menuitem" tabindex="-1" href="#">글로벌리더십학부</a></li>
-                                        <li role="presentation"><a name="창의융합교육원" class="uni_data" tabindex="-1" href="#">창의융합교육원</a></li>
-                                        <li role="presentation"><a name="글로벌에디슨아카데미" class="uni_data" tabindex="-1" href="#">Global Edison Academy</a></li>
-                                        <li role="presentation"><a name="국제어문" class="uni_data" tabindex="-1" href="#">국제어문학부</a></li>
-                                        <li role="presentation"><a name="언론정보" class="uni_data" tabindex="-1" href="#">언론정보문화학부</a></li>
-                                        <li role="presentation"><a name="경영경제" class="uni_data" tabindex="-1" href="#">경영경제학부</a></li>
-                                        <li role="presentation"><a name="상담복지" class="uni_data" tabindex="-1" href="#">상담심리사회복지학부</a></li>
-                                        <li role="presentation"><a name="법학부" class="uni_data" tabindex="-1" href="#">법학부</a></li>
-                                        <li role="presentation"><a name="생명과학" class="uni_data" tabindex="-1" href="#">생명과학부</a></li>
-                                        <li role="presentation"><a name="전산전자" class="uni_data" tabindex="-1" href="#">전산전자공학부</a></li>
-                                        <li role="presentation"><a name="산업정보디자인" class="uni_data" tabindex="-1" href="#">산업정보디자인학부</a></li>
-                                        <li role="presentation"><a name="기계제어" class="uni_data" tabindex="-1" href="#">기계제어공학부</a></li>
-                                        <li role="presentation"><a name="공간환경시스템" class="uni_data" tabindex="-1" href="#">공간환경시스템공학부</a></li>
-                                        <li role="presentation"><a name="콘텐츠융합디자인" class="uni_data" tabindex="-1" href="#">콘텐츠융합디자인학부</a></li>
-                                        <li role="presentation"><a name="산업교육" class="uni_data" tabindex="-1" href="#">산업교육학부</a></li>
-                                      </ul>
-                                  </div>
-                                  
-                     
-                                <?php
+                               ?>     
+                            <?php
                             }
                             else
                             {
@@ -176,28 +167,35 @@ $stu_grade = Stu_Grade::getInstance(0);
                             }
                             ?>
 
-                           <div id="rt_table" class="bootstrap-table">
-                              <div class="fixed-table-container">
-                                <div class="fixed-table-header" style="height: 40px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;"></div>
-                                <div class="fixed-table-body">
-                                    <table id="table" class="table table-hover" style="margin-top: -40px;">
+                           <div id="rt_table">
+                                    <table id="table" class="table table-hover" >
                                          <thead>
                                             <tr>
                                             
-                                            <th class="col-xs-6">
+                                            <th class="col-xs-6"  id="<?php if($i==1) echo "course"?>">
                                                 <center>
                                                 <?php 
                                                   if($i==0){
                                                     echo "교과";
                                                   }
-                                                  else
+                                                  else if($i==1)
                                                     echo "비교과";
+                                                  else
+                                                    echo "현장참여과정";
 
                                                 ?>
                                                 </center></th>
-                                            <th class="col-xs-6">
-                                                <center>과목</center>
-                                            </th>
+                                                <?php if($i!=1)
+                                                {?>
+                                                   <th class="col-xs-6">
+                                                
+                                                
+
+
+                                                    <center>과목</center>
+                                                   
+                                                </th>
+                                                 <?php }?>
                                              </tr>
 
                                         </thead>
@@ -226,7 +224,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                             
                           <?php
                           
-                          echo "<td>";
+                          echo "<td class='nonsubject_id'>";
                             $stu_grade->getNonSubject(1,"인문사회");
                           echo "</td>";
                         }
@@ -246,8 +244,6 @@ $stu_grade = Stu_Grade::getInstance(0);
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                          </div>
                          </div>
                          <?php
                        }?>
@@ -255,12 +251,67 @@ $stu_grade = Stu_Grade::getInstance(0);
                        <input type="hidden" id ="foundation" value="">
                        <input type='button' class='btn' id ="submit_btn" value="submit">
                       </form>
-                   </div>
-               </div>
+               
+                <div class ="col-md-2"></div>
+                <div class ="col-md-8">
+                  <div class ="register_table">
+                   <center><h3>기초학문</h3></center>
+                      <table class="table">
+                        <thead>
+                          <th>데이터</th>
+                          <th>교과정보</th>
+                          <th>비교과정보</th>
+                          <th>현장참여과정</th>
+                          <th>승인여부</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      
+                      </tbody>
+                      </table>
+
+                  </div>
+                  
+                  <div class ="register_table">
+                   <center><h3>기초연구</h3></center>
+                      <table class="table">
+                        <thead>
+                          <th>데이터</th>
+                          <th>교과정보</th>
+                          <th>비교과정보</th>
+                          <th>현장참여과정</th>
+                          <th>승인여부</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      
+                      </tbody>
+                      </table>
+                  </div>
+                 
+                  
+
+              
+                   <div class ="col-md-2"></div>
+                </div>
+               
+            </div>
         <!-- /#page-content-wrapper -->
 
 
-    </div>
+
 
     <!-- /#wrapper -->
 

@@ -56,6 +56,7 @@ class HisnetValidation{
       "x" => 0,
       "y" => 0,
       );
+
     // Access hisnet basic information
       // 1st request
       $ch = curl_init ("http://hisnet.handong.edu/login/_login.php");
@@ -105,11 +106,12 @@ class HisnetValidation{
     $html = str_get_html($result);  
 
     // Connect with DB
-    require('Stu_Grade.php');
-    $db = Stu_Grade::getInstance(0);
+    require_once("Config_DB.php");
+    $db = new DB_Control();
+    $link = $db->DBC();
 
     $sql1 = "SELECT * FROM student WHERE id = '$his_id'";
-    $outcome = mysqli_query($db->link,$sql1);
+    $outcome = mysqli_query($link,$sql1);
     $check = mysqli_num_rows($outcome);
 
     // Hisnet login success
@@ -125,11 +127,17 @@ class HisnetValidation{
 
       if($outcome)
       {
+        //Encryption for security
+        $key = KEY;
+        $s_vector_iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_3DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
+        $en_str = mcrypt_encrypt(MCRYPT_3DES, $key, $his_pw, MCRYPT_MODE_ECB, $s_vector_iv);
+        $encryption = bin2hex($en_str); 
+
         //Login success but no data in DB
         if($check == 0){
-          $sql = "INSERT INTO student (id,password,name,student_id)
-          VALUES ('$this->his_id','$this->his_pw','$stu_name','$stu_id')";
-          if ($db->link->query($sql) === TRUE){
+          $sql = "INSERT INTO student (id,pw,name,stu_id)
+          VALUES ('$this->his_id','$encryption','$stu_name','$stu_id')";
+          if ($link->query($sql) === TRUE){
               header("location:Service.php");
               exit();
           }
