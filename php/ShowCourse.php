@@ -21,7 +21,7 @@
  <?php
 for($i=0; $i<3; $i++)
 {?>
-<div class="col-lg-4 table_layer">
+<div class="table_layer" style="margin-top:40px;">
     <?php 
                             if($i==0)
                             {
@@ -44,11 +44,9 @@ for($i=0; $i<3; $i++)
                               echo "<b class='name'>현장</b>";
                             }
                             ?>
-   <div id="rt_table" class="bootstrap-table">
-      <div class="fixed-table-container">
-        <div class="fixed-table-header" style="height: 40px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221); margin-right:0px;"></div>
-        <div class="fixed-table-body">
-            <table id="table" class="table table-hover" style="margin-top: -40px;">
+   <div id="rt_table" style="margin-top:40px;">
+      
+            <table id="table" class="table">
                  <thead>
                     <tr>
                     
