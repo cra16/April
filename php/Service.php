@@ -105,7 +105,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                        {?>
 
                         <div class="table_layer" style="margin-top:40px;">
-                          <?php 
+                          <center><?php 
                             if($i==0)
                             {
                                   echo "<b class='name'>교과과정</b>";
@@ -121,9 +121,10 @@ $stu_grade = Stu_Grade::getInstance(0);
                             {
                               echo "<b class='name'>현장참여과정</b>";
                             }
-                            ?>
+                            ?></center>
 
                            <div id="rt_table" style="margin-top:40px;">
+
                                     <table id="table" class="table" >
                                          <thead>
                                             <tr>
@@ -224,7 +225,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                            
                               <h1>기초역량 기초학문 인증제</h1> 
       <div id="tagline">
-      <p>April provides you a Certification of your capability or study</p>
+      <center><p>April provides you a Certification of your capability or study</p></center>
       </div>
       <br>
       <h3>기초역량 기초학문 인증제가 무엇인가요?</h3>
@@ -235,23 +236,28 @@ $stu_grade = Stu_Grade::getInstance(0);
       <h3>인증 대상은 누구인가요?</h3>
       <h5>1. 기초역량 인증</h5>
       <div class="desc_contain">
-      <div id="description">
-           <p>1.해당 교과 과정에서 각 과목 B0학점 <br>이상의 성적을 얻은 학생<br><br>
-                  2.코너스톤 창의과제를 수강한 학생<br><br>
-                  3.학술캠프나 ICT 학술학회를 참여한 학생<br>
-           </p>
+      <div style="float:left;" id="description">
+       
+           <p>1.해당 교과 과정에서 각 과목 B0학점 이상의 성적을 얻은 학생</p>  
+           <p>2.코너스톤 창의과제를 수강한 학생</p>
+            <p>3.학술캠프나 ICT 학술학회를 참여한 학생</p>
+           
+          
+           
+            
+        
       </div>
-      <img src="../img/back.jpg">
+          <img style="float:left;" src="../img/back.jpg">
      </div>
       <h5>2. 기초학문 인증</h5>
       <div class="desc_contain">
-        <div id="description">
+        <div style="float:left;" id="description">
            <p>1.해당 교과 과정에서 각 과목 B0학점 <br>이상의 성적을 얻은 학생<br><br>
                  2.교내 학술학회에서 활동한 학생<br><br>
                  3.기초 학문 분야와 연관 전공에 대한 <br>심화된 학습 결과물을 낸 학생<br>
            </p>
       </div>
-      <img src="../img/bg2.png">
+      <img style="float:left;" src="../img/bg2.png">
       </div>
       <hr>
 
@@ -340,10 +346,7 @@ $stu_grade = Stu_Grade::getInstance(0);
       </div>     
 
                         </div>
-                        <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
-                       
-                        
-                
+                   
                     <br><br><br>
                     
                
@@ -400,12 +403,17 @@ $stu_grade = Stu_Grade::getInstance(0);
               
                    
             
-               
+        <div class="footer">
+        <p> Produced by CRA - <a href="#" data-toggle="tooltip" title="이동영 이세계 조은비 조혜인 임현우">April-team</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Github : <a href="https://github.com/cra16/April"> https://github.com/cra16/April</a></p>
+        <p> Person in charge : 최하림   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; email: cce.handong@gamil.com</p>
+        <p> Office : 현동홀 206B 창의융합교육원 학생통합역량개발지원실</p>
+        <p> Phone : 054)260-3308</p>
+        </div>   
             </div>
             <div class ="col-md-1"></div>
         <!-- /#page-content-wrapper -->
 
-
+       
 
 
     <!-- /#wrapper -->

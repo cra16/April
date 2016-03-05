@@ -10,6 +10,8 @@
 
 
 @media(max-width:799px){
+   
+
     .sub-foundation-competence, .sub-foundation-study
     {
         display:none; 
@@ -35,20 +37,16 @@
     .competence_btn
     {
         width:18%;
-        margin-left:7%;
+        
         float:left;
     }
     .study_btn
     {
         width:21%;
-        margin-left:12%;
         float:left;
     }
     
-    span
-    {
-        font-size: 8px;
-    }
+
 
 }
 @media(min-width:800px) and (max-width:999px) {
@@ -102,34 +100,10 @@
         overflow:hidden
     }
 
-     h1{
-        font-size:56px;
-    }
-  
-    h3{
-        font-size: 34px;
-        text-align: left;
-
-    }
-    .container{
-        width:800px;
-    }
-    #tagline{
-        margin : 0 220px;
-        width:360px;
-    }
-
-    #description{
-    width: 300px;   
-    }
-    .desc_contain{
-        display: inline-block;
-        width:100%;
-    }
-    img{width:400px;}
-
+     
+   
 }
-@media(min-width:1000px) and (max-width:1350px){
+@media(min-width:1000px) and (max-width:1200px){
 
 
 
@@ -176,6 +150,7 @@
     .total_table
     {
         padding-left:3%;
+    
     }
     
 
@@ -187,7 +162,7 @@
    
    
 }
-@media (min-width:1351px){
+@media (min-width:1201px){
     .navbar{
         margin-bottom:0px !important;
     }
@@ -226,19 +201,18 @@
     .table_layer
     {
         padding:15px;
+
     }
 
     .table_layer{
         width:30%;
-            margin:0px;
-        display:inline-block;
-
+        margin:0px;
+        float:left;
     }
     .total_table
     {
-        margin-left:auto;
-        margin-right:auto;
-
+        margin-left:10%;
+        overflow:hidden;
     }
     
 
@@ -247,22 +221,21 @@
     {
         text-align: left;
     }
+      .container{
+        width:1000px;
+    }
+    #tagline{
+
+        width:800px;
+    }
+    img{width:600px;}
 
 }
 
-body{
-    font-family: 'Nanum Gothic Coding', serif;
-    /*font-family: 'Jeju Gothic', serif;*/
-    background-color: white;
-}
-
-h1{
-    font-family: 'Jeju Gothic', serif;
-    text-align: center;
-}
 
 a{
-    font-family: 'Jeju Gothic', serif;
+  font-size:15px;
+    font-family: 'Jeju Gothic';
 }
 
 
@@ -292,9 +265,8 @@ a{
 }
 .table_layer
 {
-    height:500px;
-    overflow: auto;
-
+    height:350px;
+  
 }
 .button_class
 {   
@@ -313,15 +285,28 @@ b
 
 
 body{
-    font-family: 'Nanum Gothic Coding', serif;
+    font-family: 'Nanum Gothic Coding';
     /*font-family: 'Jeju Gothic', serif;*/
     background-color: white;
-    font-size: 15px;
+    
 }
-h1,h3{
+h1{
+     font-size:56px;
+      text-align: center;
+       font-family: 'Jeju Gothic', serif;
+}
+h3{
+   
     font-family: 'Jeju Gothic', serif;
-    font-size:24px;
+    font-size:28px;
     text-align: center;
+}
+h5{
+    font-family: 'Jeju Gothic';
+    font-size:30px;
+}
+p{
+         font-size:20px; 
 }
 
 .container{
@@ -349,17 +334,43 @@ h1,h3{
 img{
     width:100%;
 }
-@media(min-width:992px){
-   
-}
 
-@media(min-width:1200px){
-    .container{
-        width:1000px;
+@media(min-width:992px){
+    h1{
+        font-size:56px;
+    }   
+  
+    h3{
+        font-size: 34px;
+        text-align: left;
+
     }
-    #tagline{
-        margin : 0 100px;
+    .container{
         width:800px;
     }
-    img{width:600px;}
+  
+
+    #description{
+    width: 400px;   
+    }
+    .desc_contain{
+        display: inline-block;
+        width:100%;
+    }
+    img{
+        width:400px;}
 }
+#rt_table{
+    height:150px;
+    overflow: auto;
+}
+/*
+div.rt_table{position: relative;padding-top:30px;width:550px;height: 300px;overflow: hidden;}
+div.rt_table > div {height: 300px;overflow: auto;}
+table{width: 500px}
+thead tr{position: absolute;background-color: #DEDEDE;width: 500px;height: 30px;}
+thead th{width: 200px}
+tbody{display: block;height: 300px;}
+tbody tr{height: auto;}
+tbody td{width: 200px;text-align: center;}
+*/
