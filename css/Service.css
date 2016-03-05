@@ -37,15 +37,31 @@
     .competence_btn
     {
         width:18%;
-        
-        float:left;
+        margin-left:7%;
+       float:left;
     }
     .study_btn
     {
         width:21%;
+        margin-left:9%;
         float:left;
     }
-    
+    h1{
+        font-size:30px;
+        text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h3{
+        font-size:20px;
+        text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h5{
+        font-size:20px;
+    }
+    p{
+
+    }
 
 
 }
@@ -76,13 +92,13 @@
     .competence_btn
     {
         width:15%;
-        margin-left:10%;
+        margin-left:9%;
         float:left;
     }
     .study_btn
     {
         width:21%;
-        margin-left:12%;
+        margin-left:11%;
         float:left;
     }
     .table_layer{
@@ -100,7 +116,24 @@
         overflow:hidden
     }
 
-     
+     h1{
+     font-size:56px;
+      text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h3{
+       
+        font-family: 'Jeju Gothic', serif;
+        font-size:28px;
+        text-align: center;
+    }
+    h5{
+        font-family: 'Jeju Gothic';
+        font-size:30px;
+    }
+    p{
+             font-size:20px; 
+    }
    
 }
 @media(min-width:1000px) and (max-width:1200px){
@@ -159,7 +192,24 @@
     {
         text-align: left;
     }
-   
+     h1{
+     font-size:56px;
+      text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h3{
+       
+        font-family: 'Jeju Gothic', serif;
+        font-size:28px;
+        text-align: center;
+    }
+    h5{
+        font-family: 'Jeju Gothic';
+        font-size:30px;
+    }
+    p{
+             font-size:20px; 
+    }   
    
 }
 @media (min-width:1201px){
@@ -230,6 +280,25 @@
     }
     img{width:600px;}
 
+    h1{
+     font-size:56px;
+      text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h3{
+       
+        font-family: 'Jeju Gothic', serif;
+        font-size:28px;
+        text-align: center;
+    }
+    h5{
+        font-family: 'Jeju Gothic';
+        font-size:30px;
+    }
+    p{
+             font-size:20px; 
+    }
+
 }
 
 
@@ -290,24 +359,7 @@ body{
     background-color: white;
     
 }
-h1{
-     font-size:56px;
-      text-align: center;
-       font-family: 'Jeju Gothic', serif;
-}
-h3{
-   
-    font-family: 'Jeju Gothic', serif;
-    font-size:28px;
-    text-align: center;
-}
-h5{
-    font-family: 'Jeju Gothic';
-    font-size:30px;
-}
-p{
-         font-size:20px; 
-}
+
 
 .container{
     width:100%;
@@ -374,3 +426,7 @@ tbody{display: block;height: 300px;}
 tbody tr{height: auto;}
 tbody td{width: 200px;text-align: center;}
 */
+.competence_btn>button>span,
+.study_btn>button>span{
+    font-size:15px;
+}
