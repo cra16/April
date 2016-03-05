@@ -11,6 +11,8 @@ $stu_grade = Stu_Grade::getInstance(0);
 //simple_html_dom.php is needed to access hisnetpage information
 
 ?>
+<?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
+                       
 <html lang="en">
 
 <head>
@@ -49,9 +51,10 @@ $stu_grade = Stu_Grade::getInstance(0);
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-    <li><a href="#" class="foundation-competence">기초 역량</a></li>
-    <li><a href="#" class="foundation-study">기초 학문</a></li>
-    <li><a href="#" class="introduction">소개 페이지</a></li>
+      <li><a href="#" class="introduction">소개 페이지</a></li>
+      <li><a href="#" class="foundation-competence">기초 역량</a></li>
+      <li><a href="#" class="foundation-study">기초 학문</a></li>
+      <li><a href="#" class="register_data">지원 정보</a></li>
       <li><a href="logout.php">Logout</a></li>
       <li><a href="#" onclick="help()">Help</a></li>
     </ul>
@@ -69,8 +72,12 @@ $stu_grade = Stu_Grade::getInstance(0);
        
 
         <!-- Page Content -->
+         <div class ="col-md-1"></div>
+         <div class ="col-md-10">
         <div id="container">
-                   <div class="button_class">
+        
+          
+                   <div class="button_class"  style="margin-top:40px;">
                       
                       <?php 
                           $course_array = ["인문사회","이공학","ICT","ICT심화","인문사회","이공학","융합"];
@@ -89,45 +96,15 @@ $stu_grade = Stu_Grade::getInstance(0);
                           ?>
                         
                       </div>
-        
-
-                        <div class="introduce">
-                           
-                              <center><h1>소개 페이지</h1> </center>
-                              <div class="col-md-12">
-                                  
-                                  <div class="col-md-2"></div>
-                                  <div class="col-md-4 intro_div">
-                                    <div style="display:none" class="inner_div">
-                                    <h3 class="api-lifecycle-component-name">기초역량 인증</h3>
-                                    <p>기초역량 인증은 전공 학습에 필요한 기초 역량을 갖춘 학생을 인증하는 제도입니다. 전공을 이수하는 데 어려움이 없도록 기초 과목을 충분히 수강하고 심화학습 능력을 갖춘 학생들에게 인증을 부여합니다.</p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 intro_div" >
-                                    
-                                    <div style="display:none" class="inner_div">
-
-                                    <h3 class="api-lifecycle-component-name">기초학문 인증</h3>
-                                    <p>기초학문 인증은 기초학문 분야에서 깊은 이해를 가진 학생들을 인증하는 제도입니다. 학회활동을 통해 기초학문을 공부하여 전문 분야에서도 더 나은 실력을 발휘할 수 있는 학생들에게 인증을 부여합니다.</p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2"></div>
-                              </div>
-                        </div>
-                        <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
-                       
-                        
-                </div>
-                    <br><br><br>
-                    <form id="form_data" action="ResultServce.php" method="POST">
-                       <center><div style="padding-top:30px"><h2>특성-<span id = "course_name">인문사회</span></h2></div></center>
+                      <form id="form_data" action="ResultServce.php" method="POST" >
+                       <center><h2>특성-<span id = "course_name">인문사회</span></h2></center>
                        <div class="total_table input_data" >
 
                        <?php
                         for($i=0; $i<3; $i++)
                        {?>
 
-                        <div class="table_layer">
+                        <div class="table_layer" style="margin-top:40px;">
                           <?php 
                             if($i==0)
                             {
@@ -146,8 +123,8 @@ $stu_grade = Stu_Grade::getInstance(0);
                             }
                             ?>
 
-                           <div id="rt_table">
-                                    <table id="table" class="table table-hover" >
+                           <div id="rt_table" style="margin-top:40px;">
+                                    <table id="table" class="table" >
                                          <thead>
                                             <tr>
                                             
@@ -223,14 +200,209 @@ $stu_grade = Stu_Grade::getInstance(0);
                                         </tbody>
                                     </table>
                                 </div>
+                                <?php
+                                  if($i==2)
+                              if($i==2)
+                               {
+                                echo "* 현장참여과정은 코너스톤을 제외하고는 모든 보고서는 창의융합교육원 오피스에 필요서류를 제출하셔야 합니다.";
+                               }
+                                ?>
                          </div>
                          <?php
+
                        }?>
                        </div>
                        <input type="hidden" id ="foundation" value="">
-                       <input type='button' class='btn' id ="submit_btn" value="submit">
+                       <center style="margin-top:40px;"><input type='button' class='btn btn-primary bt-lg' id ="submit_btn" value="제출">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-primary bt-lg' id ="check_btn" style="" value="확인"></center>
+                     
                       </form>
+            </div>
+     
+
+                        <div class="introduce" style="margin-top:40px;">
+                           
+                              <h1>기초역량 기초학문 인증제</h1> 
+      <div id="tagline">
+      <p>April provides you a Certification of your capability or study</p>
+      </div>
+      <br>
+      <h3>기초역량 기초학문 인증제가 무엇인가요?</h3>
+      <p>기초 역량 기초학문 인증제는 전공 진입을 위한 학습 능력과 기초 학문에 대한 이해 능력을 학교가 <br>공식적으로
+        인증하여 학생들의 융합 역량 강화를 위한 노력을 돕는 제도입니다.
+      </p>
+      <br><br>
+      <h3>인증 대상은 누구인가요?</h3>
+      <h5>1. 기초역량 인증</h5>
+      <div class="desc_contain">
+      <div id="description">
+           <p>1.해당 교과 과정에서 각 과목 B0학점 <br>이상의 성적을 얻은 학생<br><br>
+                  2.코너스톤 창의과제를 수강한 학생<br><br>
+                  3.학술캠프나 ICT 학술학회를 참여한 학생<br>
+           </p>
+      </div>
+      <img src="../img/back.jpg">
+     </div>
+      <h5>2. 기초학문 인증</h5>
+      <div class="desc_contain">
+        <div id="description">
+           <p>1.해당 교과 과정에서 각 과목 B0학점 <br>이상의 성적을 얻은 학생<br><br>
+                 2.교내 학술학회에서 활동한 학생<br><br>
+                 3.기초 학문 분야와 연관 전공에 대한 <br>심화된 학습 결과물을 낸 학생<br>
+           </p>
+      </div>
+      <img src="../img/bg2.png">
+      </div>
+      <hr>
+
+      <h1>기초역량 인증</h1> 
+      <div id="tagline">
+      <p>인문사회,이공학,ICT,ICT 심화</p>
+      </div>
+      <br>
+      <h3>기초역량 인증제란 무엇인가요?</h3>
+      <p>기초역량 인증은 전공 학습에 필요한 기초 역량을 갖춘
+        학생을 인증하는 제도입니다.
+        전공을 이수하는 데 <br>어려움이 없도록 기초 과목을 충분히 수강하고 심화학습
+        능력을 갖춘 학생들에게 인증을 부여합니다.
+      </p>
+      <center><h5>기초역량 인증제 교과과정</h5></center>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>교과과정<br>(학점B0이상)</th>
+            <th>비교과과정</th>
+            <th>현장참여과정<br>(교과/비교과)</th>
+          </tr>
+          <tr>
+            <td>인문<br>사회</td>
+            <td>인문사회(6)<br>고전강독(2)<br>세계관(4)</td>
+            <td rowspan="3">방학중<br>학술캠프<br>참여</td>
+            <td rowspan="3">코너스톤<br>창의과제(2)</td>
+          </tr>
+          <tr>
+            <td>이공학</td>
+            <td>수학과학(9)<br>소통-융복함(3)</td>
+          </tr>
+          <tr>
+            <td>ICT</td>
+            <td>ICT융합기초(9)<br>소통-융복함(3)</td>
+          </tr>
+          <tr>
+            <td>ICT<br>심화</td>
+            <td>ICT융합기초(15)<br>소통-융복함(3)</td>
+            <td>ICT 학술<br>학회 참여</td>
+            <td>심화보고서/프로젝트</td>
+          </tr>  
+        </table>
+      </div>
+      <hr>
+       <h1>기초학문 인증</h1> 
+      <div id="tagline">
+      <p>인문사회,이공학,융합</p>
+      </div>
+      <br>
+      <h3>기초학문 인증제란 무엇인가요?</h3>
+      <p>기초학문 인증은 기초학문 분야에서 깊은 이해를 가진
+            학생을 인증하는 제도입니다. 학회활동을 통해 <br>
+            기초학문을 공부하여 전문 분야에서도 더 나은 실력을<br>
+            발휘할 수 있는 학생들에게 인증을 부여합니다.
+      </p>
+      <center><h5>기초학문 인증제 교과과정</h5></center>
+      <div class="table-responsive">
+        <table class="table">
+           <tr>
+              <th></th>
+              <th>교과과정<br>(학점B0이상)</th>
+              <th>비교과과정</th>
+              <th>현장참여과정<br>(교과/비교과)</th>
+           </tr>
+           <tr>
+            <td>인문<br>사회</td>
+            <td>인문사회(12)<br>고전강독(2)<br>세계관(4)</td>
+            <td>인문사회<br>교내 학술<br>학회 참여</td>
+            <td>심화보고서</td>
+           </tr>
+           <tr>
+            <td>이공학</td>
+            <td>수학과학(15)<br>소총-융복합(3)</td>
+            <td>이공학<br>교내학술<br>학회참여</td>
+            <td>심화보고서</td>
+           </tr>
+           <tr>
+             <td>융합</td>
+             <td>인문사회(9)<br>수학과학(6)<br>소통-융복합(3)</td>
+             <td>교내 학술<br>학회 참여</td>
+             <td>심화보고서/<br>프로젝트</td>
+           </tr>
+        </table>
+      </div>     
+
+                        </div>
+                        <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
+                       
+                        
+                
+                    <br><br><br>
+                    
+               
             
+                  <div class ="register_table">
+                   <center><h3>기초학문</h3></center>
+                      <table class="table">
+                        <thead>
+                          <th>데이터</th>
+                          <th>교과정보</th>
+                          <th>비교과정보</th>
+                          <th>현장참여과정</th>
+                          <th>승인여부</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      
+                      </tbody>
+                      </table>
+
+                  </div>
+                  
+                  <div class ="register_table">
+                   <center><h3>기초연구</h3></center>
+                      <table class="table">
+                        <thead>
+                          <th>데이터</th>
+                          <th>교과정보</th>
+                          <th>비교과정보</th>
+                          <th>현장참여과정</th>
+                          <th>승인여부</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      
+                      </tbody>
+                      </table>
+                  </div>
+                 
+                  
+
+              
+                   
+            
+               
+            </div>
+            <div class ="col-md-1"></div>
         <!-- /#page-content-wrapper -->
 
 
