@@ -184,12 +184,13 @@ $(document).ready(function(){
       $(this).css("background-position","center");
       $(this).find('[class=inner_div]').hide();});
   $("body").on("click","#check_btn",function()
-  {
-
+  { 
+     var foundation = $("#foundation").val();
+     var area = $("#course_name").text();
       $.ajax(
             { url : "ShowCourse.php",
               data : {
-                      'Course' : Course,
+                      'area' : area,
                       'foundation':foundation
                     },
               async : true,
