@@ -53,7 +53,7 @@
                   <th>학점            </th>
                   <th>Action         </th>
                   </tr>
-                  <tr dir-paginate="sub in subs | itemsPerPage: 10 | filter:searchKeyword " current-page="currentPage" >
+                  <tr dir-paginate="sub in subs | itemsPerPage: 10 | orderBy:'sub_name' | filter:searchKeyword ">
                   <td>{{sub.article}}</td>
                   <td>{{sub.sub_name}}</td>
                   <td>{{sub.credit}}</td>
@@ -62,15 +62,13 @@
                   </td>
                   </tr>
             </table>
-     
-
-
-
-             <!-- Pagination Part (dirPagination모듈 사용)-->
-            <div class="text-center">
-                 <dir-pagination-controls boundary-links="true"  direction-links="true" max-size="7" 
-                 on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html">
-           </dir-pagination-controls>
+  
+             <div class="text-center">
+                  <dir-pagination-controls
+                  max-size="7"
+                  direction-links="true"
+                  boundary-links="true">
+                  </dir-pagination-controls>
             </div>
       </div>
 </div>

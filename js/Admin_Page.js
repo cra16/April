@@ -54,20 +54,18 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	}; // addRow function End
 
 	$scope.removeRow = function(sub){  
-
+	
 	      dataObject = {'article':sub.article, 'sub_name': sub.sub_name, 
 	          'credit':sub.credit,'mode':-1};
 
 	      var index = -1;   
-	      var comArr = eval( $scope.subs);
-	      for( var i = 0; i < comArr.length; i++) {
-	        if( comArr[i].num == sub.num) {
+	      var comArr = eval( $scope.subs );
+	      for( var i = 0; i < comArr.length; i++ ) {
+	        if( comArr[i].sub_name == sub.sub_name) {
 	          index = i;
 	          break;
 	        }
 	      }
-	      console.log(dataObject);
-	      console.log(index);
 
 	      /* AJAX 통신 처리 */
 	      $http({method: 'POST', url: 'Admin_Sub_Handling.php', data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'},})
@@ -76,9 +74,9 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	        {
  		$( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          if( index === -1 ) {
- 	          $( "div.failure").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+ 	          $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          }
-	          $scope.subs.splice( index, 1);
+	          $scope.subs.splice( index, 1 );
 	        }
 	        
 	        else {
