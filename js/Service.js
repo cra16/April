@@ -183,5 +183,57 @@ $(document).ready(function(){
       $(this).css("background-size", '100px');
       $(this).css("background-position","center");
       $(this).find('[class=inner_div]').hide();});
+  $("body").on("click","#check_btn",function()
+  { 
+     var foundation = $("#foundation").val();
+     var area = $("#course_name").text();
+      $.ajax(
+            { url : "ShowCourse.php",
+              data : {
+                      'area' : area,
+                      'foundation':foundation
+                    },
+              async : true,
+              type : "POST",
+              success:function(resp){  
+
+               
+                },
+                error: function(xhr, option, error){
+                  alert(xhr.status); //오류코드
+                  alert(error); //오류내용                  
+                 } 
+
+          });
+  });
+
+  var windowsize = $(window).width();
+  if (windowsize < 450) {
+      //if the window is greater than 440px wide then turn on jScrollPane..
+        $('.introduce').hide();
+        $(".introduce_mobile").show();
+
+    }
+    else
+    {
+        $('.introduce').show();
+        $(".introduce_mobile").hide();
+    }
+  $(window).resize(function() {
+    windowsize = $(window).width();
+    if (windowsize < 450) {
+      //if the window is greater than 440px wide then turn on jScrollPane..
+        $('.introduce').hide();
+        $(".introduce_mobile").show();
+
+    }
+    else
+    {
+        $('.introduce').show();
+        $(".introduce_mobile").hide();
+    }
+});
 
 });
+
+
