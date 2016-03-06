@@ -28,7 +28,6 @@
                 <li><a href="#sub">교과과정</a></li>
                 <li><a href="#nonsub">비교과과정</a></li>
                 <li><a href="logout.php">Logout</a></li>
-                <li><a href="#" onclick="help()">Help</a></li>
                 </ul>
            </div>
            </div>
