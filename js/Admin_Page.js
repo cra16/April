@@ -4,7 +4,7 @@ $routeProvider
     .when('/app', {templateUrl: '../php/Admin_App.php', controller: 'app_Ctrl'})
     .when('/sub', {templateUrl: '../php/Admin_Sub.php', controller: 'sub_Ctrl'})
     .when('/nonsub', {templateUrl: '../php/Admin_Nonsub.php', controller: 'nonsub_Ctrl'})
-    .otherwise({redirectTo: '/home'});
+    .otherwise({redirectTo: '/app'});
 });
 
 admin_App.controller('sub_Ctrl', function($scope,$http) {

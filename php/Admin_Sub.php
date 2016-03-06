@@ -1,6 +1,8 @@
 <div id="wrapper">
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
+                <button type="button" class="nonsub_button" >교과과정</button>
+
                 <div class="col-md-12">
                 <input type="text" class="form-control search" name="name" ng-model="searchKeyword" placeholder="Search" />
                 </div>
@@ -23,7 +25,7 @@
 
                   <div class="form-group">
                         <label class="col-md-4 control-label">이름</label>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                         <input type="text" class="form-control" name="sub_name" ng-model="sub_name" />
                         </div>
                   </div>
