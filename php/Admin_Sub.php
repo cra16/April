@@ -49,7 +49,7 @@
                   <th>학점            </th>
                   <th>Action         </th>
                   </tr>
-                  <tr dir-paginate="sub in subs | itemsPerPage: 20 | orderBy:'sub_name' | filter:searchKeyword ">
+                  <tr dir-paginate="sub in subs | itemsPerPage: 10 | orderBy:'sub_name' | filter:searchKeyword ">
                   <td>{{sub.article}}</td>
                   <td>{{sub.sub_name}}</td>
                   <td>{{sub.credit}}</td>
