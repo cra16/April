@@ -413,7 +413,7 @@ img{
         width:400px;}
 }
 #rt_table{
-    height:150px;
+    height:200px;
     overflow: auto;
 }
 /*
@@ -429,4 +429,7 @@ tbody td{width: 200px;text-align: center;}
 .competence_btn>button>span,
 .study_btn>button>span{
     font-size:15px;
+}
+.table{
+    overflow-x:visible;
 }
