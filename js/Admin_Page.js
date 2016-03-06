@@ -8,6 +8,12 @@ $routeProvider
 });
 
 admin_App.controller('sub_Ctrl', function($scope,$http) {
+	$scope.predicate = 'age';
+	$scope.reverse = true;
+	$scope.order = function(predicate) {
+	$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	$scope.predicate = predicate;
+	};
 
 	// 학부정보
 	$scope.articles = ["인문사회","고전강독","세계관","수학과학","소통-융복합","ICT융합기초"];
@@ -92,6 +98,12 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 });
 
 admin_App.controller('nonsub_Ctrl', function($scope,$http) {
+	$scope.predicate = 'age';
+	$scope.reverse = true;
+	$scope.order = function(predicate) {
+	$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	$scope.predicate = predicate;
+	};
 	// 학부정보
 	$scope.courses = ["전산전자","국제어문","경영경제","법학부","언론정보","상담복지","생명과학","공간시스템",
 			       "콘텐츠융합디자인","기계제어","산업교육","글로벌에디슨아카데미","창의융합교육원"];

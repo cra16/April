@@ -31,6 +31,20 @@ body{
     border-color: #ebccd1;
     display: none;
 }
+
+li{
+    list-style:none;
+    height: 50px;
+}
+.tablebox li{
+        border-top: 1px solid #cccccc;
+}
+
+.tablebox button{
+    background-color: white;
+    border: none;
+}
+
 h1{
     font-family: 'Jeju Gothic', serif;
     text-align: center;
@@ -104,6 +118,36 @@ select{
     padding-left: 15px;
     padding-right: 15px;  
 }
+
+#td1{
+    display:inline-block;
+    width:167px;
+    padding:0 8px;
+    font-size: 15px;
+}
+
+#td2{
+    display:inline-block;
+    width:440px;
+    padding:0 8px;    
+    font-size: 15px;
+}
+
+#td3{
+    display: inline-block;
+    width: 88px;
+    padding: 0 8px;
+    font-size: 15px;
+}
+
+#td4{
+    display: inline-block;
+    width: 100px;
+    padding: 8px;
+    font-size: 15px;
+}
+
+
 
 @media(min-width:768px) {
     #wrapper {

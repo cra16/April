@@ -46,23 +46,18 @@
             <div class="alert-box failure">요청하신 명령에 실패하였습니다</div>
 
             <h1>교과과정</h1>
-            <table class="table">
-                  <tr>
-                  <th>항목명        </th>
-                  <th>교과명        </th>
-                  <th>학점            </th>
-                  <th>Action         </th>
-                  </tr>
-                  <tr dir-paginate="sub in subs | itemsPerPage: 10 | orderBy:'sub_name' | filter:searchKeyword ">
-                  <td>{{sub.article}}</td>
-                  <td>{{sub.sub_name}}</td>
-                  <td>{{sub.credit}}</td>
-                  <td>
-                  <input type="button" value="삭제" class="btn btn-warning" ng-click="removeRow(sub)"/>
-                  </td>
-                  </tr>
-            </table>
-  
+            <div class="tablebox">
+                  <div id="td1"><button ng-click="order('article')">항목명</div>
+                  <div id="td2"><button ng-click="order('sub_name')">교과목명</div>
+                  <div id="td3"><button ng-click="order('credit')">학점</div>
+                  <div id="td4">Action</div>
+                  <li dir-paginate="sub in subs | filter:searchKeyword | itemsPerPage: 10| orderBy:predicate:reverse" >
+                        <div id="td1">{{ sub.article }}</div>
+                        <div id="td2">{{sub.sub_name}}</div>
+                        <div id="td3">{{sub.credit}}</div>
+                  <div id="td4"><input type="button" value="삭제" class="btn btn-warning" ng-click="removeRow(sub)"/></div>
+                  </li>
+             </div>
              <div class="text-center">
                   <dir-pagination-controls
                   max-size="7"
