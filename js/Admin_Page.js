@@ -8,10 +8,7 @@ $routeProvider
 });
 
 admin_App.controller('sub_Ctrl', function($scope,$http) {
-  $scope.currentPage = 1;
-  $scope.pageChangeHandler = function(num) {
-    console.log('going to page ' + num);
-  };
+
 	// 학부정보
 	$scope.articles = ["인문사회","고전강독","세계관","수학과학","소통-융복합","ICT융합기초"];
 	$scope.credits=["4","3","2","1"];
@@ -57,27 +54,31 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	}; // addRow function End
 
 	$scope.removeRow = function(sub){  
-	
- 	      dataObject = {'article':sub.article, 'credit': sub.credit, 'sub_name':sub.sub_name,'mode':-1};
+
+	      dataObject = {'article':sub.article, 'sub_name': sub.sub_name, 
+	          'credit':sub.credit,'mode':-1};
+
 	      var index = -1;   
 	      var comArr = eval( $scope.subs);
-	      for( var i = 0; i < comArr.length; i++ ) {
+	      for( var i = 0; i < comArr.length; i++) {
 	        if( comArr[i].num == sub.num) {
 	          index = i;
 	          break;
 	        }
 	      }
+	      console.log(dataObject);
+	      console.log(index);
 
 	      /* AJAX 통신 처리 */
 	      $http({method: 'POST', url: 'Admin_Sub_Handling.php', data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'},})
 	      .success(function(data, status, headers, config) {
 	        if(data == 1) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
 	        {
-  	          $( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+ 		$( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          if( index === -1 ) {
-                     $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+ 	          $( "div.failure").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          }
-	          $scope.subs.splice( index, 1 );
+	          $scope.subs.splice( index, 1);
 	        }
 	        
 	        else {
@@ -91,10 +92,6 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	      }); // http_post End
 	}; // removeRow function End
 });
-
-
-
-
 
 admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	// 학부정보
@@ -150,7 +147,7 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	      .success(function(data, status, headers, config) {
 	        if( data  == 1) {
 	          /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-	          $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );	          $scope.subs.push(dataObject);
+	          $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );	          
 	          $scope.nonsubs.push(dataObject);
 	        }
 	        else {
