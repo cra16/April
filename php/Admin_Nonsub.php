@@ -41,7 +41,11 @@
       <!-- /#sidebar-wrapper -->
 
       <!-- Page Content -->
-      <div  class="container-fluid page_container">           
+      <div  class="container-fluid page_container">   
+            <div class="alert-box success">정보가 등록되었습니다</div>
+            <div class="alert-box warning">정보가 삭제되었습니다</div>
+            <div class="alert-box failure">요청하신 명령에 실패하였습니다</div>
+
             <h1>비교과과정 - {{mode}}</h1>
             <table class="table">
                   <tr>
