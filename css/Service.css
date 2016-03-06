@@ -8,8 +8,57 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
+@media(max-width:350px){
+     .sub-foundation-competence, .sub-foundation-study
+    {
+        display:none; 
+        width: 50px;
+        height: 50px;
+        background: white;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
 
-@media(max-width:799px){
+    }
+    .sub-foundation-competence, .sub-foundation-study
+    {
+        display:none; 
+        width: 70px;
+        height: 70px;
+        background: white;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        padding:0 !important;
+    }
+    .competence_btn
+    {
+        width:18%;
+        margin-left:7%;
+       float:left;
+    }
+    .study_btn
+    {
+        width:21%;
+        margin-left:9%;
+        float:left;
+    }
+    h1{
+        font-size:25px;
+        text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h3{
+        font-size:16px;
+        text-align: center;
+       font-family: 'Jeju Gothic', serif;
+    }
+    h5{
+        font-size:16px;
+    }
+
+}
+@media(min-width: 351px) and (max-width:799px){
    
 
     .sub-foundation-competence, .sub-foundation-study
@@ -400,7 +449,10 @@ img{
     .container{
         width:800px;
     }
-  
+    img{
+    margin-left:10%;
+    
+    }
 
     #description{
     width: 400px;   
@@ -410,7 +462,8 @@ img{
         width:100%;
     }
     img{
-        width:400px;}
+        width:500px;
+        height:300px;}
 }
 #rt_table{
     height:200px;
@@ -432,4 +485,11 @@ tbody td{width: 200px;text-align: center;}
 }
 .table{
     overflow-x:visible;
+}
+.footer>p, .footer>p>a{
+    font-size:12px;
+}
+h1, h3,h5{
+    margin-top:20px;
+    margin-bottom: 20px;
 }
