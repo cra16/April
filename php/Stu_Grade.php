@@ -460,9 +460,9 @@ class Stu_Grade{
        echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
     }
   }
-  function getSubmitInformation($his_id){
+  function parseNonsubject($his_id,$kind,$area){
 
-    $qry = "SELECT * FROM application WHERE his_id = '$his_id' ";
+    $qry = "SELECT * FROM application WHERE his_id = '$his_id' AND kind = '$kind' AND area = '$area'";
 
     $check = mysqli_query($this->link,$qry);
 
@@ -476,19 +476,14 @@ class Stu_Grade{
     $index = array();
 
     if($row_num==0){
-      echo "no result";
+      echo "Error";
     }
     else{
      
       while( $result = mysqli_fetch_array($check) ){
-        $non_sub = explode("/",$result['non_sub']);  //매우 이상하게도 non_sub와 area는 0번쨰
-        $area = explode("/",$result['area']);   //index에 아무값도 들어가지 않아서 코드가 
-        $year = explode("/",$result['year']);   //좀더 보기 힘들어졌다. year는 정상적으로 들어간다.
-        
-        echo "지원영역 : ". $result['kind'];
-        echo "<br>";
-        echo "선택 비교과 항목 : ";
-
+        $non_sub = explode("/",$result['non_sub']);  //매우 이상하게도 non_sub는 0번쨰
+        $year = explode("/",$result['year']);       //index에 아무값도 들어가지 않아서 코드가 
+                                                    //좀더 보기 힘들어졌다. year는 정상적으로 들어간다.
         $count_index = count($non_sub)-1;
      
         for($t=0;$t<$count_index;$t++){
@@ -497,16 +492,17 @@ class Stu_Grade{
 
         for($t=0;$t<count($non_sub)-1;$t++){
           
+          echo $non_sub[$t+1].": ";
+
           for($s=0;$s<intval($index[$t]);$s++){
              echo $year[$s+$count_index]."년 ";
           }
-          echo $non_sub[$t+1]."  ".$area[$t+1];
+          
           echo "<br>";
 
           $count_index = $count_index+intval($index[$t]);
         }
-        echo "상태 : ".$result['status'];
-        echo "<br><br>";       
+ 
         
       }
     }
@@ -514,60 +510,69 @@ class Stu_Grade{
 
 
   }
-  function SubmitInformation($his_id){
+  function SubmitInformation($his_id,$kind){
 
-    $qry = "SELECT * FROM application WHERE his_id = '$his_id' ";
+    $qry = "SELECT * FROM application WHERE his_id = '$his_id' AND kind = '$kind' ";
 
     $check = mysqli_query($this->link,$qry);
 
     $row_num = mysqli_num_rows($check);
 
-    $non_sub = array();
-    $area = array();
-    $year = array();
-    $status = array();
-
     if($row_num==0){
-      echo "no result";
+      for($i=0;$i<6;$i++){
+        echo "<td></td>";
+      }
     }
     else{
      
+      $course_data = array();
+      
       while( $result = mysqli_fetch_array($check) ){
         
-        if($result['kind']=='기초학문'){
-          $non_sub[0] = $result['non_sub'];
-          $area[0] = $result['area'];
-          $year[0] = $result['year'];
-          $status[0] = $result['status'];
-        }
-        if($result['kind']=='기초역량'){
-          $non_sub[1] = $result['non_sub'];
-          $area[1] = $result['area'];
-          $year[1] = $result['year'];
-          $status[1] = $result['status'];
-        }
-        // <center><h3>기초학문</h3></center>
-        //               <table class="table">
-        //                 <thead>
-        //                   <th>데이터</th>
-        //                   <th>교과정보</th>
-        //                   <th>비교과정보</th>
-        //                   <th>현장참여과정</th>
-        //                   <th>승인여부</th>
-        //                 </thead>
-        //                 <tbody>
-        //                 <tr>
-        //                   <td></td>
-        //                   <td></td>
-        //                   <td></td>
-        //                   <td></td>
-        //                   <td></td>
-        //                 </tr>
-                      
-        //               </tbody>
-        //               </table>
+        $area = $result['area'];
 
-        //           </div>
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"인문사회")==0){
+        $course_data = ["인문사회","고전강독","세계관"];        
+        }
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"이공학")==0){
+        $course_data = ["수학과학","소통-융복합"];     
+        }
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"ICT")==0){
+        $course_data = ["ICT융합기초","소통-융복합"];
+        }
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"ICT융합기초")==0){
+        $course_data = ["ICT융합기초","소통-융복합"];
+        }
+        if(strcmp($kind,"기초학문")==0&&strcmp($area,"인문사회")==0){
+        $course_data = ["인문사회","고전강독","세계관"];
+        }
+        if(strcmp($kind,"기초학문")==0&&strcmp($area,"이공학")==0){
+        $course_data = ["수학과학","소통-융복합"];
+        }
+        if(strcmp($kind,"기초학문")==0&&strcmp($area,"융합")==0){
+        $course_data = ["인문사회","수학과학","소통-융복합"];
+        }
+        if(empty($course_data)){
+          echo "Error";
+        }
+   
+        echo "<td>".$kind."</td>";
+        echo "<td>".$result['area']."</td>";
+        echo "<td>".$result['serial_num']."</td>";
+        echo "<td>";
+        for($k=0;$k<count($course_data);$k++ ){ 
+          echo $course_data[$k]."<br>"; 
+          $this->getSubject($k,$area,$kind);  
+        }
+        echo "</td>";
+        echo "<td>";
+          $this->parseNonsubject($his_id,$kind,$area);
+        echo "</td>";
+        echo "<td>".$result['active']."</td>";
+        echo "<td>".$result['status']."</td>";
+        
+
+        unset($course_data);
       }
     }
 

@@ -355,19 +355,17 @@ $stu_grade = Stu_Grade::getInstance(0);
                    <center><h3 class="header">기초학문</h3></center>
                       <table class="table">
                         <thead>
-                          <th>데이터</th>
-                          <th>교과정보</th>
-                          <th>비교과정보</th>
-                          <th>현장참여과정</th>
-                          <th>승인여부</th>
+                          <th>인증제도</th>
+                          <th>인증항목</th>
+                          <th>Serial number</th>
+                          <th>교과영역</th>
+                          <th>비교과영역</th>
+                          <th>현장체험학습</th>
+                          <th>상태</th>
                         </thead>
                         <tbody>
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <?php $stu_grade->SubmitInformation($_SESSION['USER_NAME'],"기초학문"); ?>
                         </tr>
                       
                       </tbody>
@@ -376,22 +374,20 @@ $stu_grade = Stu_Grade::getInstance(0);
                   </div>
                   
                   <div class ="register_table">
-                   <center><h3 class="header" >기초연구</h3></center>
+                   <center><h3 class="header" >기초역량</h3></center>
                       <table class="table">
                         <thead>
-                          <th>데이터</th>
-                          <th>교과정보</th>
-                          <th>비교과정보</th>
-                          <th>현장참여과정</th>
-                          <th>승인여부</th>
+                          <th>인증제도</th>
+                          <th>인증항목</th>
+                          <th>Serial number</th>
+                          <th>교과영역</th>
+                          <th>비교과영역</th>
+                          <th>현장체험학습</th>
+                          <th>상태</th>
                         </thead>
                         <tbody>
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <?php $stu_grade->SubmitInformation($_SESSION['USER_NAME'],"기초역량"); ?>
                         </tr>
                       
                       </tbody>
