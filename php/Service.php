@@ -221,7 +221,7 @@ $stu_grade = Stu_Grade::getInstance(0);
             </div>
      
 
-     <div class="introduce" style="margin-top:40px;" >
+                        <div class="introduce" style="margin-top:40px;">
                            
                               <h1>기초역량 기초학문 인증제</h1> 
       <div id="tagline">
@@ -311,8 +311,8 @@ $stu_grade = Stu_Grade::getInstance(0);
       <br>
       <h3>기초학문 인증제란 무엇인가요?</h3>
       <p>기초학문 인증은 기초학문 분야에서 깊은 이해를 가진
-            학생을 인증하는 제도입니다. 학회활동을 통해 
-            기초학문을 공부하여 전문 분야에서도 더 나은 실력을
+            학생을 인증하는 제도입니다. 학회활동을 통해 <br>
+            기초학문을 공부하여 전문 분야에서도 더 나은 실력을<br>
             발휘할 수 있는 학생들에게 인증을 부여합니다.
       </p>
       <center><h5>기초학문 인증제 교과과정</h5></center>
@@ -352,7 +352,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                
             
                   <div class ="register_table">
-                   <center><h3>기초학문</h3></center>
+                   <center><h3 class="header">기초학문</h3></center>
                       <table class="table">
                         <thead>
                           <th>데이터</th>
@@ -376,7 +376,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                   </div>
                   
                   <div class ="register_table">
-                   <center><h3>기초연구</h3></center>
+                   <center><h3 class="header" >기초연구</h3></center>
                       <table class="table">
                         <thead>
                           <th>데이터</th>
@@ -397,15 +397,81 @@ $stu_grade = Stu_Grade::getInstance(0);
                       </tbody>
                       </table>
                   </div>
+
+                  <div class ="register_table_mobile">
+                      <table class="table">
+                        <thead>
+                          <th>기초학문</th>
+                          <th></th>
+                          
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>데이터</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>교과정보</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>비교과정보</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>현장참여과정</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>승인여부</td>
+                          <td></td>
+                        </tr>
+
+                      
+                      </tbody>
+                      </table>
+                       <table class="table">
+                        <thead>
+                          <th>기초연구</th>
+                          <th></th>
+                          
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>데이터</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>교과정보</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>비교과정보</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>현장참여과정</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>승인여부</td>
+                          <td></td>
+                        </tr>
+
+                      
+                      </tbody>
+                      </table>
+
+                  </div>
                  
-        <div class="introduce_mobile" style="margin-top:-80px;">
+        <div class="introduce_mobile">
              <h1>기초역량 기초학문 인증제</h1> 
       <div id="tagline">
       <center><p>April provides you a Certification of your capability or study</p></center>
       </div>
       <br>
       <h3>기초역량 기초학문 인증제가 무엇인가요?</h3>
-      <p>기초 역량 기초학문 인증제는 전공 진입을 위한 학습 능력과 기초 학문에 대한 이해 능력을 학교가 공식적으로
+      <p>기초 역량 기초학문 인증제는 전공 진입을 위한 학습 능력과 기초 학문에 대한 이해 능력을 학교가 <br>공식적으로
         인증하여 학생들의 융합 역량 강화를 위한 노력을 돕는 제도입니다.
       </p>
       <br><br>
