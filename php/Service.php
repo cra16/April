@@ -52,8 +52,8 @@ $stu_grade = Stu_Grade::getInstance(0);
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#" class="introduction">소개 페이지</a></li>
-      <li><a href="#" class="foundation-competence">기초 역량</a></li>
-      <li><a href="#" class="foundation-study">기초 학문</a></li>
+      <li><a href="#" class="foundation-competence">기초역량</a></li>
+      <li><a href="#" class="foundation-study">기초학문</a></li>
       <li><a href="#" class="register_data">지원 정보</a></li>
       <li><a href="logout.php">Logout</a></li>
 
@@ -96,7 +96,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                           ?>
                         
                       </div>
-                      <form id="form_data" action="ResultServce.php" method="POST" >
+                      <form id="form_data" action="ResultService.php" method="POST" >
                        <center><h2>특성-<span id = "course_name">인문사회</span></h2></center>
                        <div class="total_table input_data" >
 
@@ -169,7 +169,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                                 echo $course_data[$k];
                                 echo "</td>";
                                  echo "<td class='subject_td'>";
-                                          $stu_grade->getSubject($k,"인문사회","기초 역량");
+                                          $stu_grade->getSubject($k,"인문사회","기초역량");
                                    
                                 echo "</td>";
                                 echo "</tr>";
@@ -213,7 +213,7 @@ $stu_grade = Stu_Grade::getInstance(0);
 
                        }?>
                        </div>
-                       <input type="hidden" id ="foundation" value="">
+                       <input type="hidden" id ="foundation" name = "foundation" value="">
                        <center style="margin-top:40px;"><input type='button' class='btn btn-primary bt-lg' id ="submit_btn" value="제출">
                         &nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-primary bt-lg' id ="check_btn" style="" value="확인"></center>
                      

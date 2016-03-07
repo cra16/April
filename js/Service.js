@@ -10,7 +10,7 @@ $(document).ready(function(){
 		$(".sub-foundation-competence").show();
 		$(".sub-foundation-study").hide();
 		$(".introduce").hide();
-		$("#foundation").val("기초 역량");
+		$("#foundation").val("기초역량");
 		$("#form_data").show();
     $(".register_table").hide();
     $(".register_table_mobile").hide();
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		$(".sub-foundation-competence").hide();
 		$(".sub-foundation-study").show();
 		$(".introduce").hide();
-		$("#foundation").val("기초 학문");
+		$("#foundation").val("기초학문");
 		$("#form_data").show();
     $(".register_table").hide();
     $(".register_table_mobile").hide();
