@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+
+//simple_html_dom.php is needed to access hisnetpage information
+require_once('simple_html_dom.php');
+
+include('Stu_Grade.php');
+$stu_grade = Stu_Grade::getInstance(0);
+
 // Connect with DB
 require_once("Config_DB.php");
 $db = new DB_Control();
@@ -7,18 +15,24 @@ $link = $db->DBC();
 
 print_r($_POST);
 
-// check second field and save result
-if(!empty($_POST['chk_info'])) {
-    $chk = array();
-    $i = 0;
+//checking login
+if(!$_SESSION['USER_NAME']){
+    header("Location: ../php/Main.php");
+}
 
+$id = $_SESSION['USER_NAME'];
+$foundation = $_POST['foundation'];
+$area = '이공학'; //$_POST['area'];
 
-    foreach($_POST['chk_info'] as $check) {
-
-            $chk[$i] =  $check;
-            $i++;
-    }
-
+ //checking submit permission variable
+    $check_sub = $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW'], $foundation, $area);
+    $check_nonsub = FALSE;
+    $check_active = FALSE;
+    
+//check second field and save result
+if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_info'])){
+ 
+     //call the nonsubject list from db
     $condition = "SELECT * FROM camp UNION SELECT * FROM academy ";
 
     $check = mysqli_query($link,$condition);
@@ -27,76 +41,94 @@ if(!empty($_POST['chk_info'])) {
     $non_course = array();
     $non_name = array();
 
-    $non_area = array();
-
     $count = 0;
     while( $result = mysqli_fetch_array($check) ){
         $non_course[$count] = $result['course'];
         $non_name[$count] = $result['name'];
-        $non_area[$count] = $result['area'];
         $count++;
     }
 
+    //making nonsubject information
     $nonsubject = "";
-    $nonarea = "";
     $nonyear = "";
+
+    $check_num = count($_POST['chk_info']);
 
     foreach($_POST['chk_info'] as $check){
     $nonsubject = $nonsubject."/".$non_name[$check];
-    $nonarea = $nonarea."/".$non_area[$check];
+    }
+    foreach($_POST['index_array']as $index){
+    $nonyear = $nonyear."/".$index;
     }
     foreach($_POST['year_array'] as $year){
     $nonyear = $nonyear."/".$year;   
     }
-    $nonyear = "$nonyear";
-    
 
+    $check_nonsub = TRUE;
+}else{
+    echo "<script language='javascript'>location.replace('Service.php'); alert('입력정보가 부족합니다'); </script>"; 
 }
 // check third field and save result
 if(!empty($_POST['data_info'])) {
-    foreach($_POST['data_info'] as $check) {
-            echo $check;
+
+    $active = "";
+    foreach($_POST['data_info'] as $third) {
+          $active = $active."/"."현장체험".$third;
+        }
+    
+    $check_active = TRUE;
+    }
+if($check_sub&&$check_nonsub&&$check_active){
+    //insert information
+
+    $qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation' AND area = '$area";
+    $datas = $link->query($qry);
+    echo "4";
+    if($datas){
+        echo "asdfasdf";
+        foreach($datas as $data){
+
+            if ($data) {
+                if($data["status"]!="지원"){
+                    echo "<script language='javascript'>location.replace('Service.php'); alert('제출서류가 이미 확인 되었습니다'); </script>";
+                }
+            
+                $sql = "UPDATE `application` SET non_sub = '$nonsubject' ,year = '$nonyear',area = '$area',active = '$active' WHERE his_id = '$id' AND kind = '$foundation'AND area = '$area";       
+       
+            }
+            else{
+              $sql = "INSERT INTO `application`(his_id,non_sub,kind,area,status,year,active) VALUES('$id','$nonsubject','$foundation','$area','지원','$nonyear','$active')";  
+            }                               
         }
     }
-
-$id = $_SESSION['USER_NAME'];
-$foundation = $_POST['foundation'];
-
-//check the information
-
-$qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation'";
-$datas = $link->query($qry);
-
-if($datas){
-    echo "asdfasdf";
-    foreach($datas as $data){
-
-        if ($data) {
-            if($data["status"]!="지원"){
-                echo "Your status is already checking";
-                header("Location: ../php/Service.php");
-            }
-        
-            $sql = "UPDATE `application` SET his_id = '$id', non_sub = '$nonsubject', kind = '$foundation', area = '$nonarea', status = '지원',year = '$nonyear' WHERE his_id = '$id' AND kind = '$foundation'";       
-   
-        }                               
+    else{
+        echo "fail..".$link->error;
     }
-    $sql = "INSERT INTO `application`(his_id,non_sub,kind,area,status,year) VALUES('$id','$nonsubject','$foundation','$nonarea','지원','$nonyear')";
-    echo "123";
+
+    //query execute and return value
+    if ($link->query($sql) === TRUE) {
+        echo "<script language='javascript'>location.replace('Service.php'); alert('저장되었습니다'); </script>";
+        //header("Location: ../php/Service.php");
+    } else {
+        echo "Error: " . $sql . "<br>" . $link->error;
+    }
+
+    $link->close();
 }
 else{
-    echo "fail..".$link->error;
+    $message = "";
+
+    if(!$check_sub){
+        $message = $message."인증을 받기위한 학점이 부족합니다.<br>";
+    }
+    if(!$check_nonsub){
+        $message = $message."인증을 받기위한 학회(캠프)활동이 부족합니다.<br>";
+    }
+    if(!$check_active){
+        $message = $message."인증을 받기위한 현장체험활동이 부족합니다.";
+    }
+    echo $message;
+    echo "<script language='javascript'>location.replace('Service.php'); alert(".$message."); </script>";
 }
-
-
-//query execute and return value
-if ($link->query($sql) === TRUE) {
-    echo "New record created successfully";
-    //header("Location: ../php/Service.php");
-} else {
-    echo "Error: " . $sql . "<br>" . $link->error;
-}
-
-$link->close();
 
 ?>
