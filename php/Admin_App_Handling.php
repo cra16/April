@@ -7,12 +7,13 @@ require_once("Config_DB.php");
 $db = new DB_Control();
 $link = $db->DBC();   
     
-// Fetch the data.
-$stat = $_POST['stat'];             // 상태 (지원 - 0, 심사중 - 1, 완료 - 2)
+// Fetch the data.         // 상태 (지원 - 0, 심사중 - 1, 완료 - 2)
 $req = $_POST['req'];      // CRUD MODE
-$mode = $_POST['mode'];    
-$serial_num = $_POST['serial_num'];
+$mode = $_POST['mode']; 
 $his_id = $_POST['his_id'];
+$name = $_POST['name'];
+$stat =  $_POST['stat'];
+$serial_num = $_POST['serial_num'];
 
 // Read(default)
  // Fetch application db
@@ -28,19 +29,10 @@ if($mode == 0){
 
     // send application db + student db.
     
-    $sql = 'SELECT student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
+    $sql = 'SELECT application.his_id, student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
                 FROM application
                 INNER JOIN student
-                ON application.his_id = student.id';
-
-        /*
-        $sql = 'SELECT student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
-                FROM application
-                INNER JOIN student
-                ON application.his_id = student.stu_id';
-                */
-    
-    
+                ON application.his_id = student.id';      
     // use prepared statements, even if not strictly required is good practice
     $stmt = $dbh->prepare( $sql );
     // execute the query
@@ -57,22 +49,21 @@ if($mode == 0){
 
 
 // Update 
-if ($mode = 1)    // if edited "status" is "examining" (심사중 - 1), then let it be able to edit the status.
+if ($mode == 1)    // if edited "status" is "examining" (심사중 - 1), then let it be able to edit the status.
 {      
-    //DB connection
-    include 'Config_DB.php';
 
-    // Update the data.                                  
-    $sql = "UPDATE application SET serial_num= '$serial_num', status = '$stat' 
-            WHERE his_id = '$his_id'";                
+    // Update the data.        
+                           
+    $up_sql = "UPDATE application SET serial_num= '$serial_num', status = '$stat' 
+            WHERE his_id = '$his_id'";     
+            
 
-    if ($link->query($sql) === TRUE) {
+    if ($link->query($up_sql) === TRUE) {
     echo 1;
     } else {
-    echo -1;
+    echo 'failed. SQL Err: '. mysql_error();
     }   
 }
-
 
 $link->close();
 // header("Location: Admin_Page.php");    
