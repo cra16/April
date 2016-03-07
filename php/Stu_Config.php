@@ -33,7 +33,7 @@ class Student{
 		require_once("Config_DB.php");  
 		$db = new DB_Control();
 		$link = $db->DBC();   
-		$sql = "SELECT * FROM student WHERE id = '$this->stu_id' AND pw = '$this->stu_pw'";
+		$sql = "SELECT * FROM student WHERE id = '$this->stu_id'";
 		$result = mysqli_query($link, $sql);
 		if (mysqli_num_rows($result) > 0) {
  			$_SESSION['USER_NAME'] = $this->stu_id;

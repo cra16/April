@@ -13,6 +13,7 @@ $(document).ready(function(){
 		$("#foundation").val("기초 역량");
 		$("#form_data").show();
     $(".register_table").hide();
+    $(".register_table_mobile").hide();
     $("#course").html("<center>캠  프</center>");
 
 	});
@@ -27,6 +28,7 @@ $(document).ready(function(){
 		$("#foundation").val("기초 학문");
 		$("#form_data").show();
     $(".register_table").hide();
+    $(".register_table_mobile").hide();
     $("#course").html("<center>학  회</center>");
 
 	});
@@ -35,6 +37,7 @@ $(document).ready(function(){
     $(".sub-foundation-study").hide();
     $("#form_data").hide();
     $(".register_table").hide();
+    $(".register_table_mobile").hide();
     $(".introduce").show();
     
   
@@ -223,14 +226,30 @@ $(document).ready(function(){
     windowsize = $(window).width();
     if (windowsize < 450) {
       //if the window is greater than 440px wide then turn on jScrollPane..
-        $('.introduce').hide();
-        $(".introduce_mobile").show();
+        $('.introduce').on("show",function()
+        {
+            $('.introduce').hide();
+            $(".introduce_mobile").show();
+        });
+        $('.register_table').on("show",function()
+        {
+            $('.register_table').hide();
+            $('.register_table_mobile').show();
+        });    
 
     }
     else
     {
-        $('.introduce').show();
-        $(".introduce_mobile").hide();
+        $('.introduce_mobile').on("show",function()
+        {
+            $('.introduce').show();
+            $(".introduce_mobile").hide();
+        });
+        $('.register_table_mobile').on("show",function()
+        {
+            $('.register_table').show();
+            $('.register_table_mobile').hide();
+        });    
     }
 });
 
