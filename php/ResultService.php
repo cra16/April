@@ -13,7 +13,7 @@ require_once("Config_DB.php");
 $db = new DB_Control();
 $link = $db->DBC();
 
-print_r($_POST);
+
 
 //checking login
 if(!$_SESSION['USER_NAME']){
@@ -83,9 +83,9 @@ if($check_sub&&$check_nonsub&&$check_active){
 
     $qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation' AND area = '$area";
     $datas = $link->query($qry);
-    echo "4";
+
     if($datas){
-        echo "asdfasdf";
+
         foreach($datas as $data){
 
             if ($data) {
@@ -119,16 +119,16 @@ else{
     $message = "";
 
     if(!$check_sub){
-        $message = $message."인증을 받기위한 학점이 부족합니다.<br>";
+        $message = $message."인증을 받기위한 학점이 부족합니다.\n";
     }
     if(!$check_nonsub){
-        $message = $message."인증을 받기위한 학회(캠프)활동이 부족합니다.<br>";
+        $message = $message."인증을 받기위한 학회(캠프)활동이 부족합니다.\n";
     }
     if(!$check_active){
         $message = $message."인증을 받기위한 현장체험활동이 부족합니다.";
     }
-    echo $message;
-    echo "<script language='javascript'>location.replace('Service.php'); alert(".$message."); </script>";
+    
+    echo "<script language='javascript'>location.replace('Service.php'); alert('".$message."'); </script>";
 }
 
 ?>
