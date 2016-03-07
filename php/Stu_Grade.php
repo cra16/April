@@ -292,6 +292,45 @@ class Stu_Grade{
        echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
     }
   }
+  function getSubmitInformation($his_id){
+
+    $qry = "SELECT * FROM application WHERE his_id = '$his_id' ";
+
+    $check = mysqli_query($this->link,$qry);
+
+    $row_num = mysqli_num_rows($check);
+
+    $re_credit = array();
+    $sum = array();
+
+    $t = 0;
+
+    if($row_num==0){
+      echo "no result";
+    }
+    else{
+     
+      while( $result = mysqli_fetch_array($check) ){
+        $non_sub = explode("/",$result['non_sub']);
+        $area = explode("/",$result['area']);
+        $year = explode("/",$result['year']);
+        
+        echo "지원영역 : ". $result['kind'];
+        echo "<br>";
+        echo "선택 비교과 항목 : ";
+        for($t=0;$t<count($non_sub);$t++){
+          echo $non_sub[$t]."  ".$area[$t]."  ".$year[$t];
+          echo "<br>";
+        }
+        echo "상태 : ".$result['status'];
+        echo "<br><br>";       
+        
+      }
+    }
+    
+
+
+  }
 
 }
 // Stu_Grade class End
