@@ -251,7 +251,7 @@ admin_App.controller('app_Ctrl', function($scope,$http) {
 
 		else{
 			// Fetch student name.
-			 dataObject = {'mode':1, 'his_id': app.his_id, 'name': app.name, 'stat': $scope.stat, 'serial_num':$scope.serial_num};
+			 dataObject = {'mode':1, 'his_id': app.his_id, 'name': app.name, 'stat': $scope.stat, 'serial_num':$scope.serial_num, 'kind':app.kind, 'area':app.area};
 			/* AJAX 통신 처리 */
 			console.log(dataObject);
 			$http({

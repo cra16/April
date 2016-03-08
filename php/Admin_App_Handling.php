@@ -14,6 +14,8 @@ $his_id = $_POST['his_id'];
 $name = $_POST['name'];
 $stat =  $_POST['stat'];
 $serial_num = $_POST['serial_num'];
+$area = $_POST['area'];
+$kind = $_POST['kind']; 
 
 // Read(default)
  // Fetch application db
@@ -22,14 +24,14 @@ if($mode == 0){
     $db_name  = 'april';
     $hostname = '127.0.0.1';
     $username = 'root';
-    $password = 'bitnami';
+    $password = '111111';
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 
     // send application db + student db.
     
-    $sql = 'SELECT application.his_id, student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status
+    $sql = 'SELECT application.his_id, student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status, application.year
                 FROM application
                 INNER JOIN student
                 ON application.his_id = student.id';      
@@ -53,14 +55,21 @@ if ($mode == 1)    // if edited "status" is "examining" (심사중 - 1), then le
 {      
 
     // Update the data.        
+    if( (!empty ($serial_num)) && (!empty ($stat)) ){
+    $up_sql = "UPDATE application SET serial_num= '$serial_num', status= '$stat'
+            WHERE his_id = '$his_id' AND kind ='$kind' AND area = '$area'";  
+    }   
+    else{
     if(!empty ($serial_num))
     $up_sql = "UPDATE application SET serial_num= '$serial_num'
-            WHERE his_id = '$his_id'";     
-
+            WHERE his_id = '$his_id' AND kind ='$kind' AND area = '$area'";     
+    
     if(!empty ($stat))
-     $up_sql = "UPDATE application SET status= '$stat'
-            WHERE his_id = '$his_id'";            
-            
+    $up_sql = "UPDATE application SET status= '$stat'
+            WHERE his_id = '$his_id' AND kind ='$kind' AND area = '$area'";     
+    }
+
+
 
     if ($link->query($up_sql) === TRUE) {
     echo 1;
