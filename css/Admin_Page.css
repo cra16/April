@@ -5,6 +5,45 @@ body{
     /*font-family: 'Jeju Gothic', serif;*/
     background-color: white;
 }
+.alert-box {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;  
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    display: none;
+}
+
+.warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    display: none;
+}
+.failure {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    display: none;
+}
+
+li{
+    list-style:none;
+    height: 50px;
+}
+.tablebox li{
+        border-top: 1px solid #cccccc;
+}
+
+.tablebox button{
+    background-color: white;
+    border: none;
+}
 
 h1{
     font-family: 'Jeju Gothic', serif;
@@ -79,6 +118,36 @@ select{
     padding-left: 15px;
     padding-right: 15px;  
 }
+
+#td1{
+    display:inline-block;
+    width:167px;
+    padding:0 8px;
+    font-size: 15px;
+}
+
+#td2{
+    display:inline-block;
+    width:440px;
+    padding:0 8px;    
+    font-size: 15px;
+}
+
+#td3{
+    display: inline-block;
+    width: 88px;
+    padding: 0 8px;
+    font-size: 15px;
+}
+
+#td4{
+    display: inline-block;
+    width: 100px;
+    padding: 8px;
+    font-size: 15px;
+}
+
+
 
 @media(min-width:768px) {
     #wrapper {

@@ -4,10 +4,17 @@ $routeProvider
     .when('/app', {templateUrl: '../php/Admin_App.php', controller: 'app_Ctrl'})
     .when('/sub', {templateUrl: '../php/Admin_Sub.php', controller: 'sub_Ctrl'})
     .when('/nonsub', {templateUrl: '../php/Admin_Nonsub.php', controller: 'nonsub_Ctrl'})
-    .otherwise({redirectTo: '/home'});
+    .otherwise({redirectTo: '/app'});
 });
 
 admin_App.controller('sub_Ctrl', function($scope,$http) {
+	$scope.predicate = 'age';
+	$scope.reverse = true;
+	$scope.order = function(predicate) {
+	$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	$scope.predicate = predicate;
+	};
+
 	// 학부정보
 	$scope.articles = ["인문사회","고전강독","세계관","수학과학","소통-융복합","ICT융합기초"];
 	$scope.credits=["4","3","2","1"];
@@ -34,31 +41,33 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	      .success(function(data, status, headers, config) {
 	        if( data  == 1) {
 	          /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-	          alert("정보가 입력되었습니다!");
-	          $scope.subs.push(dataObject);
-	        }
-	        else {
-	          /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-	          alert(data);
-	        }
-	      })
-	      .error(function(data, status, headers, config) {
-	        /* 서버와의 연결이 정상적이지 않을 때 처리 */
-	        alert("Connect Fail");
-	      });
-	      //  초기화
-	      $scope.article='';
-	      $scope.credit='';
-	      $scope.sub_name='';
+			$( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+			$scope.subs.push(dataObject);
+			}
+			else {
+			  /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+			  alert(data);
+			}
+			})
+			.error(function(data, status, headers, config) {
+			/* 서버와의 연결이 정상적이지 않을 때 처리 */
+			alert("Connect Fail");
+			});
+			//  초기화
+			$scope.article='';
+			$scope.credit='';
+			$scope.sub_name='';
 	}; // addRow function End
 
 	$scope.removeRow = function(sub){  
 	
- 	      dataObject = {'article':sub.article, 'credit': sub.credit, 'sub_name':sub.sub_name,'mode':-1};
+	      dataObject = {'article':sub.article, 'sub_name': sub.sub_name, 
+	          'credit':sub.credit,'mode':-1};
+
 	      var index = -1;   
-	      var comArr = eval( $scope.subs);
+	      var comArr = eval( $scope.subs );
 	      for( var i = 0; i < comArr.length; i++ ) {
-	        if( comArr[i].num == sub.num) {
+	        if( comArr[i].sub_name == sub.sub_name) {
 	          index = i;
 	          break;
 	        }
@@ -69,9 +78,9 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	      .success(function(data, status, headers, config) {
 	        if(data == 1) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
 	        {
-	          alert("정보가 삭제되었습니다!");
+ 		$( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          if( index === -1 ) {
-	          alert( "Something gone wrong");
+ 	          $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          }
 	          $scope.subs.splice( index, 1 );
 	        }
@@ -86,14 +95,15 @@ admin_App.controller('sub_Ctrl', function($scope,$http) {
 	        alert("Connect Fail");
 	      }); // http_post End
 	}; // removeRow function End
-
 });
 
-
-
-
-
 admin_App.controller('nonsub_Ctrl', function($scope,$http) {
+	$scope.predicate = 'age';
+	$scope.reverse = true;
+	$scope.order = function(predicate) {
+	$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	$scope.predicate = predicate;
+	};
 	// 학부정보
 	$scope.courses = ["전산전자","국제어문","경영경제","법학부","언론정보","상담복지","생명과학","공간시스템",
 			       "콘텐츠융합디자인","기계제어","산업교육","글로벌에디슨아카데미","창의융합교육원"];
@@ -147,7 +157,7 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	      .success(function(data, status, headers, config) {
 	        if( data  == 1) {
 	          /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-	          alert("정보가 입력되었습니다!");
+	          $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );	          
 	          $scope.nonsubs.push(dataObject);
 	        }
 	        else {
@@ -188,9 +198,9 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	      .success(function(data, status, headers, config) {
 	        if(data == 1) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
 	        {
-	          alert("정보가 삭제되었습니다!");
+ 		$( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          if( index === -1 ) {
-	          alert( "Something gone wrong" );
+ 	          $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 	          }
 	          $scope.nonsubs.splice( index, 1 );
 	        }
@@ -205,7 +215,6 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 	        alert("Connect Fail");
 	      }); // http_post End
 	}; // removeRow function End
-
 });
 
 

@@ -66,7 +66,7 @@ class Stu_Grade{
     
 
 
-  function requestGrade($his_id, $his_pw){
+  function requestGrade($his_id, $his_pw,$kind,$area){
     $this->his_id = $his_id;
     $this->his_pw = $his_pw;
     
@@ -196,12 +196,180 @@ class Stu_Grade{
       $w++;
     }
 
-    foreach( $sum as $sum ){
-      if( $sum >0 ){
-
-        //echo $sum['index']." : ".$sum['credit'];
-        //echo '<br/>';
-  
+    if(strcmp($kind,"기초역량")==0&&strcmp($area,"인문사회")==0){
+      $i=FALSE;
+      $j=FALSE;
+      $k=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="인문사회"){
+            if($sum['credit']>=6)
+              $i=TRUE;
+          }
+          if($sum['index']=="고전강독"){
+            if($sum['credit']>=2)
+              $j=TRUE;
+          }
+          if($sum['index']=="세계관"){
+            if($sum['credit']>=4)
+              $k=TRUE;
+          }
+        }
+      }
+      
+      if($i&&$j&&$k){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    if(strcmp($kind,"기초역량")==0&&strcmp($area,"이공학")==0){
+      $i=FALSE;
+      $j=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="수학과학"){
+            if($sum['credit']>=9)
+              $i=TRUE;
+          }
+          if($sum['index']=="소통-융복합"){
+            if($sum['credit']>=3)
+              $j=TRUE;
+          }
+        }
+      }
+   
+      if($i&&$j){ 
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    if(strcmp($kind,"기초역량")==0&&strcmp($area,"ICT")==0){
+      $i=FALSE;
+      $j=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="ICT융합기초"){
+            if($sum['credit']>=9)
+              $i=TRUE;
+          }
+          if($sum['index']=="소통-융복합"){
+            if($sum['credit']>=3)
+              $j=TRUE;
+          }
+        }
+      }
+      
+      if($i&&$j){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    if(strcmp($kind,"기초역량")==0&&strcmp($area,"ICT융합기초")==0){
+      $i=FALSE;
+      $j=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="ICT융합기초"){
+            if($sum['credit']>=15)
+              $i=TRUE;
+          }
+          if($sum['index']=="소통-융복합"){
+            if($sum['credit']>=3)
+              $j=TRUE;
+          }
+        }
+      }
+      
+      if($i&&$j){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    if(strcmp($kind,"기초학문")==0&&strcmp($area,"인문사회")==0){
+      $i=FALSE;
+      $j=FALSE;
+      $k=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="인문사회"){
+            if($sum['credit']>=12)
+              $i=TRUE;
+          }
+          if($sum['index']=="고전강독"){
+            if($sum['credit']>=2)
+              $j=TRUE;
+          }
+          if($sum['index']=="세계관"){
+            if($sum['credit']>=4)
+              $k=TRUE;
+          }
+        }
+      }
+      
+      if($i&&$j&&$k){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    if(strcmp($kind,"기초학문")==0&&strcmp($area,"이공학")==0){
+      $i=FALSE;
+      $j=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="수학과학"){
+            if($sum['credit']>=15)
+              $i=TRUE;
+          }
+          if($sum['index']=="소통-융복합"){
+            if($sum['credit']>=3)
+              $j=TRUE;
+          }
+        }
+      }
+      
+      if($i&&$j){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    if(strcmp($kind,"기초학문")==0&&strcmp($area,"융합")==0){
+      $i=FALSE;
+      $j=FALSE;
+      $k=FALSE;
+      foreach( $sum as $sum ){
+        if( $sum >0 ){
+          if($sum['index']=="인문사회"){
+            if($sum['credit']>=9)
+              $i=TRUE;
+          }
+          if($sum['index']=="수학과학"){
+            if($sum['credit']>=6)
+              $j=TRUE;
+          }
+          if($sum['index']=="소통-융복합"){
+            if($sum['credit']>=3)
+              $k=TRUE;
+          }
+        }
+      }
+      
+      if($i&&$j&&$k){
+        return TRUE;
+      }
+      else{
+        return FALSE;
       }
     }
 
@@ -291,6 +459,123 @@ class Stu_Grade{
       if(!strcmp($non_area[$i],$foundation))
        echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
     }
+  }
+  function parseNonsubject($his_id,$kind,$area){
+
+    $qry = "SELECT * FROM application WHERE his_id = '$his_id' AND kind = '$kind' AND area = '$area'";
+
+    $check = mysqli_query($this->link,$qry);
+
+    $row_num = mysqli_num_rows($check);
+
+    $re_credit = array();
+    $sum = array();
+
+    $t = 0;
+    $s = 0;
+    $index = array();
+
+    if($row_num==0){
+      echo "Error";
+    }
+    else{
+     
+      while( $result = mysqli_fetch_array($check) ){
+        $non_sub = explode("/",$result['non_sub']);  //매우 이상하게도 non_sub는 0번쨰
+        $year = explode("/",$result['year']);       //index에 아무값도 들어가지 않아서 코드가 
+                                                    //좀더 보기 힘들어졌다. year는 정상적으로 들어간다.
+        $count_index = count($non_sub)-1;
+     
+        for($t=0;$t<$count_index;$t++){
+          $index[$t] = $year[$t];    
+        }
+
+        for($t=0;$t<count($non_sub)-1;$t++){
+          
+          echo $non_sub[$t+1].": ";
+
+          for($s=0;$s<intval($index[$t]);$s++){
+             echo $year[$s+$count_index]."년 ";
+          }
+          
+          echo "<br>";
+
+          $count_index = $count_index+intval($index[$t]);
+        }
+ 
+        
+      }
+    }
+    
+
+
+  }
+  function SubmitInformation($his_id,$kind){
+
+    $qry = "SELECT * FROM application WHERE his_id = '$his_id' AND kind = '$kind' ";
+
+    $check = mysqli_query($this->link,$qry);
+
+    $row_num = mysqli_num_rows($check);
+
+    if($row_num==0){
+      for($i=0;$i<6;$i++){
+        echo "<td></td>";
+      }
+    }
+    else{
+     
+      $course_data = array();
+      
+      while( $result = mysqli_fetch_array($check) ){
+        
+        $area = $result['area'];
+
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"인문사회")==0){
+        $course_data = ["인문사회","고전강독","세계관"];        
+        }
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"이공학")==0){
+        $course_data = ["수학과학","소통-융복합"];     
+        }
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"ICT")==0){
+        $course_data = ["ICT융합기초","소통-융복합"];
+        }
+        if(strcmp($kind,"기초역량")==0&&strcmp($area,"ICT융합기초")==0){
+        $course_data = ["ICT융합기초","소통-융복합"];
+        }
+        if(strcmp($kind,"기초학문")==0&&strcmp($area,"인문사회")==0){
+        $course_data = ["인문사회","고전강독","세계관"];
+        }
+        if(strcmp($kind,"기초학문")==0&&strcmp($area,"이공학")==0){
+        $course_data = ["수학과학","소통-융복합"];
+        }
+        if(strcmp($kind,"기초학문")==0&&strcmp($area,"융합")==0){
+        $course_data = ["인문사회","수학과학","소통-융복합"];
+        }
+        if(empty($course_data)){
+          echo "Error";
+        }
+   
+        echo "<td>".$kind."</td>";
+        echo "<td>".$result['area']."</td>";
+        echo "<td>".$result['serial_num']."</td>";
+        echo "<td>";
+        for($k=0;$k<count($course_data);$k++ ){ 
+          echo $course_data[$k]."<br>"; 
+          $this->getSubject($k,$area,$kind);  
+        }
+        echo "</td>";
+        echo "<td>";
+          $this->parseNonsubject($his_id,$kind,$area);
+        echo "</td>";
+        echo "<td>".$result['active']."</td>";
+        echo "<td>".$result['status']."</td>";
+        
+
+        unset($course_data);
+      }
+    }
+
   }
 
 }

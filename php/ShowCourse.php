@@ -22,7 +22,7 @@
 for($i=0; $i<3; $i++)
 {?>
 <div class="table_layer" style="margin-top:40px;">
-    <?php 
+    <center><?php 
                             if($i==0)
                             {
                                   echo "<b class='name'>교과과정</b>";
@@ -43,7 +43,7 @@ for($i=0; $i<3; $i++)
                             {
                               echo "<b class='name'>현장</b>";
                             }
-                            ?>
+                            ?></center>
    <div id="rt_table" style="margin-top:40px;">
       
             <table id="table" class="table">
@@ -60,7 +60,7 @@ for($i=0; $i<3; $i++)
                           else if($i==1)
                                 echo "캠프";
                           else
-                            echo "???"
+                            echo "현장참여과정"
 
                         ?>
                         </center></th>
