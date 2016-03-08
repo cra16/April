@@ -555,7 +555,7 @@ class Stu_Grade{
         if(empty($course_data)){
           echo "Error";
         }
-   
+        echo "<tr>";
         echo "<td>".$kind."</td>";
         echo "<td>".$result['area']."</td>";
         echo "<td>".$result['serial_num']."</td>";
@@ -570,7 +570,7 @@ class Stu_Grade{
         echo "</td>";
         echo "<td>".$result['active']."</td>";
         echo "<td>".$result['status']."</td>";
-        
+        echo "</tr>";
 
         unset($course_data);
       }
