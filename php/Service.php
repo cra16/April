@@ -364,9 +364,9 @@ $stu_grade = Stu_Grade::getInstance(0);
                           <th>상태</th>
                         </thead>
                         <tbody>
-                        <tr>
+                    
                           <?php $stu_grade->SubmitInformation($_SESSION['USER_NAME'],"기초학문"); ?>
-                        </tr>
+                    
                       
                       </tbody>
                       </table>
@@ -386,9 +386,9 @@ $stu_grade = Stu_Grade::getInstance(0);
                           <th>상태</th>
                         </thead>
                         <tbody>
-                        <tr>
+                   
                           <?php $stu_grade->SubmitInformation($_SESSION['USER_NAME'],"기초역량"); ?>
-                        </tr>
+                     
                       
                       </tbody>
                       </table>
