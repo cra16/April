@@ -502,6 +502,9 @@ h1, h3,h5{
     background-color: #dff0d8;
     border-color: #d6e9c6;
     display: none;
+    width:200px;
+    height:20px;
+    margin-top:40px;
 }
 
 .warning {
@@ -509,10 +512,16 @@ h1, h3,h5{
     background-color: #fcf8e3;
     border-color: #faebcc;
     display: none;
+    width:200px;
+    height:20px;
+    margin-top:40px;
 }
 .failure {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
     display: none;
+    width:200px;
+    height:20px;
+    margin-top:40px;
 }
