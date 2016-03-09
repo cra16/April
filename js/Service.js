@@ -154,7 +154,7 @@ $(document).ready(function(){
       else
       {
         $(this).next().next().next().remove();
-        $(this).next().next().remove();
+        $(this).next().remove();
       }
   });
   $("div").on("click",".year_class",function()
@@ -191,20 +191,34 @@ $(document).ready(function(){
      var foundation = $("#foundation").val();
      var area = $("#course_name").text();
       $.ajax(
-            { url : "ShowCourse.php",
-              data : {
-                      'area' : area,
-                      'foundation':foundation
-                    },
+
+            { url : "RequestCheck.php",
+              data : formdata,
               async : true,
               type : "POST",
               success:function(resp){  
+                  $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                  //alert(resp);
 
                
                 },
                 error: function(xhr, option, error){
-                  alert(xhr.status); //오류코드
-                  alert(error); //오류내용                  
+                  //alert(xhr.status); //오류코드
+                  //alert(error); //오류내용
+
+                     $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );           
+                    if(xhr.responseText=="1")
+                    {
+                      $("div.failure").text("교과목이 부족");
+                    }
+                    else if(xhr.responseText=="2")
+                    {
+                      $("div.failure").text("비교과 부족");
+                    }
+                    else if(xhr.responseText=="3")
+                    {
+                      $("div.failure").text("현장 부족");
+                    }
                  } 
 
           });

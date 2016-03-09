@@ -6,11 +6,11 @@ class DB_Control
   function DBC()
   {
       // Define database connection constants
-      define('DB_HOST', "localhost");
+      define('DB_HOST', "127.0.0.1");
       define('DB_USER', "root");
-      define('DB_PASSWORD', "gksehdeo357");
+      define('DB_PASSWORD', "bitnami");
       define('DB_NAME', "april");
-      define('KEY', "1as4fg7jk0");
+      define('KEY', "1as4fg7jk012345678912345");
       $link=mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD) or die("Could not connect database");
       // Connect formzip
       header('Content-Type: text/html; charset=utf-8');
