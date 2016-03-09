@@ -418,7 +418,7 @@ class Stu_Grade{
                   if(!strcmp($condition_article[$number],$this->re_article[$recount]))
                     {
                       echo $this->stu_course[$count];
-                      echo "<br>";
+                      echo "<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
                     }
                 }
               }
@@ -468,22 +468,22 @@ class Stu_Grade{
 
     $row_num = mysqli_num_rows($check);
 
-    $re_credit = array();
-    $sum = array();
-
+    $non_sub = array();
+    $year = array();
+    $index = array();
     $t = 0;
     $s = 0;
-    $index = array();
+    
 
     if($row_num==0){
       echo "Error";
     }
     else{
      
-      while( $result = mysqli_fetch_array($check) ){
-        $non_sub = explode("/",$result['non_sub']);  //매우 이상하게도 non_sub는 0번쨰
-        $year = explode("/",$result['year']);       //index에 아무값도 들어가지 않아서 코드가 
-                                                    //좀더 보기 힘들어졌다. year는 정상적으로 들어간다.
+        $result = mysqli_fetch_array($check);
+        $non_sub = explode("/",$result['non_sub']);
+        $year = explode("/",$result['year']);      
+                                                 
         $count_index = count($non_sub)-1;
      
         for($t=0;$t<$count_index;$t++){
@@ -504,7 +504,7 @@ class Stu_Grade{
         }
  
         
-      }
+      
     }
     
 
@@ -555,22 +555,29 @@ class Stu_Grade{
         if(empty($course_data)){
           echo "Error";
         }
-   
+        echo "<tr>";
         echo "<td>".$kind."</td>";
         echo "<td>".$result['area']."</td>";
         echo "<td>".$result['serial_num']."</td>";
         echo "<td>";
         for($k=0;$k<count($course_data);$k++ ){ 
-          echo $course_data[$k]."<br>"; 
-          $this->getSubject($k,$area,$kind);  
+          echo $course_data[$k].": "; 
+          $this->getSubject($k,$area,$kind); 
+          echo "<br>";
         }
         echo "</td>";
         echo "<td>";
           $this->parseNonsubject($his_id,$kind,$area);
         echo "</td>";
-        echo "<td>".$result['active']."</td>";
+        echo "<td>";
+         $active_array = array();
+         $active_array = explode("/",$result['active']);
+         foreach($active_array as $item){
+          echo $item."<br>";
+         }
+        echo "</td>";
         echo "<td>".$result['status']."</td>";
-        
+        echo "</tr>";
 
         unset($course_data);
       }

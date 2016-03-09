@@ -25,10 +25,10 @@ $foundation = $_POST['foundation'];
 $area = $_POST['area'];
 
  //checking submit permission variable
-    $check_sub = TRUE;
+    $check_sub = $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW'], $foundation, $area);
     $check_nonsub = FALSE;
     $check_active = FALSE;
-    
+    $check_sub = TRUE;
 //check second field and save result
 if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_info'])){
  
@@ -58,10 +58,10 @@ if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_i
     $nonsubject = $nonsubject."/".$non_name[$check];
     }
     foreach($_POST['index_array']as $index){
-    $nonyear = $nonyear."/".$index;
+    $nonyear = $nonyear.$index."/";
     }
     foreach($_POST['year_array'] as $year){
-    $nonyear = $nonyear."/".$year;   
+    $nonyear = $nonyear.$year."/";   
     }
 
     $check_nonsub = TRUE;
@@ -82,25 +82,25 @@ if(!empty($_POST['data_info'])) {
 if($check_sub&&$check_nonsub&&$check_active){
     //insert information
 
-    $qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation' AND area = '$area'";
+    $qry = "SELECT * FROM application WHERE his_id = '$id' AND kind = '$foundation' AND area = '$area'";
     $datas = $link->query($qry);
 
     if($datas){
 
-        foreach($datas as $data){
 
-            if ($data) {
-                if($data["status"]!="지원"){
-                    echo "<script language='javascript'>location.replace('Service.php'); alert('제출서류가 이미 확인 되었습니다'); </script>";
-                }
-            
-                $sql = "UPDATE `application` SET non_sub = '$nonsubject' ,year = '$nonyear',area = '$area',active = '$active' WHERE his_id = '$id' AND kind = '$foundation'AND area = '$area'";       
-       
+        if (mysqli_num_rows($datas)>0) {
+            $data = mysqli_fetch_array($datas);
+            if(strcmp($data["status"],"지원")!=0){
+                echo "<script language='javascript'>location.replace('Service.php'); alert('제출서류가 이미 확인 되었습니다'); </script>";
             }
             else{
-              $sql = "INSERT INTO `application`(his_id,non_sub,kind,area,status,year,active) VALUES('$id','$nonsubject','$foundation','$area','지원','$nonyear','$active')";  
-            }                               
+            $sql = "UPDATE `application` SET non_sub = '$nonsubject' ,year = '$nonyear',active = '$active' WHERE his_id = '$id' AND kind = '$foundation'AND area = '$area'";       
+            }
         }
+        else{
+          $sql = "INSERT INTO application(his_id,non_sub,kind,area,status,year,active) VALUES('$id','$nonsubject','$foundation','$area','지원','$nonyear','$active')";  
+        }                               
+        
     }
     else{
         echo "fail..".$link->error;
@@ -117,19 +117,8 @@ if($check_sub&&$check_nonsub&&$check_active){
     $link->close();
 }
 else{
-    $message = "";
-
-    if(!$check_sub){
-        $message = $message."인증을 받기위한 학점이 부족합니다.\n";
-    }
-    if(!$check_nonsub){
-        $message = $message."인증을 받기위한 학회(캠프)활동이 부족합니다.\n";
-    }
-    if(!$check_active){
-        $message = $message."인증을 받기위한 현장체험활동이 부족합니다.";
-    }
-
-    echo "<script> location.replace('Service.php'); alert('지원조건을 만족하지 못합니다'); </script> "; 
+  
+    echo "<script> location.replace('Service.php'); alert('Error:지원조건을 만족하지 못합니다'); </script> "; 
 
     exit();
 }
