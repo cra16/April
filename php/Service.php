@@ -214,7 +214,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                        }?>
                        </div>
                        <input type="hidden" id ="foundation" name = "foundation" value="">
-
+                       <input type="hidden" id ="area" name = "area" value="인문사회">
                        <center><div class="alert-box success">정보가 등록되었습니다</div>
                        <div class="alert-box warning">정보가 삭제되었습니다</div>
                        <div class="alert-box failure">요청하신 명령에 실패하였습니다</div></center>

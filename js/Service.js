@@ -56,6 +56,7 @@ $(document).ready(function(){
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
+          var data=$(this).children().text();
          var Course=$("#course_name").text($(this).children().text());
           Course = Course.text();
          var foundation = $("#foundation").val();
@@ -74,11 +75,12 @@ $(document).ready(function(){
                   if(Course=="ICT심화")
                   {
                      $("#course").html("<center>학 회</center>");
-                   
+                     $("#area").val(data);
                   }
                   else
                   {
                     $("#course").html("<center>캠  프</center>");
+                    $("#area").val(data);
                   }
                            
                 },
@@ -96,6 +98,7 @@ $(document).ready(function(){
 	$("div").on("click",".sub-foundation-study",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
+          var data=$(this).children().text();
           var Course=$("#course_name").text($(this).children().text());
           Course = Course.text();
            var foundation = $("#foundation").val();
@@ -111,7 +114,8 @@ $(document).ready(function(){
               success:function(resp){  
 
                  $(".input_data").eq(0).html(resp);
-                 $("#course").html("<center>학  회</center>");   
+                 $("#course").html("<center>학  회</center>");  
+                 $("#area").val(data); 
                
                 },
                 error: function(xhr, option, error){

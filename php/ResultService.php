@@ -22,10 +22,10 @@ if(!$_SESSION['USER_NAME']){
 
 $id = $_SESSION['USER_NAME'];
 $foundation = $_POST['foundation'];
-$area = '이공학'; //$_POST['area'];
+$area = $_POST['area'];
 
  //checking submit permission variable
-    $check_sub = $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW'], $foundation, $area);
+    $check_sub = TRUE;
     $check_nonsub = FALSE;
     $check_active = FALSE;
     
@@ -82,7 +82,7 @@ if(!empty($_POST['data_info'])) {
 if($check_sub&&$check_nonsub&&$check_active){
     //insert information
 
-    $qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation' AND area = '$area";
+    $qry = "SELECT * FROM `application` WHERE his_id = '$id' AND kind = '$foundation' AND area = '$area'";
     $datas = $link->query($qry);
 
     if($datas){
@@ -94,7 +94,7 @@ if($check_sub&&$check_nonsub&&$check_active){
                     echo "<script language='javascript'>location.replace('Service.php'); alert('제출서류가 이미 확인 되었습니다'); </script>";
                 }
             
-                $sql = "UPDATE `application` SET non_sub = '$nonsubject' ,year = '$nonyear',area = '$area',active = '$active' WHERE his_id = '$id' AND kind = '$foundation'AND area = '$area";       
+                $sql = "UPDATE `application` SET non_sub = '$nonsubject' ,year = '$nonyear',area = '$area',active = '$active' WHERE his_id = '$id' AND kind = '$foundation'AND area = '$area'";       
        
             }
             else{
