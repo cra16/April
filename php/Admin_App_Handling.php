@@ -15,7 +15,7 @@ $name = $_POST['name'];
 $stat =  $_POST['stat'];
 $serial_num = $_POST['serial_num'];
 $area = $_POST['area'];
-$kind = $_POST['kind']; 
+$kind = $_POST['kind'];
 
 // Read(default)
  // Fetch application db
@@ -24,14 +24,15 @@ if($mode == 0){
     $db_name  = 'april';
     $hostname = '127.0.0.1';
     $username = 'root';
-    $password = '111111';
+    $password = 'bitnami';
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 
     // send application db + student db.
     
-    $sql = 'SELECT application.his_id, student.name, application.serial_num, application.kind, application.area, application.non_sub, application.status, application.year
+    $sql = 'SELECT application.his_id, student.name, application.serial_num, application.kind, 
+                    application.area, application.non_sub, application.status, application.year, application.active
                 FROM application
                 INNER JOIN student
                 ON application.his_id = student.id';      
