@@ -65,8 +65,9 @@ if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_i
     }
 
     $check_nonsub = TRUE;
-}else{
+}else if(!empty($_POST['chk_info'])){
     echo "<script language='javascript'>location.replace('Service.php'); alert('입력정보가 부족합니다'); </script>"; 
+    exit();
 }
 // check third field and save result
 if(!empty($_POST['data_info'])) {
@@ -127,8 +128,10 @@ else{
     if(!$check_active){
         $message = $message."인증을 받기위한 현장체험활동이 부족합니다.";
     }
-    
-    echo "<script language='javascript'>location.replace('Service.php'); alert('".$message."'); </script>";
+
+    echo "<script> location.replace('Service.php'); alert('지원조건을 만족하지 못합니다'); </script> "; 
+
+    exit();
 }
 
 ?>
