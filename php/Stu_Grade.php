@@ -378,7 +378,7 @@ class Stu_Grade{
   function getSubject($number,$article, $study)
   {
    $condition_article=null;
-   if(!strcmp($study,"기초학문"))
+   if(!strcmp($study,"기초 학문"))
    {
      if(!strcmp($article,"인문사회"))
            $condition_article = ["인문사회", "고전강독","세계관"];
@@ -387,7 +387,7 @@ class Stu_Grade{
      else if(!strcmp($article ,"융합"))
       $condition_article =["인문사회", "수학과학","소통-융복합"];
    }
-    else if(!strcmp($study,"기초역량"))
+    else if(!strcmp($study,"기초 역량"))
    {
      if(!strcmp($article,"인문사회"))
       $condition_article = ["인문사회", "고전강독","세계관"];
@@ -555,7 +555,7 @@ class Stu_Grade{
         if(empty($course_data)){
           echo "Error";
         }
-        echo "<tr>";
+   
         echo "<td>".$kind."</td>";
         echo "<td>".$result['area']."</td>";
         echo "<td>".$result['serial_num']."</td>";
@@ -570,7 +570,7 @@ class Stu_Grade{
         echo "</td>";
         echo "<td>".$result['active']."</td>";
         echo "<td>".$result['status']."</td>";
-        echo "</tr>";
+        
 
         unset($course_data);
       }

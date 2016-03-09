@@ -223,35 +223,97 @@ admin_App.controller('app_Ctrl', function($scope,$http) {
 
 	$scope.mode = "지원";
 	$scope.stats = ["지원", "심사", "완료"];
-	
 	var dataObject = {};
 	var req = 0;
-
+	 console.log("G");
 	// Request App Info
 	 $scope.mode = req;
-
 	  dataObject = {'mode':0,'req':req};
 	  /* AJAX 통신 처리 */
 	  $http({
 	    method: 'POST', url: 'Admin_App_Handling.php', 
-	    data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	    data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	  	async:false
 	  })
 	  .success(function(data) {
 	    if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-	    $scope.apps = data;
+	    {	
+	    	$scope.apps = data;
+				for( var data in $scope.apps)
+		{
+		
+		// raw data of non_sub names and years(+number of years).
+		var nonsubString = $scope.apps[data].non_sub;
+		var yearString = $scope.apps[data].year;
+
+	 // 가공 
+		// save nonsubs in an array.
+		var nonsubList = nonsubString.split("/");	// index 1부터 정보 입력 됨
+		var year_num = nonsubList.shift();
+		var nonsub_num = nonsubList.length;
+		var nonsubList_temp = nonsubList; 
+
+		// save years and its counts in different arrays.
+		var years = yearString.split("/");
+		var year_num = [];
+		var yearList = [];
+		var i; 
+		for (i = 0; i < years.length; i++)
+		{
+			if(years[i] < 20 && years[i] > 0)
+				year_num.push(years[i]);
+			else
+				yearList.push(years[i]);
+		}
+		var yearList_temp = yearList;
+		var year_num_temp = year_num;
+		
+		// Combine each nonsub with its corresponding years.
+		var nonsub_final = '';
+		var nonsub_combine = '';
+		for (i = 0; i < year_num.length; i++)
+		{
+			if(i!=0)
+				nonsub_final = nonsub_final + nonsub_combine + ", ";
+			var j;
+			nonsub_combine = nonsubList.shift(); // first, add a name of nonsubs.
+			var year_final ='';
+			for(j = 0; j < year_num[i] - 1; j++)
+			{
+				var year_final = year_final + yearList.shift() + ", ";
+			}
+			year_final = year_final + yearList.shift();
+			nonsub_combine = nonsub_combine + " (" + year_final + ")";
+		}
+		nonsub_final = nonsub_final + nonsub_combine;
+
+		// Save it in nonsub variable.
+		$scope.apps[data].non_sub = nonsub_final;
+
+		//초기화
+		var nonsubString = '';
+		var yearString = '';
+		var nonsub_num = '';	
+		var nonsubList = '';	
+		var yearList = '';	
+		var year_num = '';
+	}
+		}
 	    else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
 	    alert("Return Fail");
+	  	
 	  });
+});
 
-
-
-	$scope.updateRow = function(app){
+admin_App.controller('App_Data', function($scope,$http) {
+		$scope.updateRow = function(app){
+		console.log($scope.stat);
 		if($scope.stat == undefined && $scope.serial_num == undefined)
 		$( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 
 		else{
 			// Fetch student name.
-			 dataObject = {'mode':1, 'his_id': app.his_id, 'name': app.name, 'stat': $scope.stat, 'serial_num':$scope.serial_num};
+			 dataObject = {'mode':1, 'his_id': app.his_id, 'name': app.name, 'stat': $scope.stat, 'serial_num':$scope.serial_num, 'kind':app.kind, 'area':app.area};
 			/* AJAX 통신 처리 */
 			console.log(dataObject);
 			$http({
@@ -275,6 +337,5 @@ admin_App.controller('app_Ctrl', function($scope,$http) {
 		}
 		//  초기화
 	}; // addRow function End		 
+	// Nonsub 수정
 });
-
-	

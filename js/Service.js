@@ -3,7 +3,6 @@
 $(document).ready(function(){
 	$("#form_data").hide();
   $(".register_table").hide();
-  $(".register_table_mobile").hide();
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
@@ -13,7 +12,8 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초역량");
 		$("#form_data").show();
- 
+    $(".register_table").hide();
+    $(".register_table_mobile").hide();
     $("#course").html("<center>캠  프</center>");
 
 	});
@@ -104,7 +104,7 @@ $(document).ready(function(){
             { url : "ShowCourse.php",
               data : {
                       'Course' : Course,
-                      'foundation':foundation
+                        'foundation':foundation
                     },
               async : true,
               type : "POST",
@@ -154,7 +154,7 @@ $(document).ready(function(){
       else
       {
         $(this).next().next().next().remove();
-        $(this).next().next().remove();
+        $(this).next().remove();
       }
   });
   $("div").on("click",".year_class",function()
@@ -188,22 +188,37 @@ $(document).ready(function(){
       $(this).find('[class=inner_div]').hide();});
   $("body").on("click","#check_btn",function()
   { 
-     
+     var foundation = $("#foundation").val();
      var area = $("#course_name").text();
-     var formdata = $("#form_data").serializeArray();
-     formdata.push({name:'area',value:area});
       $.ajax(
-            { url : "ResultService.php",
+
+            { url : "RequestCheck.php",
               data : formdata,
               async : true,
               type : "POST",
               success:function(resp){  
                   $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                  //alert(resp);
+
                
                 },
                 error: function(xhr, option, error){
-                  alert(xhr.status); //오류코드
-                  alert(error); //오류내용                  
+                  //alert(xhr.status); //오류코드
+                  //alert(error); //오류내용
+
+                     $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );           
+                    if(xhr.responseText=="1")
+                    {
+                      $("div.failure").text("교과목이 부족");
+                    }
+                    else if(xhr.responseText=="2")
+                    {
+                      $("div.failure").text("비교과 부족");
+                    }
+                    else if(xhr.responseText=="3")
+                    {
+                      $("div.failure").text("현장 부족");
+                    }
                  } 
 
           });
@@ -225,43 +240,30 @@ $(document).ready(function(){
     windowsize = $(window).width();
     if (windowsize < 450) {
       //if the window is greater than 440px wide then turn on jScrollPane..
-        if($('.introduce').css("display")=='block')
+        $('.introduce').on("show",function()
         {
-   
             $('.introduce').hide();
             $(".introduce_mobile").show();
-            $('.register_table').hide();
-            $('.register_table_mobile').hide();
-        }
-        if($('.register_table').css("display")=='block')
+        });
+        $('.register_table').on("show",function()
         {
-
             $('.register_table').hide();
             $('.register_table_mobile').show();
-            $('.introduce').hide();
-            $(".introduce_mobile").hide();
-        }    
+        });    
 
     }
     else
     {
-        if($('.introduce_mobile').css("display")=='block')
+        $('.introduce_mobile').on("show",function()
         {
-   
             $('.introduce').show();
             $(".introduce_mobile").hide();
-
-            $('.register_table').hide();
-            $('.register_table_mobile').hide();
-        }
-         if($('.register_table_mobile').css("display")=='block')
+        });
+        $('.register_table_mobile').on("show",function()
         {
-
             $('.register_table').show();
             $('.register_table_mobile').hide();
-            $('.introduce').hide();
-            $(".introduce_mobile").hide();
-        }    
+        });    
     }
 });
 
