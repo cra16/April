@@ -190,6 +190,8 @@ $(document).ready(function(){
   { 
      var foundation = $("#foundation").val();
      var area = $("#course_name").text();
+          var formdata = $("#form_data").serializeArray();
+
       $.ajax(
 
             { url : "RequestCheck.php",
@@ -199,7 +201,7 @@ $(document).ready(function(){
               success:function(resp){  
                   $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                   //alert(resp);
-
+                  
                
                 },
                 error: function(xhr, option, error){
