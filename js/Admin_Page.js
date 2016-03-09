@@ -218,39 +218,42 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 });
 
 
-	// 지원 정보 Controller 
-	admin_App.controller('app_Ctrl', function($scope,$http) {
+// 지원 정보 Controller 
+admin_App.controller('app_Ctrl', function($scope,$http) {
 
-		$scope.mode = "지원";
-		$scope.stats = ["지원", "심사", "완료"];
-		
-		var dataObject = {};
-		var req = 0;
+	$scope.mode = "지원";
+	$scope.stats = ["지원", "심사", "완료"];
+	
+	var dataObject = {};
+	var req = 0;
 
-		// Request App Info
-		 $scope.mode = req;
+	// Request App Info
+	 $scope.mode = req;
 
-		  dataObject = {'mode':0,'req':req};
-		  /* AJAX 통신 처리 */
-		  $http({
-		    method: 'POST', url: 'Admin_App_Handling.php', 
-		    data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		  })
-		  .success(function(data) {
-		    if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-		    $scope.apps = data;
-		    else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
-		    alert("Return Fail");
-		  });
+	  dataObject = {'mode':0,'req':req};
+	  /* AJAX 통신 처리 */
+	  $http({
+	    method: 'POST', url: 'Admin_App_Handling.php', 
+	    data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	  })
+	  .success(function(data) {
+	    if( data ) /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+	    $scope.apps = data;
+	    else /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */ 
+	    alert("Return Fail");
+	  });
 
-	});
 
-	admin_App.controller('App_Data', function($scope,$http) {
-		$scope.updateRow = function(app){
 
+	$scope.updateRow = function(app){
+		if($scope.stat == undefined && $scope.serial_num == undefined)
+		$( "div.warning" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+
+		else{
 			// Fetch student name.
 			 dataObject = {'mode':1, 'his_id': app.his_id, 'name': app.name, 'stat': $scope.stat, 'serial_num':$scope.serial_num};
 			/* AJAX 통신 처리 */
+			console.log(dataObject);
 			$http({
 			method: 'POST', url: 'Admin_App_Handling.php', 
 			data: $.param(dataObject),headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -258,7 +261,7 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 			.success(function(data, status, headers, config) {
 			if( data  == 1) {
 			  /* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-			  alert("정보가 수정되었습니다!");
+			$( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 			}
 			else {
 			  /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
@@ -267,10 +270,11 @@ admin_App.controller('nonsub_Ctrl', function($scope,$http) {
 			})
 			.error(function(data, status, headers, config) {
 			/* 서버와의 연결이 정상적이지 않을 때 처리 */
-			alert("Connect Fail");
+	         			 $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
 			});
+		}
+		//  초기화
+	}; // addRow function End		 
+});
 
-			//  초기화
-			}; // addRow function End
-
-	});
+	

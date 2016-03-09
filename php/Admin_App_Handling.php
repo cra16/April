@@ -22,7 +22,7 @@ if($mode == 0){
     $db_name  = 'april';
     $hostname = '127.0.0.1';
     $username = 'root';
-    $password = '111111';
+    $password = 'bitnami';
 
     // connect to the database
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
@@ -53,9 +53,13 @@ if ($mode == 1)    // if edited "status" is "examining" (심사중 - 1), then le
 {      
 
     // Update the data.        
-                           
-    $up_sql = "UPDATE application SET serial_num= '$serial_num', status = '$stat' 
+    if(!empty ($serial_num))
+    $up_sql = "UPDATE application SET serial_num= '$serial_num'
             WHERE his_id = '$his_id'";     
+
+    if(!empty ($stat))
+     $up_sql = "UPDATE application SET status= '$stat'
+            WHERE his_id = '$his_id'";            
             
 
     if ($link->query($up_sql) === TRUE) {
