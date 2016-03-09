@@ -75,7 +75,9 @@ $stu_grade = Stu_Grade::getInstance(0);
          <div class ="col-md-1"></div>
          <div class ="col-md-10">
         <div id="container">
-        
+                <div class="alert-box success">정보가 등록되었습니다</div>
+                <div class="alert-box warning">정보가 삭제되었습니다</div>
+                <div class="alert-box failure">요청하신 명령에 실패하였습니다</div>
           
                    <div class="button_class"  style="margin-top:40px;">
                       
@@ -371,9 +373,8 @@ $stu_grade = Stu_Grade::getInstance(0);
                       </tbody>
                       </table>
 
-                  </div>
-                  
-                  <div class ="register_table">
+               
+               
                    <center><h3 class="header" >기초역량</h3></center>
                       <table class="table">
                         <thead>

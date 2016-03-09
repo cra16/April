@@ -3,6 +3,7 @@
 $(document).ready(function(){
 	$("#form_data").hide();
   $(".register_table").hide();
+  $(".register_table_mobile").hide();
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
@@ -12,8 +13,7 @@ $(document).ready(function(){
 		$(".introduce").hide();
 		$("#foundation").val("기초역량");
 		$("#form_data").show();
-    $(".register_table").hide();
-    $(".register_table_mobile").hide();
+ 
     $("#course").html("<center>캠  프</center>");
 
 	});
@@ -104,7 +104,7 @@ $(document).ready(function(){
             { url : "ShowCourse.php",
               data : {
                       'Course' : Course,
-                        'foundation':foundation
+                      'foundation':foundation
                     },
               async : true,
               type : "POST",
@@ -188,18 +188,17 @@ $(document).ready(function(){
       $(this).find('[class=inner_div]').hide();});
   $("body").on("click","#check_btn",function()
   { 
-     var foundation = $("#foundation").val();
+     
      var area = $("#course_name").text();
+     var formdata = $("#form_data").serializeArray();
+     formdata.push({name:'area',value:area});
       $.ajax(
-            { url : "ShowCourse.php",
-              data : {
-                      'area' : area,
-                      'foundation':foundation
-                    },
+            { url : "ResultService.php",
+              data : formdata,
               async : true,
               type : "POST",
               success:function(resp){  
-
+                  $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                
                 },
                 error: function(xhr, option, error){
@@ -226,30 +225,43 @@ $(document).ready(function(){
     windowsize = $(window).width();
     if (windowsize < 450) {
       //if the window is greater than 440px wide then turn on jScrollPane..
-        $('.introduce').on("show",function()
+        if($('.introduce').css("display")=='block')
         {
+   
             $('.introduce').hide();
             $(".introduce_mobile").show();
-        });
-        $('.register_table').on("show",function()
+            $('.register_table').hide();
+            $('.register_table_mobile').hide();
+        }
+        if($('.register_table').css("display")=='block')
         {
+
             $('.register_table').hide();
             $('.register_table_mobile').show();
-        });    
+            $('.introduce').hide();
+            $(".introduce_mobile").hide();
+        }    
 
     }
     else
     {
-        $('.introduce_mobile').on("show",function()
+        if($('.introduce_mobile').css("display")=='block')
         {
+   
             $('.introduce').show();
             $(".introduce_mobile").hide();
-        });
-        $('.register_table_mobile').on("show",function()
+
+            $('.register_table').hide();
+            $('.register_table_mobile').hide();
+        }
+         if($('.register_table_mobile').css("display")=='block')
         {
+
             $('.register_table').show();
             $('.register_table_mobile').hide();
-        });    
+            $('.introduce').hide();
+            $(".introduce_mobile").hide();
+        }    
     }
 });
 

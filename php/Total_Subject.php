@@ -10,7 +10,7 @@
 			
 		function __construct($foundation,$course)
 		{
-			if(!strcmp($foundation,"기초 역량"))
+			if(!strcmp($foundation,"기초역량"))
 			{
 				$temp_array = $this->foundation_cert;
 				$temp_number = $this->number_foundation;		
@@ -26,37 +26,37 @@
 				if(!strcmp($course,$temp))
 				{
 					$this->count_cert = $temp_number[$i];
-					if(!strcmp($foundation,"기초 역량") && !strcmp($course,"인문사회"))
+					if(!strcmp($foundation,"기초역량") && !strcmp($course,"인문사회"))
 					{
 						$this->course_data = ["인문사회","고전강독","세계관"];
 						$this->course_count = [6,2,4];
 					}
-					else if(!strcmp($foundation,"기초 역량") && !strcmp($course,"이공학"))
+					else if(!strcmp($foundation,"기초역량") && !strcmp($course,"이공학"))
 					{
 						$this->course_data = ["수학과학","소통-융복합"];
 						$this->course_count = [9,3];
 					}
-					else if(!strcmp($foundation,"기초 역량") && !strcmp($course,"ICT"))
+					else if(!strcmp($foundation,"기초역량") && !strcmp($course,"ICT"))
 					{
 						$this->course_data = ["ICT융합기초","소통-융복합"];
 						$this->course_count = [9,3];
 					}
-					else if(!strcmp($foundation,"기초 역량") && !strcmp($course,"ICT심화"))
+					else if(!strcmp($foundation,"기초역량") && !strcmp($course,"ICT심화"))
 					{
 						$this->course_data = ["ICT융합기초","소통-융복합"];
 						$this->course_count = [15,3];	
 					}
-					else if(!strcmp($foundation,"기초 학문") && !strcmp($course,"인문사회"))
+					else if(!strcmp($foundation,"기초학문") && !strcmp($course,"인문사회"))
 					{
 						$this->course_data = ["인문사회","고전강독","세계관"];
 						$this->course_count = [12,2,4];
 					}
-					else if(!strcmp($foundation,"기초 학문") && !strcmp($course,"이공학"))
+					else if(!strcmp($foundation,"기초학문") && !strcmp($course,"이공학"))
 					{
 						$this->course_data = ["ICT융합기초","소통-융복합"];
 						$this->course_count = [15,3];
 					}
-					else if(!strcmp($foundation,"기초 학문") && !strcmp($course,"융합"))
+					else if(!strcmp($foundation,"기초학문") && !strcmp($course,"융합"))
 					{
 						$this->course_data = ["인문사회","수학과학","소통-융복합"];
 						$this->course_count = [9,6,3];
