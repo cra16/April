@@ -110,7 +110,7 @@ class HisnetValidation{
     $db = new DB_Control();
     $link = $db->DBC();
 
-    $sql1 = "SELECT * FROM student WHERE id = '$his_id'";
+    $sql1 = "SELECT * FROM student WHERE id = '$this->his_id'";
     $outcome = mysqli_query($link,$sql1);
     $check = mysqli_num_rows($outcome);
 
@@ -130,7 +130,7 @@ class HisnetValidation{
         //Encryption for security
         $key = KEY;
         $s_vector_iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_3DES, MCRYPT_MODE_ECB), MCRYPT_RAND);
-        $en_str = mcrypt_encrypt(MCRYPT_3DES, $key, $his_pw, MCRYPT_MODE_ECB, $s_vector_iv);
+        $en_str = mcrypt_encrypt(MCRYPT_3DES, $key, $this->his_pw, MCRYPT_MODE_ECB, $s_vector_iv);
         $encryption = bin2hex($en_str); 
 
         //Login success but no data in DB
