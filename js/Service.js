@@ -3,6 +3,7 @@
 $(document).ready(function(){
 	$("#form_data").hide();
   $(".register_table").hide();
+  $(".register_table_mobile").hide();
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
@@ -246,30 +247,43 @@ $(document).ready(function(){
     windowsize = $(window).width();
     if (windowsize < 450) {
       //if the window is greater than 440px wide then turn on jScrollPane..
-        $('.introduce').on("show",function()
+        if($('.introduce').css("display")=='block')
         {
             $('.introduce').hide();
             $(".introduce_mobile").show();
-        });
-        $('.register_table').on("show",function()
+            $('.register_table').hide();
+            $('.register_table_mobile').hide();
+
+        }
+
+        if($('.register_table').css("display")=='block')
         {
             $('.register_table').hide();
             $('.register_table_mobile').show();
-        });    
+            $('.introduce').hide();
+            $(".introduce_mobile").hide();
+
+        }    
 
     }
     else
     {
-        $('.introduce_mobile').on("show",function()
+        if($('.introduce_mobile').css("display")=='block')
         {
             $('.introduce').show();
             $(".introduce_mobile").hide();
-        });
-        $('.register_table_mobile').on("show",function()
+            $('.register_table').hide();
+            $('.register_table_mobile').hide();
+
+        }
+        if($('.register_table_mobile').css("display")=='block')
         {
             $('.register_table').show();
             $('.register_table_mobile').hide();
-        });    
+            $('.introduce').hide();
+            $(".introduce_mobile").hide();
+
+        }
     }
 });
 
