@@ -456,7 +456,9 @@ class Stu_Grade{
 
     for($i=0; $i<$count; $i++){
       if(!strcmp($non_area[$i],$foundation))
-       echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
+      {
+       echo "<div style='width:60%; float:inline-block;'><input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input></div>";
+      }
     }
   }
   function parseNonsubject($his_id,$kind,$area){
