@@ -58,10 +58,15 @@ if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_i
     $nonsubject = $nonsubject."/".$non_name[$check];
     }
     foreach($_POST['index_array']as $index){
-    $nonyear = $nonyear.$index."/";
+        if($index){
+         $nonyear = $nonyear.$index."/";
+        }
+    
     }
     foreach($_POST['year_array'] as $year){
-    $nonyear = $nonyear.$year."/";   
+        if($year){
+            $nonyear = $nonyear.$year."/";        
+        }
     }
 
     $check_nonsub = TRUE;
@@ -74,7 +79,7 @@ if(!empty($_POST['data_info'])) {
 
     $active = "";
     foreach($_POST['data_info'] as $third) {
-          $active = $active."/"."현장체험".$third;
+          $active = $active.$third."/";
         }
     
     $check_active = TRUE;
