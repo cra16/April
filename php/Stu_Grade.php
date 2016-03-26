@@ -433,10 +433,9 @@ class Stu_Grade{
   }
   function getNonSubject($num,$foundation)
   {
-    if($num==0)
-      $condition = "SELECT * FROM camp ";
-    else if($num==1)
-      $condition= "SELECT * FROM academy";
+    $condition = "SELECT * FROM camp UNION SELECT * FROM academy ";
+    //원래는 num에 따라서 "SELECT * FROM camp "SELECT * FROM academy로 나누지만
+    //일단 한번 해보고 바꾼다
     $check = mysqli_query($this->link,$condition);
     $row_num = mysqli_num_rows($check);
 
@@ -457,7 +456,9 @@ class Stu_Grade{
 
     for($i=0; $i<$count; $i++){
       if(!strcmp($non_area[$i],$foundation))
-       echo "<input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input>";
+      {
+       echo "<div style='width:60%; float:inline-block;'><input type='checkbox' class='chk_confirm' name='chk_info[]' value='$i'> <a class='chk_name'>$non_name[$i]</a><br/><br/></input></div>";
+      }
     }
   }
   function parseNonsubject($his_id,$kind,$area){
