@@ -15,9 +15,26 @@
     <header class = "header">
       <h1>APRIL</h1>
       <h2>Student Capability Certification System</h2>
+
+      <div class ="column_main">
+      <div class ="column_left">
+        <div class="column_inner">
+        <img src="../img/people.png" alt="Smiley face" height="200" width="200">
+        <h5>기초역량</h5>
+        </div>
+      </div>
+      <div class ="column_right">
+        <div class="column_inner">
+        <img src="../img/book.png" alt="Smiley face" height="200" width="200">
+        <h5>기초학문</h5>
+        </div>
+      </div>     
+      </div>
+
+
       <!-- Large modal -->
-      <div class= "col-xs-12 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
-      <button type="button" class="btn btn-primary join_content" data-toggle="modal" data-target=".bs-example-modal-lg">Join us</button>
+      <div class= "col-xs-12 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5 col-lg-4 col-lg-offset-4">
+      <button type="button" class="btn btn-primary join_content" data-toggle="modal" data-target=".bs-example-modal-lg"><h6>Join us</h6></button>
       </div>
       <!-- Modal popup -->
       <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
