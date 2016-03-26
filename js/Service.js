@@ -1,13 +1,15 @@
 
 
 $(document).ready(function(){
+  $(".button_class").hide();
 	$("#form_data").hide();
   $(".register_table").hide();
   $(".register_table_mobile").hide();
+  $("#subject_text").text("Introduction");
 	$("div").on("click",".foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
-
+      $(".button_class").show();
 		$(".sub-foundation-competence").show();
 		$(".sub-foundation-study").hide();
 		$(".introduce").hide();
@@ -16,13 +18,15 @@ $(document).ready(function(){
     $(".register_table").hide();
     $(".register_table_mobile").hide();
     $("#course").html("<center>캠  프</center>");
-
+    $("#subject_text").show();
+      $("#subject_text").text("기초역량");
 	});
 
 	$("div").on("click",".foundation-study",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
-		
+		 $(".button_class").show();
+
 		$(".sub-foundation-competence").hide();
 		$(".sub-foundation-study").show();
 		$(".introduce").hide();
@@ -31,32 +35,43 @@ $(document).ready(function(){
     $(".register_table").hide();
     $(".register_table_mobile").hide();
     $("#course").html("<center>학  회</center>");
+    $("#subject_text").show();
+    $("#subject_text").text("기초학문");
 
 	});
   $("div").on("click",".introduction",function(event){
+    $(".button_class").hide();
     $(".sub-foundation-competence").hide();
     $(".sub-foundation-study").hide();
     $("#form_data").hide();
     $(".register_table").hide();
     $(".register_table_mobile").hide();
     $(".introduce").show();
-    
+    $("#subject_text").text("INTRODUCTION");
   
 
   });
   $("div").on("click",".register_data",function(event)
   {
+    $(".button_class").hide();
     $(".sub-foundation-competence").hide();
     $(".sub-foundation-study").hide();
     $("#form_data").hide();
     $(".introduce").hide();
     
     $(".register_table").show();
+    $("#subject_text").show();
+    $("#subject_text").text("지원정보");
   })
 
 	$("div").on("click",".sub-foundation-competence",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
+          $(".sub-foundation-competence").each(function()
+          {
+              $(this).css("color","black");
+          });
+          $(this).css("color","#33cccc");
           var data=$(this).children().text();
          var Course=$("#course_name").text($(this).children().text());
           Course = Course.text();
@@ -99,6 +114,11 @@ $(document).ready(function(){
 	$("div").on("click",".sub-foundation-study",function(event){
 		 event.stopPropagation();
           $(this).unbind("click");
+          $(".sub-foundation-study").each(function()
+          {
+              $(this).css("color","black");
+          });
+          $(this).css("color","#33cccc");
           var data=$(this).children().text();
           var Course=$("#course_name").text($(this).children().text());
           Course = Course.text();
@@ -142,9 +162,10 @@ $(document).ready(function(){
       $(this).unbind("click");
       if($(this).is(":checked")==true)
       {
-        var year_list = '<div class="dropdown" style="float:right" ><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">year</button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"></ul><input type="hidden" name="year_array[]" class="year" value=""></div>'
-        var indexcount_list = '<input type="hidden" name="index_array[]" value="">';
-        var temp=$(this).next().after(year_list);
+        $
+        var year_list = '<div class="dropdown"  style="float:left; width:30%; height:50px" ><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">year</button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"></ul><input type="hidden" name="year_array[]" class="year" value=""></div>'
+        var indexcount_list = '<input type="hidden" name="index_array[]" class="index_array_list" value="">';
+        var temp=$(this).parent().after(year_list);
         $(this).next().before(indexcount_list);
         var current_year = parseInt((new Date).getFullYear());
         var temp_string="";
@@ -153,13 +174,15 @@ $(document).ready(function(){
             temp_string=temp_string.concat('<li class="year_data" role="presentation"><a role="menuitem" tabindex="-1"><input type="checkbox" class="year_class" name = "year_array[]" value='+"\""+i+"\""+'>'+i+'</a></li>');
     
         }   
-        $(this).next().next().next().find(".dropdown-menu").html(temp_string);
-        $(this).next().next().show();
+        $(this).parent().next().find(".dropdown-menu").html(temp_string);
+        $(this).parent().next().next().next().show();
+        $(this).parent().css("float","left");
      }
       else
       {
-        $(this).next().next().next().remove();
         $(this).next().remove();
+        $(this).parent().next().remove();
+        $(this).parent().css("float","");
       }
   });
   $("div").on("click",".year_class",function()
@@ -174,8 +197,8 @@ $(document).ready(function(){
            if($(this).is(":checked")==true)
             count++;
         });
-        
-       Parent.parent().parent().prev().prev().val(count); 
+    
+       Parent.parent().parent().prev().find(".index_array_list").val(count); 
       
   
 

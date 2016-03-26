@@ -25,12 +25,12 @@ for($i=0; $i<3; $i++)
     <center><?php 
                             if($i==0)
                             {
-                                  echo "<b class='name'>교과과정</b>";
+                                  echo "<b class='name'><span class='line'>┃</span>교과과정</b>";
 
                             }
                             else if($i==1)
                             {
-                               echo "<b class='name'>비교과과정</b>";
+                               echo "<b class='name'><span class='line'>┃</span>비교과과정</b>";
                                ?>
 
                                   
@@ -41,7 +41,7 @@ for($i=0; $i<3; $i++)
                             }
                             else
                             {
-                              echo "<b class='name'>현장</b>";
+                              echo "<b class='name'><span class='line'>┃</span>현장참여과정</b>";
                             }
                             ?></center>
    <div id="rt_table" style="margin-top:40px;">
