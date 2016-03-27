@@ -31,7 +31,7 @@ if($mode == 0){
 
     // send application db + student db.
     
-    $sql = 'SELECT application.his_id, student.name, application.serial_num, application.kind, 
+    $sql = 'SELECT application.his_id, student.name, student.stu_id, student.phone_num,application.serial_num, application.kind, 
                     application.area, application.non_sub, application.status, application.year, application.active
                 FROM application
                 INNER JOIN student

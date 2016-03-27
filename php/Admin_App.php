@@ -13,7 +13,7 @@
 
 <table class="table">
 	<tr>
-	<th>이름	</th>
+	<th>학생정보	</th>
 	<th>지원서 번호 </th>
 	<th>인증제도</th>
 	<th>인증항목</th>
@@ -24,7 +24,7 @@
 	</tr>
 
 	<tr ng-controller="App_Data" ng-repeat="app in apps | filter:searchKeyword">
-	<td> {{app.name}}   </td>	<!--이름-->
+	<td> 이름:{{app.name}}<br>학번:{{app.stu_id}} <br>전화번호:{{app.phone_num}}  </td>	<!--이름-->
 	<td> <input type="text" name="serial_num" ng-model="serial_num" ng-value = "{{app.serial_num}}"></td>
 	<td> {{app.kind}}   </td>	<!--인증제도-->
 	<td> {{app.area}}   </td>	<!--인증항목-->	
