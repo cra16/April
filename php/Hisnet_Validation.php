@@ -124,6 +124,11 @@ class HisnetValidation{
       $stu_id = substr($temp_id,1,9);
       $stu_name = $html->find('strong', 0)->innertext;
       $stu_birth = substr($td_birth,0,6);
+      $td_phone = $table->children(4)->children(3);
+      $temp = $td_phone->find("input");
+      foreach($temp as $t)
+
+     $phone_num= $t->value;
 
       if($outcome)
       {
@@ -135,8 +140,8 @@ class HisnetValidation{
 
         //Login success but no data in DB
         if($check == 0){
-          $sql = "INSERT INTO student (id,pw,name,stu_id)
-          VALUES ('$this->his_id','$encryption','$stu_name','$stu_id')";
+          $sql = "INSERT INTO student (id,pw,name,stu_id,phone_num)
+          VALUES ('$this->his_id','$encryption','$stu_name','$stu_id','$phone_num')";
           if ($link->query($sql) === TRUE){
               header("location:Service.php");
               exit();
