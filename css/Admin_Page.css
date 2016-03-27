@@ -4,6 +4,7 @@ body{
     font-family: 'Nanum Gothic Coding', serif;
     /*font-family: 'Jeju Gothic', serif;*/
     background-color: white;
+    font-size: 10px;
 }
 .alert-box {
     padding: 15px;
@@ -11,7 +12,9 @@ body{
     border: 1px solid transparent;
     border-radius: 4px;  
 }
-
+.table{
+    font-size: 12px;
+}
 .success {
     color: #3c763d;
     background-color: #dff0d8;

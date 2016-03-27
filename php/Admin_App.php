@@ -9,7 +9,8 @@
 </div>
 
       <!-- 학부 선택 -->
-<div ng-controller ="app_Ctrl">
+<div ng-controller ="app_Ctrl" style="width: 100%; height: 400px; overflow: auto">
+
 <table class="table">
 	<tr>
 	<th>이름	</th>
@@ -22,7 +23,7 @@
   	<th>Action</th>
 	</tr>
 
-	<tr ng-controller="App_Data" dir-paginate="app in apps | filter:searchKeyword | itemsPerPage: 10">
+	<tr ng-controller="App_Data" ng-repeat="app in apps | filter:searchKeyword">
 	<td> {{app.name}}   </td>	<!--이름-->
 	<td> <input type="text" name="serial_num" ng-model="serial_num" ng-value = "{{app.serial_num}}"></td>
 	<td> {{app.kind}}   </td>	<!--인증제도-->
@@ -41,11 +42,8 @@
 	</tr>
 </table>
 </div>
-            <div class="text-center">
-                  <dir-pagination-controls
-                  max-size="7"
-                  direction-links="true"
-                  boundary-links="true">
-                  </dir-pagination-controls>
-            </div>
+<div class="col-md-6">
+	<form action="pdf.php" method="POST">
+	<button type="submit" class="btn btn-primary" ><h6>Download</h6></button>
+	</form>
 </div>
