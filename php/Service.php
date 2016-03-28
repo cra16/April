@@ -13,7 +13,7 @@ $stu_grade = Stu_Grade::getInstance(0);
 ?>
 <?php $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW']); ?>
                        
-<html lang="en">
+<html lang="en" style="height:100%;">
 
 <head>
 
@@ -72,8 +72,8 @@ $stu_grade = Stu_Grade::getInstance(0);
        
 
         <!-- Page Content -->
-         <div class ="col-xs-1"></div>
-         <div class ="col-xs-10">
+         <div class ="col-md-1"></div>
+         <div class ="col-md-10">
         <div id="container">
         
                     <span id="subject_text" style="font-size:30px; margin-top:40px; color:#33cccc;"></span>
@@ -143,7 +143,7 @@ $stu_grade = Stu_Grade::getInstance(0);
 
                                                 ?>
                                                 </center></th>
-                                                <?php if($i!=1)
+                                                <?php if($i==0)
                                                 {?>
                                                    <th class="col-xs-6">
                                                 
@@ -189,11 +189,11 @@ $stu_grade = Stu_Grade::getInstance(0);
                           echo "</td>";
                         }
                         else if($i==2)
-                        { echo "<td></td>";
+                        { 
                         echo "<td>";
                         for($j=0; $j<3; $j++)
                             {
-                              echo "<input type='checkbox'  name='data_info[]' value='$j'>학술 평가 과목 출력 할 부분<br>";
+                              echo "<div style='width:60%; float:inline-block;'><input type='checkbox'  name='data_info[]' class='data_confirm' value='$j'>학술 평가 과목 출력 할 부분<br></div>";
                           }
                           echo "</td>";
                            
@@ -208,7 +208,7 @@ $stu_grade = Stu_Grade::getInstance(0);
                                   if($i==2)
                               if($i==2)
                                {
-                                echo "* 현장참여과정은 코너스톤을 제외하고는 모든 보고서는 창의융합교육원 오피스에 필요서류를 제출하셔야 합니다.";
+                                echo "<span>* 현장참여과정은 코너스톤을 제외하고는 모든 보고서는 창의융합교육원 오피스에 필요서류를 제출하셔야 합니다.<br></span>";
                                }
                                 ?>
                          </div>
@@ -218,11 +218,12 @@ $stu_grade = Stu_Grade::getInstance(0);
                        </div>
                        <input type="hidden" id ="foundation" name = "foundation" value="">
                        <input type="hidden" id ="area" name = "area" value="인문사회">
+                       <br>
                        <center><div class="alert-box success">정보가 등록되었습니다</div>
                        <div class="alert-box warning">정보가 삭제되었습니다</div>
                        <div class="alert-box failure">요청하신 명령에 실패하였습니다</div></center>
                        <center style="margin-top:40px;"><input type='button' class='btn btn-primary bt-lg' id ="submit_btn" value="제출">
-                        &nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-primary bt-lg' id ="check_btn" style="" value="확인"></center>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-primary bt-lg' id ="check_btn" style="" value="확인"> &nbsp;&nbsp; <input type='button' class='btn btn-primary bt-lg' id ="submit_btn" value="엑셀다운"></center>
                      
                       </form>
             </div>
@@ -242,11 +243,11 @@ $stu_grade = Stu_Grade::getInstance(0);
       <h3>▶인증 대상은 누구인가요?</h3>
        <table class="desc_contain">
       <tr> 
-           <td>
+           <td class="text_class">
             <h5>1. 기초역량 인증</h5>
-           <p>1.해당 교과 과정에서 각 과목 B0학점 이상의 <br> 성적을 얻은 학생</p>  
-           <p>2.코너스톤 창의과제를 수강한 학생</p>
-            <p>3.학술캠프나 ICT 학술학회를 참여한 학생</p>
+           <p>&nbsp;&nbsp;1) 해당 교과 과정에서 각 과목 B0학점 이상의 성적을 얻은 학생</p>  
+           <p>&nbsp;&nbsp;2) 코너스톤 창의과제를 수강한 학생</p>
+            <p>&nbsp;&nbsp;3) 학술캠프나 ICT 학술학회를 참여한 학생</p>
           </td>
           <td>
           <img style="float:right;" src="../img/back.jpg">
@@ -256,13 +257,12 @@ $stu_grade = Stu_Grade::getInstance(0);
         <td>
            <img style="float:left;" src="../img/bg2.png">
            </td>
-           <td style="padding-left:20px;">
+           <td style="padding-left:40px; padding-top:10px;"  class="text_class">
            
             <h5>2. 기초학문 인증</h5>
-          <p>1.해당 교과 과정에서 각 과목 B0학점 <br>이상의 성적을 얻은 학생<br><br>
-                 2.교내 학술학회에서 활동한 학생<br><br>
-                 3.기초 학문 분야와 연관 전공에 대한 <br>심화된 학습 결과물을 낸 학생<br>
-           </p>
+            <p>&nbsp;&nbsp;1) 해당 교과 과정에서 각 과목 B0학점 이상의 성적을 얻은 학생</p>
+            <p>&nbsp;&nbsp;2) 교내 학술학회에서 활동한 학생</p>
+            <p>&nbsp;&nbsp;3) 기초 학문 분야와 연관 전공에 대한 심화된 학습 결과물을 낸 학생</p>
             </td>
       </tr>
 
@@ -489,10 +489,9 @@ $stu_grade = Stu_Grade::getInstance(0);
       </td>
       <td>
       <h5>2. 기초학문 인증</h5>
-       <p>1.해당 교과 과정에서 각 과목 B0학점 <br>이상의 성적을 얻은 학생<br><br>
-                 2.교내 학술학회에서 활동한 학생<br><br>
-                 3.기초 학문 분야와 연관 전공에 대한 <br>심화된 학습 결과물을 낸 학생<br>
-           </p>
+       <p>1.해당 교과 과정에서 각 과목 B0학점 이상의 성적을 얻은 학생</p>
+       <p>2.교내 학술학회에서 활동한 학생</p>
+       <p>3.기초 학문 분야와 연관 전공에 대한 심화된 학습 결과물을 낸 학생</p>
       </td>
       </tr>
 
@@ -654,7 +653,16 @@ $stu_grade = Stu_Grade::getInstance(0);
               
                    
             
+         
+            </div>
+            <div class ="col-md-1"></div>
+
+        <!-- /#page-content-wrapper -->
+ 
+    
         <div class="footer">
+          <div class ="col-md-1"></div>
+          <div class ="col-md-10">
           <table style="width:100%;">
             <tr >
             <td style="width:50%;"><p> Produced by CRA - <a href="#" data-toggle="tooltip" title="이동영 이세계 조은비 조혜인 임현우">April-team</a>  </p>
@@ -666,13 +674,10 @@ $stu_grade = Stu_Grade::getInstance(0);
             <td style="width:50%;"> <span>Office : 현동홀 206B 창의융합교육원 학생통합역량개발지원실 Phone : 054)260-3308</span></td>
             </tr>
           </table>
-        </div>   
-            </div>
-            <div class ="col-xs-1"></div>
-        <!-- /#page-content-wrapper -->
-
-       
-
+          </div>
+          <div class ="col-md-1"></div>
+        </div>  
+ 
 
     <!-- /#wrapper -->
 

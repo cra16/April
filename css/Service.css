@@ -8,10 +8,17 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+body{
+
+}
 #rt_table{
     height:200px;
     overflow: auto;
 }
+  img{
+        height:220px;
+    }
+
 /*
 div.rt_table{position: relative;padding-top:30px;width:550px;height: 300px;overflow: hidden;}
 div.rt_table > div {height: 300px;overflow: auto;}
@@ -36,6 +43,9 @@ tbody{
 .footer{
     font-family: 'Nanum Gothic Coding';
     font-size:5px;
+    background-color:#F0F0F0 ;
+    float:left;
+    width:100%;
 }
 .footer>p, .footer>p>a{
     font-size:5px;
@@ -106,7 +116,7 @@ input[type="checkbox"]:after:focus{
     color:#33cccc;
     letter-spacing: 110%
 }
-
+/* scroll bar*/
 /* Let's get this party started */
 ::-webkit-scrollbar {
     width: 12px;
@@ -123,13 +133,18 @@ input[type="checkbox"]:after:focus{
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: rgba(255,0,0,0.8); 
+    background: rgba(255,0.1,0.1,0.1); 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255,0,0,0.4); 
+    background: rgba(255,0.1,0.1,0.1); 
 }
-
+ .desc_contain>tbody>tr>.text_class
+    {
+        width:50%;
+        vertical-align: top;
+        font-weight: bold;
+    }
 @media(max-width:350px){
     .button_class
     {
@@ -166,7 +181,6 @@ input[type="checkbox"]:after:focus{
     }
     h1{
         font-size:25px;
-        text-align: center;
        font-family: 'Jeju Gothic', serif;
     }
     h3{
@@ -228,7 +242,6 @@ input[type="checkbox"]:after:focus{
     }
     h1{
         font-size:30px;
-        text-align: center;
        font-family: 'Jeju Gothic', serif;
     }
     h3{
@@ -411,11 +424,20 @@ input[type="checkbox"]:after:focus{
     p{
              font-size:20px; 
     }   
-    .desc_contain>tbody>tr>td
+     .desc_contain>tbody>tr>.text_class
     {
-        width:450px;
+        width:50%;
+        
     }
-   
+    
+    .desc_contain>tbody>tr>td>p
+    {
+        font-size:12px;
+        font-weight: bold;
+    }
+    img{
+        width:300px;
+    }
 }
 @media (min-width:1201px){
     .navbar{
@@ -489,11 +511,9 @@ input[type="checkbox"]:after:focus{
 
         width:800px;
     }
-    img{width:400px;}
-
+   
     h1{
      font-size:56px;
-      text-align: center;
        font-family: 'Jeju Gothic', serif;
     }
     h3{
@@ -509,12 +529,16 @@ input[type="checkbox"]:after:focus{
     p{
              font-size:20px; 
     }
-    .desc_contain>tbody>tr>td
+
+   
+    
+    .desc_contain>tbody>tr>td>p
     {
-        width:500px;
-        padding:0px;
+        font-size:15px;
+        font-weight: bold;
     }
 
+  
 }
 
 
@@ -550,7 +574,7 @@ a{
 }
 .table_layer
 {
-    height:350px;
+    height:380px;
   
 }
 .button_class
@@ -617,9 +641,7 @@ img{
     .container{
         width:800px;
     }
-    img{
-        height:300px;
-    }
+    
 
     #description{
     width: 400px;   
