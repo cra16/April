@@ -250,12 +250,12 @@ $stu_grade = Stu_Grade::getInstance(0);
             <p>&nbsp;&nbsp;3) 학술캠프나 ICT 학술학회를 참여한 학생</p>
           </td>
           <td>
-          <img style="float:right;" src="../img/back.jpg">
+          <img style="float:right;width:95%;height:200px;" src="../img/back.jpg">
           </td>
       </tr> 
       <tr>
         <td>
-           <img style="float:left;" src="../img/bg2.png">
+           <img style="float:left; width:95%;height:200px;" src="../img/bg2.png">
            </td>
            <td style="padding-left:40px; padding-top:10px;"  class="text_class">
            
@@ -479,12 +479,12 @@ $stu_grade = Stu_Grade::getInstance(0);
             <p>3.학술캠프나 ICT 학술학회를 참여한 학생</p>
           </td>
           <td>
-          <img style="float:right;" src="../img/back.jpg">
+          <img style="float:right; width:95%;height:200px;" src="../img/back.jpg">
           </td>
       </tr> 
       <tr>
       <td>
-              <img style="float:left;" src="../img/bg2.png">
+              <img style="float:left; width:95%;height:200px;" src="../img/bg2.png">
 
       </td>
       <td>
@@ -665,12 +665,12 @@ $stu_grade = Stu_Grade::getInstance(0);
           <div class ="col-md-10">
           <table style="width:100%;">
             <tr >
-            <td style="width:50%;"><p> Produced by CRA - <a href="#" data-toggle="tooltip" title="이동영 이세계 조은비 조혜인 임현우">April-team</a>  </p>
+            <td style="width:50%;"><span> Produced by CRA - <a href="#" data-toggle="tooltip" title="이동영 이세계 조은비 조혜인 임현우">April-team</a>  </span>
              </td>
             <td style="width:50%;"><span>Person in charge : 최하림 email: cce.handong@gamil.com</span></td>
             </tr>
             <tr>
-            <td style="width:50%;">Github : <a href="https://github.com/cra16/April"> https://github.com/cra16/April</a></td>
+            <td style="width:50%;"><span>Github : <a href="https://github.com/cra16/April"> https://github.com/cra16/April</a></span></td>
             <td style="width:50%;"> <span>Office : 현동홀 206B 창의융합교육원 학생통합역량개발지원실 Phone : 054)260-3308</span></td>
             </tr>
           </table>

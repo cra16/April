@@ -42,15 +42,14 @@ tbody{
 }
 .footer{
     font-family: 'Nanum Gothic Coding';
-    font-size:5px;
+    font-size:10px;
     background-color:#F0F0F0 ;
     float:left;
     width:100%;
 }
-.footer>p, .footer>p>a{
-    font-size:5px;
+.footer>div>table>tbody>tr>td>span{
+    font-size:12px;
 }
-
 h1, h3,h5{
     margin-top:20px;
     margin-bottom: 20px;
@@ -145,6 +144,10 @@ input[type="checkbox"]:after:focus{
         vertical-align: top;
         font-weight: bold;
     }
+.desc_contain>tbody>tr
+{
+    height:230px;
+}
 @media(max-width:350px){
     .button_class
     {
