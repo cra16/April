@@ -64,7 +64,7 @@ for($i=0; $i<3; $i++)
 
                         ?>
                         </center></th>
-                     <?php if($i!=1)
+                     <?php if($i==0)
                         {?>
                            <th class="col-xs-6">
                         
@@ -107,7 +107,7 @@ for($i=0; $i<3; $i++)
                       		echo "</td>";
                         }
                         else if($i==2)
-                        {	echo "<td></td>";
+                        {	
                     		echo "<td>";
                     		for($j=0; $j<3; $j++)
                           	{

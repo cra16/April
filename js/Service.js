@@ -185,6 +185,36 @@ $(document).ready(function(){
         $(this).parent().css("float","");
       }
   });
+$("div").on("click",".data_confirm",function()
+  {   
+       event.stopPropagation();
+          
+      $(this).unbind("click");
+      if($(this).is(":checked")==true)
+      {
+        $
+        var year_list = '<div class="dropdown"  style="float:left; width:30%; height:50px" ><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">year</button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"></ul><input type="hidden" name="year_array[]" class="year" value=""></div>'
+        var indexcount_list = '<input type="hidden" name="index_array[]" class="index_array_list" value="">';
+        var temp=$(this).parent().after(year_list);
+        $(this).next().before(indexcount_list);
+        var current_year = parseInt((new Date).getFullYear());
+        var temp_string="";
+        for(var i = 2011; i<=current_year; i++)
+        {
+            temp_string=temp_string.concat('<li class="year_data" role="presentation"><a role="menuitem" tabindex="-1"><input type="checkbox" class="year_class" name = "year_array[]" value='+"\""+i+"\""+'>'+i+'</a></li>');
+    
+        }   
+        $(this).parent().next().find(".dropdown-menu").html(temp_string);
+        $(this).parent().next().next().next().show();
+        $(this).parent().css("float","left");
+     }
+      else
+      {
+        $(this).next().remove();
+        $(this).parent().next().remove();
+        $(this).parent().css("float","");
+      }
+  });
   $("div").on("click",".year_class",function()
   {   
         event.stopPropagation();
