@@ -27,7 +27,7 @@
                 <li><a href="#app">지원정보</a></li>
                 <li><a href="#sub">교과과정</a></li>
                 <li><a href="#nonsub">비교과과정</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="Main.php">Logout</a></li>
                 </ul>
            </div>
            </div>
