@@ -1,4 +1,4 @@
-
+﻿
 <div class="alert-box success">정보가 등록되었습니다</div>
 <div class="alert-box warning">정보를 입력해주세요</div>
 <div class="alert-box failure">요청하신 명령에 실패하였습니다</div>
@@ -43,7 +43,7 @@
 </table>
 </div>
 <div class="col-md-6">
-	<form action="pdf.php" method="POST">
+	<form action="download.php" method="POST">
 	<button type="submit" class="btn btn-primary" ><h6>Download</h6></button>
 	</form>
 </div>
