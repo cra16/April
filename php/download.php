@@ -25,7 +25,9 @@
     <table border='1' cellpadding='2' cellspacing='5'>
       <thead>
         <th>이름</th>
-        <th>지원서 번호</th>
+        <th>학번</th>
+        <th>이름</th>
+        <th>전화번호</th>
         <th>인증 제도</th>
         <th>인증 항목</th>
         <th>비교과 과정</th>
@@ -40,6 +42,8 @@
         echo "<tr>";    
 
         echo "<td>".$data['name']."</td>";
+        echo "<td>".$data['stu_id']."</td>";
+        echo "<td style=\"mso-number-format:'@'\">".$data['phone_num']."</td>";
         echo "<td>".$data['serial_num']."</td>";
         echo "<td>".$data['kind']."</td>";
         echo "<td>".$data['area']."</td>";
