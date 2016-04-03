@@ -44,7 +44,7 @@ class Student{
          $password = mysqli_real_escape_string($link,$check['pw']);
          $de_str = pack("H*", $password); //hex로 변환한 ascii를 binary로 변환
          $decoding = mcrypt_decrypt(MCRYPT_3DES, $key, $de_str, MCRYPT_MODE_ECB, $s_vector_iv); 
-
+         echo $decoding;
       if ( mysqli_num_rows($result) > 0) {
          if( eregi("$decoding", "$stu_pw") ){
             $_SESSION['USER_NAME'] = $stu_id;
@@ -52,6 +52,10 @@ class Student{
              header("location:Service.php");
              echo "totally success";
              exit();   
+         }
+         else
+         {
+             header("location:Main.php");
          }
       } 
       else {
