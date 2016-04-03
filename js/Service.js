@@ -267,17 +267,33 @@ $("div").on("click",".data_confirm",function()
                   //alert(error); //오류내용
 
                      $( "div.failure" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );           
-                    if(xhr.responseText=="1")
+                    if(xhr.responseText==1)
                     {
-                      $("div.failure").text("교과목이 부족");
+                      $("div.failure").html("교과목 부족");
                     }
-                    else if(xhr.responseText=="2")
+                    else if(xhr.responseText==10)
                     {
-                      $("div.failure").text("비교과 부족");
+                      $("div.failure").html("비교과 부족");
                     }
-                    else if(xhr.responseText=="3")
+                    else if(xhr.responseText==100)
                     {
-                      $("div.failure").text("현장 부족");
+                      $("div.failure").html("현장 부족");
+                    }
+                    else if(xhr.responseText==11)
+                    {
+                      $("div.failure").html("교과목 부족"+"<br>"+"비교과 부족");
+                    }
+                    else if(xhr.responseText==101)
+                    {
+                      $("div.failure").html("교과목 부족"+"<br>"+"현장 부족");
+                    }
+                    else if(xhr.responseText==110)
+                    {
+                      $("div.failure").html("비교과 부족"+"<br>"+"현장 부족");
+                    }
+                    else if(xhr.responseText==111)
+                    {
+                      $("div.failure").html("교과목 부족"+"<br>"+"비교과 부족"+"<br>"+"현장 부족");
                     }
                  } 
 

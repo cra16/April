@@ -55,7 +55,7 @@ $stu_grade = Stu_Grade::getInstance(0);
       <li><a href="#" class="foundation-competence">기초역량</a></li>
       <li><a href="#" class="foundation-study">기초학문</a></li>
       <li><a href="#" class="register_data">지원 정보</a></li>
-      <li><a href="Main.php">Logout</a></li>
+      <li><a href="logout.php">Logout</a></li>
 
     </ul>
   </div>

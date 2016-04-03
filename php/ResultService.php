@@ -28,9 +28,10 @@ $area = $_POST['area'];
     $check_sub = $stu_grade->requestGrade($_SESSION['USER_NAME'], $_SESSION['USER_PW'], $foundation, $area);
     $check_nonsub = FALSE;
     $check_active = FALSE;
-    $check_sub = TRUE;
+    //$check_sub = TRUE; 
+
 //check second field and save result
-if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_info'])){
+if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_info'])&&count($_POST['year_array'])>=count($_POST['chk_info'])){
  
      //call the nonsubject list from db
     $condition = "SELECT * FROM camp UNION SELECT * FROM academy ";
@@ -70,9 +71,6 @@ if(!empty($_POST['chk_info'])&&count($_POST['index_array'])==count($_POST['chk_i
     }
 
     $check_nonsub = TRUE;
-}else if(!empty($_POST['chk_info'])){
-    echo "<script language='javascript'>location.replace('Service.php'); alert('입력정보가 부족합니다'); </script>"; 
-    exit();
 }
 // check third field and save result
 if(!empty($_POST['data_info'])) {
