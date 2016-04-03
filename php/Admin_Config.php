@@ -47,7 +47,7 @@ class Admin{
 	    		}
 		} 
 		else {
-			echo "0 results";
+			echo "";
 		}
 		//DB Close
 		mysqli_close($link);
