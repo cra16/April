@@ -1,10 +1,10 @@
-<?php
+﻿<?php
   session_start();
   // Connect with DB
   require_once("Config_DB.php");
   $db = new DB_Control();
   $link = $db->DBC();
-
+  //comment
   Header("Content-type: application/vnd.ms-excel");
   Header("Content-type: charset=utf-8");
   Header("Content-Disposition: attachment; filename=".date("Y-m-d").".xls");
